@@ -1,0 +1,79 @@
+package co.com.sisapco.service;
+
+import co.com.sisapco.dto.ChangePasswordForm;
+import co.com.sisapco.entity.Actas;
+import co.com.sisapco.entity.Actividades;
+import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.Contrato;
+import co.com.sisapco.entity.Copropiedad;
+import co.com.sisapco.entity.Cotizaciones;
+import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.Modulo;
+import co.com.sisapco.entity.Perfil;
+import co.com.sisapco.entity.Pqrs;
+import co.com.sisapco.entity.Proyectos;
+import co.com.sisapco.entity.Usuarios;
+
+public interface UserService {
+	
+	public Iterable<Usuarios> getAllUsers();
+
+	public Usuarios createUser(Usuarios user) throws Exception;
+	
+	public Usuarios geUsuariosById(Long id) throws Exception;
+	
+	public Perfil getPefilById(int id) throws Exception;
+	
+	public Usuarios geUsuariosByUsername(String user) throws Exception;
+	
+	public Iterable<Modulo> getModulosById(int perfilId) throws Exception;
+	
+	public Iterable<Modulo> getModulosByAll() throws Exception;
+	
+	public Iterable<Copropiedad> getCopropiedadUsuario(int usuId) throws Exception;
+	
+	public Copropiedad getCopropiedadById(int id) throws Exception;
+	
+	public Iterable<Copropiedad> getCopropiedadByNit(int nit) throws Exception;
+	
+	public Usuarios updateUser(Usuarios user)throws Exception;
+	
+	public void deleteUser(Long id) throws Exception;
+	
+	public Usuarios changePassword(ChangePasswordForm form) throws Exception;
+	
+	public Iterable<Actividades> getActividadesByNit(int codNit) throws Exception;
+	
+	public Iterable<Actividades> getActividadesById(int actId) throws Exception;
+	
+	public Actividades getActividadesByIdForm(int actId) throws Exception;
+	
+	public Actividades createActividad(Actividades actividad) throws Exception;
+	
+	public EvidenciaActividades createEvidenciaActividad(EvidenciaActividades evidenciaActividades) throws Exception;
+	
+	public Iterable<EvidenciaActividades> getEvidenciaActividadesByActId(int actId) throws Exception;
+	
+	public Actas createActa(Actas actas) throws Exception;
+	
+	public Iterable<Actas> getActasByNit(int codNit) throws Exception;
+	
+	public Actas getActaByIdForm(int actId) throws Exception;
+	
+	public AlmacenamientoGoogle getAlmacenamientoGoogleByIdForm(int codNit, String carpeta) throws Exception;
+	
+	public Contrato createContrato(Contrato contrato) throws Exception;
+	
+	public Iterable<Contrato> getContratoByNit(int codNit) throws Exception;
+	
+	public Cotizaciones createCorizaciones(Cotizaciones cotizaciones) throws Exception;
+	
+	public Iterable<Cotizaciones> getCotizacionesByNit(int codNit) throws Exception;
+	
+	public Iterable<Proyectos> getProyectosByNit(int codNit) throws Exception;
+	
+	public Iterable<Pqrs> getPqrsByNit(int codNit) throws Exception;
+	
+	public Pqrs createPqrs(Pqrs pqrs) throws Exception;
+	
+}

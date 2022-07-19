@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Acta</title>
+    <!-- El script de la librería-->
+    <script src="pdfjs/html2pdf.bundle.min.js"></script>
+    <!--Nuestro script, que se encarga de crear el PDF usando la librería-->
+    <script src="pdfjs/script.js"></script>
+    <!-- Algunos estilos -->
+    
+</head>
+
+<body>
+     
+	<table>
+	    <tr>
+	        <td></td>
+			<td><h2>ACTA Nº: <spam th:text="${actaForm.actNumero}"></spam></h2></td>
+			<td width="50%"><img style="width:100%!important" th:src="${logoCopropiedad}"></td>
+		</tr>
+		<tr>
+			<td><h5>REUNION:</h5></td>
+			<td><spam th:text="${actaForm.actReunion}"></spam></td>
+			<td></td>
+		</tr>
+	    <tr>
+			<td><h5>FECHA:</h5></td>
+			<td><spam th:text="${actaForm.actFecha}"></spam></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><h5>CONVOCA:</h5></td>
+			<td><spam th:text="${actaForm.actConvoca}"></spam></td>
+			<td></td>
+		</tr>
+	    <tr>
+			<td><h5>MUNICIPIO:</h5></td>
+			<td><spam th:text="${actaForm.actMunicipio}"></spam></td>
+			<td></td>
+		</tr>
+	    <tr>
+			<td><h5>LUGAR:</h5></td>
+			<td><spam th:text="${actaForm.actLugar}"></spam></td>
+			<td></td>
+		</tr>
+	    <tr>
+			<td><h5>HORA INICIO:</h5></td>
+			<td><spam th:text="${actaForm.actHoraInicio}"></spam></td>
+			<td></td>
+		</tr>
+	</table>
+
+    <table>
+	    <tr>
+		    <td><h5>ASISTENTES:</h5></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	     <tr>
+		    <td></td>
+		    <td><spam th:text="${actaForm.actAsistentes}"></spam></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	    <tr>
+		    <td></td>
+		    <td><h5>INVITADOS:</h5></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	     <tr>
+		    <td></td>
+		    <td><spam th:text="${actaForm.actAsistentes}"></spam></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	    
+	    <tr>
+		    <td></td>
+		    <td><h5>ORDEN DEL DÍA:</h5></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	    	<tr>
+		    <td></td>
+		    <td><spam th:text="${actaForm.actOrdenDia}"></spam></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	    
+	     <tr>
+		    <td></td>
+		    <td><h5>DESARROLLO ORDEN DEL DÍA:</h5></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	    	<tr>
+		    <td></td>
+		    <td><spam th:text="${actaForm.actDesarrolloDia}"></spam></td>
+		    <td></td>
+		    <td></td>
+	    </tr>
+	    </table>
+	    <br><br><br>
+	    <table>
+	     </tr>
+	    	<tr>
+		    <td></td>
+		    <td><spam th:text="${actaForm.actFirmas}"></spam></td>
+		    <td></td>
+		    <td></td>
+		    <td><spam th:text="${actaForm.actFirmas}"></spam></td>
+	    </tr>
+	    	<tr>
+		    <td></td>
+		    <td>______________________________</td>
+		    <td></td>
+		    <td></td>
+		    <td>______________________________</td>
+	    </tr>
+	    	<tr>
+		    <td></td>
+		    <td><spam>Presidente</spam></td>
+		    <td></td>
+		    <td></td>
+		    <td><spam>Secretario</spam> </td>
+	    </tr>
+    </table>
+</body>
+<script>btnCrearPdfBody()</script>
+
+</html>
