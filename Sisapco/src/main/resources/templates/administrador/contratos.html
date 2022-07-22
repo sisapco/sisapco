@@ -223,21 +223,24 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Plazo:</span> <input type="text"
+										<span>Plazo(meses):</span> <input type="Number"
 											class="form-control form-control-user" id="contraPlazo"
 											placeholder="" th:field="${contratoForm.contraPlazo}">
 									</div>
 									<div class="col-sm-6">
-										<span>Tiempo:</span> <input type="text"
+										<span>Tiempo(meses):</span> <input type="number"
 											class="form-control form-control-user" id="contraTiempo"
 											placeholder="">
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Valor Contrato:</span> <input type="number"
-											class="form-control form-control-user" id="contraValor"
-											placeholder="" th:field="${contratoForm.contraValor}">
+										<span>Valor Contrato:</span> 
+																									
+										<input type="number" 
+											class="form-control form-control-user" id="contraValor" 
+											min="0" data-bind="value:replyNumber" th:field="${contratoForm.contraValor}"
+											value="">																																	
 											<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
 
