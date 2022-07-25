@@ -64,6 +64,12 @@ public class PqrsController {
 		
 		int copId =  copropiedadDTO.getCopId();
 		
+		//consultamos el ultimo consecutivo
+		Pqrs pqrsconsecutivo = userService.getPqrsByIdConsecutivoForm(copNit);
+		int consecutivo = pqrsconsecutivo.getIdPqrs();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivopqrs", consecutivo);
+		
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();
 		String copIdEcr = String.valueOf(copId);

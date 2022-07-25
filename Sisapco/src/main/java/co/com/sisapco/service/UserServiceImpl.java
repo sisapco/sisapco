@@ -316,6 +316,12 @@ public class UserServiceImpl implements UserService{
 		pqrs=repositoryPqrs.save(pqrs);
 	    return pqrs;
 	}
+
+	@Override
+	public Pqrs getPqrsByIdConsecutivoForm(int copNit) throws Exception {
+		// TODO Auto-generated method stub
+		return repositoryPqrs.findByPqrsNitConsecutivo(copNit);
+	}
 	
 	
 }

@@ -76,4 +76,6 @@ public interface UserService {
 	
 	public Pqrs createPqrs(Pqrs pqrs) throws Exception;
 	
+	public Pqrs getPqrsByIdConsecutivoForm(int copNit) throws Exception;
+	
 }
