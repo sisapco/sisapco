@@ -171,17 +171,18 @@
                                 
 
 								<div class="form-group">
-									<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="col-sm-6 mb-3 mb-sm-0" >
 											<span>Nombre Cotización<span
 											style="color: #ff0000">*</span></span> <input type="text"
-											pattern="[a-zA-Z]+" class="form-control form-control-user"
+											pattern="[a-zA-Z ] +" class="form-control form-control-user"
 											id="cotNombreCotizacion" placeholder="" th:field="${cotizacionesForm.cotNombreCotizacion}" required>
-										<div class="invalid-feedback">Ingresa un nombre valido.</div>
+										<div class="invalid-feedback">Ingresa un nombre valido solo letras y sin espacios.</div>
+									
 									</div>
 									<div class="col-sm-6">
 										<span>Descripción<span
 											style="color: #ff0000">*</span></span> <input type="text"
-											pattern="[a-zA-Z]+" class="form-control form-control-user"
+											pattern="[a-zA-Z ]{2,45}" class="form-control form-control-user"
 											id="cotDescripcion" placeholder="" th:field="${cotizacionesForm.cotDescripcion}" required>
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									</div>

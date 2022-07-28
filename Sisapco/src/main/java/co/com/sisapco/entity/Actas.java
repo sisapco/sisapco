@@ -46,7 +46,7 @@ public class Actas implements Serializable{
 	private String actLugar;
 	
 	@Column
-	private Time actHoraInicio;
+	private String actHoraInicio;
 	
 	@Column
 	private String actAsistentes;
@@ -122,11 +122,11 @@ public class Actas implements Serializable{
 		this.actLugar = actLugar;
 	}
 
-	public Time getActHoraInicio() {
+	public String getActHoraInicio() {
 		return actHoraInicio;
 	}
 
-	public void setActHoraInicio(Time actHoraInicio) {
+	public void setActHoraInicio(String actHoraInicio) {
 		this.actHoraInicio = actHoraInicio;
 	}
 
