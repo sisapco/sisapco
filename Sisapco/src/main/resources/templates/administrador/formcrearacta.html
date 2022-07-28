@@ -283,8 +283,6 @@
 									    <select id="select_dialect"></select>
 									  </div>
 									  
-									  
-									
                                  </div>
                                 
                                 <div class="form-group row">
@@ -344,53 +342,8 @@
 														});
 									</script>
 									
-                                    
                                 </div>
                                
-                                
-                                <!-- seccion para boton de cargar Firma Presidente 
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Adjuntar archivo<span style="color: #ff0000">*</span>
-										</span>
-										<div class=" form-group  " aria-label="Default select example">
-										
-										    <input class="form-control" type=hidden value=".." id="contraDocumentoAdjunto" th:field="${contratoForm.contraDocumentoAdjunto}">
-											<input id="contraDocumentoAdjuntos" type="file"
-												style="display: none" name="contraDocumentoAdjuntos" >
-											<div class=" form-group row">
-												<input id="contraDocumentoAdjuntos"
-													class="form-control form-control-user" type="text" required>
-												<a class="btn btn-file  btn btn-secondary "><i
-													class="fa fa-folder-open-o "></i> Seleccionar</a>
-												<div class="invalid-feedback">Seleccion la firma.</div>
-											</div>
-										</div>
-									</div>
-									<script type="text/javascript">
-										// http://duckranger.com/2012/06/pretty-file-input-field-in-bootstrap/ 
-										// Cuando se pulsa el falso manda el click al autentico
-										$('.btn-file').on('click', function() {
-											$(this).parent().prev().click();
-										});
-										// Cuando el autentico cambia hace cambiar al falso
-										$('input[type=file]')
-												.on(
-														'change',
-														function(e) {
-															$(this)
-																	.next()
-																	.find(
-																			'input')
-																	.val(
-																			$(
-																					this)
-																					.val());
-														});
-									</script>
-                                -->
-                                
-  
                                 <hr>
                                 <input type="submit" class="btn btn-primary" value="Crear Acta">
                                 <hr>
