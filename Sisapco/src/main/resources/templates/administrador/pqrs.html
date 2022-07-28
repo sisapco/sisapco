@@ -154,9 +154,9 @@
 
 								<div th:if="${bien}" class="alert alert-success" role="alert">La PQRS fue
 									creada de forma exitosa.</div>
-								<input class="form-control" type=hidden id="copNit"
-									name="copNit"> <input class="form-control" type=hidden
-									id="copNombre" name="copNombre">
+									
+						        <input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
+                                <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
 
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
@@ -179,14 +179,14 @@
 								<div class="form-group row">
 									<div class="col-sm-6">
 										<span>Nombres<span style="color: #ff0000">*</span></span> <input
-											type="text" pattern="[a-zA-Z]+"
+											type="text"
 											title="No es un nombre valido"
 											class="form-control form-control-user" id="proNombres"
 											placeholder="" th:field="${pqrsForm.proNombres}" required>
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 									<div class="col-sm-6">
-										<span>Apellidos:</span> <input type="text" pattern="[a-zA-Z]+"
+										<span>Apellidos:</span> <input type="text"
 											class="form-control form-control-user" id="proApellidos"
 											placeholder="" th:field="${pqrsForm.proApellidos}">
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
@@ -226,7 +226,7 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Fecha Creación:</span> <input type="text"
 											class="form-control form-control-user" id="pqrsFechaCreacion"
-											placeholder="" th:field="${pqrsForm.pqrsFechaCreacion}" disabled>
+											placeholder="" th:field="${pqrsForm.pqrsFechaCreacion}" th:value="${fechacreacion}" disabled>
 									</div>
 
 									<div class="col-sm-6 ">
@@ -262,8 +262,11 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Adjuntar archivo:</span>
 										<div class=" form-group  " aria-label="Default select example">
-											<input id="pqrsAdjunto" type="file" style="display: none"
-												name="pqrsAdjunto">
+										
+										 <input class="form-control" type=hidden value=".." id="pqrsAdjunto" th:field="${pqrsForm.pqrsAdjunto}">
+										 
+											<input id="pqrsDocumentoAdjuntos" type="file" style="display: none"
+												name="pqrsDocumentoAdjuntos">
 											<div class=" form-group row">
 												<input id="falso1" class="form-control form-control-user"
 													type="text"> <a

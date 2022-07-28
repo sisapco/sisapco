@@ -1,5 +1,8 @@
 package co.com.sisapco.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -70,6 +73,10 @@ public class PqrsController {
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivopqrs", consecutivo);
 		
+		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        model.addAttribute("fechacreacion", calendar);
+		
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();
 		String copIdEcr = String.valueOf(copId);
@@ -94,6 +101,7 @@ public class PqrsController {
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
 		
+		
 		return "administrador/pqrs";
 	}
 	
@@ -111,6 +119,7 @@ public class PqrsController {
 		
 		long longusuariId=userPanel.getUsuId();
 		int usuId = (int) longusuariId;
+		int procc = userPanel.getProCc();
 
 		HttpSession session = request.getSession();
 		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
@@ -151,25 +160,22 @@ public class PqrsController {
 						    String codigoVista = googleFile.getWebViewLink();
 						    
 						    Pqrs guardarPqrs = new Pqrs();
-						    /*guardarPqrs.setContraNumContrato(contrato.getContraNumContrato());
-						    
-						    
 						    guardarPqrs.setCopNit(copNit);
-						    guardarPqrs.setContraNombreContratista(contrato.getContraNombreContratista());
-						    guardarPqrs.setContraDescripcion(contrato.getContraDescripcion());
-						    guardarPqrs.setContraFechaInicio(contrato.getContraFechaInicio());
-						    guardarPqrs.setContraFechaFin(contrato.getContraFechaFin());
-						    guardarPqrs.setContraPlazo(contrato.getContraPlazo());
-						    guardarPqrs.setContraTiempo(contrato.getContraTiempo());
-						    guardarPqrs.setContraValor(contrato.getContraValor());
-						    guardarPqrs.setContraInterventor(contrato.getContraInterventor());
-						    guardarPqrs.setContraDocumentoAdjunto(codigoDescarga);
-						    guardarPqrs.setContraEstado(contrato.getContraEstado());
-						    guardarPqrs.setContraObservaciones(contrato.getContraEstado());
-						    guardarPqrs.setContraLog("");
-						    guardarPqrs.setContraVisualizacion(codigoVista);
-						    
-						    userService.createContrato(guardarContrato); */
+						    guardarPqrs.setProCc(procc);
+						    guardarPqrs.setProNombres(pqrs.getProNombres());
+						    guardarPqrs.setProApellidos(pqrs.getProApellidos());
+						    guardarPqrs.setProNumeroResidencia(pqrs.getProNumeroResidencia());
+						    guardarPqrs.setPqrsEmail(pqrs.getPqrsEmail());
+						    guardarPqrs.setPqrsTelefono(pqrs.getPqrsTelefono());
+						    guardarPqrs.setPqrsDireccionCorrespondecia(pqrs.getPqrsDireccionCorrespondecia());						    
+						    guardarPqrs.setPqrsDescripcionPqrs(pqrs.getPqrsDescripcionPqrs());
+						    guardarPqrs.setPqrsEstado(pqrs.getPqrsEstado());
+						    guardarPqrs.setPqrsAdjunto(codigoDescarga);
+						    guardarPqrs.setPqrsFechaCreacion(pqrs.getPqrsFechaCreacion());
+						    guardarPqrs.setPqrsFechaRespuesta(pqrs.getPqrsFechaRespuesta());
+						    guardarPqrs.setPqrsVisualizacion(codigoVista);
+						    						  						 
+						    userService.createPqrs(guardarPqrs);
 					    }			   
 				  }
 				
@@ -184,7 +190,7 @@ public class PqrsController {
 		        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 				model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
-				model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
+//				model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
 			}
@@ -193,7 +199,7 @@ public class PqrsController {
         model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
-		model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
+		//model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 		model.addAttribute("copNombre", copNombre);
 		model.addAttribute("copNit", copNit);
 		model.addAttribute("rutaroot", "");
@@ -212,7 +218,13 @@ public class PqrsController {
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
 		
-		return "administrador/contratos";
+		//consultamos el ultimo consecutivo
+		Pqrs pqrsconsecutivo = userService.getPqrsByIdConsecutivoForm(copNit);
+		int consecutivo = pqrsconsecutivo.getIdPqrs();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivopqrs", consecutivo);
+		
+		return "administrador/pqrs";
 	}
 	
 	

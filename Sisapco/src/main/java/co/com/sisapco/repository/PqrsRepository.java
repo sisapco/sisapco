@@ -12,7 +12,8 @@ public interface PqrsRepository extends CrudRepository<Pqrs, Long>{
 	@Query("SELECT u FROM Pqrs u WHERE u.copNit = ?1")
 	public Iterable<Pqrs> findByPqrsNit(int copNit);
 	
-	//@Query("SELECT u FROM Pqrs u WHERE u.copNit = ?1 ORDER BY u.idPqrs DESC LIMIT 1")
-	@Query("SELECT u FROM Pqrs u WHERE u.copNit = ?1")
+	//@Query("SELECT u FROM Pqrs u WHERE u.copNit = ?1 ORDER BY u.idPqrs DESC")
+	//@Query("SELECT u FROM Pqrs u WHERE u.copNit = ?1 ORDER BY u.idPqrs DESC")
+	@Query(value = "SELECT * FROM pqrs u WHERE u.cop_nit = ?1 ORDER BY u.id_pqrs DESC LIMIT 1", nativeQuery = true)
 	public Pqrs findByPqrsNitConsecutivo(int copNit);
 }

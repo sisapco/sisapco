@@ -26,6 +26,7 @@
     
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     
     <link href="css/menusisapco.css" rel="stylesheet">
@@ -145,7 +146,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Crear nueva acta administrador:</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Crear nueva acta:</h6>
                         </div>
                         <div class="card-body">                          
                              <form class="user needs-validation" novalidate role="form" th:object="${actividadesForm}" action="crearacta" method="post" enctype="multipart/form-data">
@@ -181,14 +182,12 @@
 								     version 25 or later.</p>
 								</div>
 						        
-						        
-						        
                                 <input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 
                                 <div class="form-group">
                                     <span>Numero del acta:</span>
-                                    <input type="text" class="form-control form-control-user" id="actNumero"
+                                    <input type="text" class="form-control form-control-user" id="actNumero" disabled
                                         placeholder="" th:field="${actasForm.actNumero}" required>
                                 </div>
                                 
@@ -204,11 +203,12 @@
                                      <input type="text" class="form-control form-control-user" id="actFecha"
                                         placeholder="dd-mm-yy" th:field="${actasForm.actFecha}" required>
                                         <script>
-									        $('#actFecha').datepicker({
-									            uiLibrary: 'bootstrap4',
-									            dateFormat: "dd-mm-yy"
-									        });
-									    </script>                                    
+                                            $('#actFecha').datepicker({
+                                                uiLibrary: 'bootstrap4',
+                                                dateFormat: "dd-mm-yy"
+                                            });
+                                        </script>
+                                                                          
                                     </div>
                                 </div>
                                  <div class="form-group row">
@@ -231,10 +231,12 @@
                                     </div>
                                     <div class="col-sm-6">
                                     <span>Hora Inicio:</span>
-                                        <input type="text" class="form-control form-control-user" id="actHoraInicio"
-                                            placeholder="Hora Inicio" th:field="${actasForm.actHoraInicio}" required>
-                                    </div>
-                                </div>
+                                        <input type="time"  
+                                        class="form-control form-control-user" id="actHoraInicio"
+                                            placeholder="Hora Inicio" th:field="${actasForm.actHoraInicio}" required>               			               
+						                   </div>
+						
+						                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Asistentes:</span>
@@ -263,9 +265,6 @@
                                         <textarea class="form-control final" id="actDesarrolloDia" rows="5" th:field="${actasForm.actDesarrolloDia}"></textarea>                                               
                                     </div>
                                     
-                                    
-                                    
-                                    
                                     <div id="results" style="display:none!important">
 									  <span id="final_span" class="final"></span>
 									  <span id="interim_span" class="interim"></span>
@@ -284,21 +283,67 @@
 									    <select id="select_dialect"></select>
 									  </div>
 									  
-									  
-									
                                  </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <span>Firma:</span>
-                                        <input type="text" class="form-control form-control-user" id="actFirmas"
-                                            placeholder="Firma" th:field="${actasForm.actFirmas}" required>
+                                        <span>Adjuntar Firma Presidente:<span style="color: #ff0000">*</span>
+										</span>
+                                        <div class=" form-group  " aria-label="Default select example">
+										
+										    <input class="form-control" type=hidden value=".." id="actFirmas" th:field="${actasForm.actFirmas}">
+											<input id="actFirmasAdjunto" type="file"
+												style="display: none" name="actFirmasAdjunto" >
+											<div class=" form-group row">
+												<input id="actFirmasAdjunto"
+													class="form-control form-control-user" type="text" required>
+												<a class="btn btn-file  btn btn-secondary "><i
+													class="fa fa-folder-open-o "></i> Seleccionar</a>
+												<div class="invalid-feedback">Seleccion la firma.</div>
+											</div>
+										</div>
                                     </div>
-                                    <div class="col-sm-6">
-
-                                    </div>
+                                    <div class="col-sm-6 ">
+										<span>Adjuntar Firma Secretario:<span style="color: #ff0000">*</span>
+										</span> 
+										 <div class=" form-group  " aria-label="Default select example">
+										
+										    <input class="form-control" type=hidden value=".." id="actFirmaSecretario" >
+											<input id="actFirmasSecretarioAdjunto" type="file"
+												style="display: none" name="actFirmasSecretarioAdjunto" >
+											<div class=" form-group row">
+												<input id="actFirmasSecretarioAdjunto"
+													class="form-control form-control-user" type="text" required>
+												<a class="btn btn-file  btn btn-secondary "><i
+													class="fa fa-folder-open-o "></i> Seleccionar</a>
+												<div class="invalid-feedback">Seleccion la firma.</div>
+											</div>
+										</div>
+									</div>
+                                     <script type="text/javascript">
+										// http://duckranger.com/2012/06/pretty-file-input-field-in-bootstrap/ 
+										// Cuando se pulsa el falso manda el click al autentico
+										$('.btn-file').on('click', function() {
+											$(this).parent().prev().click();
+										});
+										// Cuando el autentico cambia hace cambiar al falso
+										$('input[type=file]')
+												.on(
+														'change',
+														function(e) {
+															$(this)
+																	.next()
+																	.find(
+																			'input')
+																	.val(
+																			$(
+																					this)
+																					.val());
+														});
+									</script>
+									
                                 </div>
-  
+                               
                                 <hr>
                                 <input type="submit" class="btn btn-primary" value="Crear Acta">
                                 <hr>
@@ -317,7 +362,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2022</span>
                     </div>
                 </div>
             </footer>
@@ -438,6 +483,7 @@
 		})()
 	</script>
 	
+		
 	 <script src="js/capturavos.js"></script>
 </body>
 
