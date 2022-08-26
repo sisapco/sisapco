@@ -191,8 +191,9 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Cedula:<span style="color: #ff0000">*</span></span> <input type="Number"
-											class="form-control form-control-user" id="proCC" min="5"
-											placeholder="" required>
+											class="form-control form-control-user" id="proCc" min="5"
+											placeholder="" required onchange="consultaBasicaPropietariosSanciones()">
+											
 											<div class="invalid-feedback">Ingresa un numero de cedula.</div>
 									</div>
 									<div class="col-sm-6">
@@ -213,7 +214,7 @@
 									</div>
 									<div class="col-sm-6">
 										<span>Numero residencia:</span> <input type="text"
-											class="form-control form-control-user" id="proApellidos"
+											class="form-control form-control-user" id="proNumeroResidencia"
 											placeholder="" >
 									</div>
 								</div>
@@ -423,7 +424,10 @@
 	<script src="plantilla/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 	<!-- Page level custom scripts -->
+	
 	<script src="plantilla/js/demo/datatables-demo.js"></script>
+	  <!-- Consulta propietario-->
+    <script src="js/consultabasicapropietarios.js" type="text/javascript"></script>
 	<script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
 		(function() {
@@ -447,6 +451,7 @@
 			})
 		})()
 	</script>
+	
 </body>
 
 </html>
