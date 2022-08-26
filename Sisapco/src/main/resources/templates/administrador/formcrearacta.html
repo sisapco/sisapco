@@ -160,19 +160,17 @@
 						        <div th:if="${bien}" class="alert alert-success" role="alert">
 						            La acta fue creada de forma exitosa.
 						        </div>
-						        
-						        
-						        
+						        												        
 						        <div id="info">
-								  <p id="info_start">Click on the microphone icon and begin speaking.</p>
-								  <p id="info_speak_now">Speak now.</p>
-								  <p id="info_no_speech">No speech was detected. You may need to adjust your
+								  <p id="info_start">Haga clic en el icono del micrófono y comience a hablar.</p>
+								  <p id="info_speak_now">Habla ahora.</p>
+								  <p id="info_no_speech">No se detectó ningún habla. Es posible que deba ajustar su
 								    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-								      microphone settings</a>.</p>
+								     configuración del micrófono</a>.</p>
 								  <p id="info_no_microphone" style="display:none">
-								    No microphone was found. Ensure that a microphone is installed and that
+								    No se encontró ningún micrófono. Asegúrese de que haya un micrófono instalado y que
 								    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-								    microphone settings</a> are configured correctly.</p>
+								   la configuración del micrófono</a> este configurado correctamente.</p>
 								  <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
 								  <p id="info_denied">Permission to use microphone was denied.</p>
 								  <p id="info_blocked">Permission to use microphone is blocked. To change,
@@ -188,7 +186,10 @@
                                 <div class="form-group">
                                     <span>Numero del acta:</span>
                                     <input type="text" class="form-control form-control-user" id="actNumero" disabled
-                                        placeholder="" th:field="${actasForm.actNumero}" required>
+                                        placeholder="" th:value="${consecutivoactas}" required>
+                                        
+                                    <input class="form-control" type=hidden th:value="${consecutivoactas}" id="actNumeroConsecutivo" name="actNumeroConsecutivo">
+ 
                                 </div>
                                 
                                 <div class="form-group row">
@@ -245,6 +246,7 @@
                                     <div class="right">
 									    <button id="start_button_3" class="start_button" onclick="startActAsistentes(event,'actAsistentes')">
 									    <img id="start_img_3" src="img/microfono/mic.gif" alt="Start"></button>
+									    <input class="form-control" type="hidden" value="N" id="mocrofonoactivo" name="mocrofonoactivo">
 									</div>
                                 </div>
                                 <div class="form-group row">
@@ -308,7 +310,7 @@
 										</span> 
 										 <div class=" form-group  " aria-label="Default select example">
 										
-										    <input class="form-control" type=hidden value=".." id="actFirmaSecretario" >
+										    <input class="form-control" type=hidden value=".." id="actFirmaSecretario" th:field="${actasForm.actFirmaSecretario}">
 											<input id="actFirmasSecretarioAdjunto" type="file"
 												style="display: none" name="actFirmasSecretarioAdjunto" >
 											<div class=" form-group row">
@@ -469,10 +471,15 @@
 			// Loop over them and prevent submission
 			Array.prototype.slice.call(forms).forEach(function(form) {
 				form.addEventListener('submit', function(event) {
-					if (!form.checkValidity()) {
+					if (!form.checkValidity()) {						
 						event.preventDefault()
 						event.stopPropagation()
-						$('#camposObligaroriosModal').modal('show');
+						if(document.getElementById("mocrofonoactivo").value=="N"){
+						      $('#camposObligaroriosModal').modal('show');
+						}
+						if(document.getElementById("mocrofonoactivo").value=="R"){
+							document.getElementById("mocrofonoactivo").value="N";
+						}
 					}else{
 						$('#guardarModal').modal('show');
 					}

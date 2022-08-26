@@ -28,7 +28,9 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link href="css/menusisapco.css" rel="stylesheet">
+    
 
+    
 </head>
 
 <body id="page-top">
@@ -166,9 +168,9 @@
 									</div>
 									<div class="col-sm-6">
 										<span>Cedula<span style="color: #ff0000">*</span></span> <input
-											type="number" minlength="5" maxlength="25"
+											type="Number" minlength="5" maxlength="25"
 											class="form-control form-control-user" id="proCc"
-											placeholder="" th:field="${pqrsForm.proCc}" required>
+											placeholder="" th:field="${pqrsForm.proCc}" required onchange="consultaBasicaPropietarios()">
 										<div class="invalid-feedback">Ingresa un dato valido
 											numerico.</div>
 									</div>
@@ -207,8 +209,8 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Telefono:</span> <input type="int"
-											class="form-control form-control-user" id="pqrsTelefono"
+										<span>Telefono:</span> 
+										<input type="text" class="form-control form-control-user" id="pqrsTelefono"
 											placeholder="" th:field="${pqrsForm.pqrsTelefono}">
 									</div>
 
@@ -226,7 +228,7 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Fecha Creación:</span> <input type="text"
 											class="form-control form-control-user" id="pqrsFechaCreacion"
-											placeholder="" th:field="${pqrsForm.pqrsFechaCreacion}" th:value="${fechacreacion}" disabled>
+											placeholder="" th:field="${pqrsForm.pqrsFechaCreacion}" disabled>
 									</div>
 
 									<div class="col-sm-6 ">
@@ -419,9 +421,14 @@
     <!-- Page level plugins -->
     <script src="plantilla/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="plantilla/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    
     <!-- Page level custom scripts -->
     <script src="plantilla/js/demo/datatables-demo.js"></script>
+    
+    <!-- Consulta propietario-->
+    <script src="js/consultabasicapropietarios.js" type="text/javascript"></script>
+    
+    
     
     	<script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -446,7 +453,13 @@
 				}, false)
 			})
 		})()
+		
+
+		
+
 	</script>
+	
+
 
 </body>
 

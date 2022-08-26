@@ -16,6 +16,7 @@ import co.com.sisapco.entity.EvidenciaActividades;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
+import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Proyectos;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.ActasRepository;
@@ -28,6 +29,7 @@ import co.com.sisapco.repository.EvidenciaActividadesRepository;
 import co.com.sisapco.repository.ModuloRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.repository.PqrsRepository;
+import co.com.sisapco.repository.PropietariosRepository;
 import co.com.sisapco.repository.ProyectosRepository;
 import co.com.sisapco.repository.UserRepository;
 
@@ -69,6 +71,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	PqrsRepository repositoryPqrs;
+	
+	@Autowired
+	PropietariosRepository repositoryPropietarios;
 	
 	
 	@Override
@@ -264,6 +269,11 @@ public class UserServiceImpl implements UserService{
 	public Actas getActaByIdForm(int actId) throws Exception {
 		return repositoryActas.findByActaIdForm(actId);
 	}
+	
+	@Override
+	public Actas getActasByIdConsecutivoForm(int copNit) throws Exception {
+		return repositoryActas.findByActasNitConsecutivo(copNit);
+	}
 
 	@Override
 	public AlmacenamientoGoogle getAlmacenamientoGoogleByIdForm(int codNit, String carpeta) throws Exception {
@@ -322,6 +332,10 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return repositoryPqrs.findByPqrsNitConsecutivo(copNit);
 	}
-	
+
+	@Override
+	public Propietarios getPropietariosByIdCedula(int proCc) throws Exception {
+		return repositoryPropietarios.findByPropietariosCc(proCc);
+	}
 	
 }

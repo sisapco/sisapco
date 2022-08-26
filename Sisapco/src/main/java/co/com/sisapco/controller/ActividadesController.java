@@ -243,7 +243,7 @@ public class ActividadesController {
 				  
 					  MultipartFile file = filesDespues[i];
 					  String name = filesDespues[i].getOriginalFilename();
-					  String formato = filesAntes[i].getContentType();
+					  String formato = filesDespues[i].getContentType();
 					  
 					  byte[] bytes = file.getBytes();
 					  

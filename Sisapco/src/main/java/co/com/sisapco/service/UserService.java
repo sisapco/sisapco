@@ -11,6 +11,7 @@ import co.com.sisapco.entity.EvidenciaActividades;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
+import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Proyectos;
 import co.com.sisapco.entity.Usuarios;
 
@@ -60,6 +61,8 @@ public interface UserService {
 	
 	public Actas getActaByIdForm(int actId) throws Exception;
 	
+	public Actas getActasByIdConsecutivoForm(int copNit) throws Exception;
+	
 	public AlmacenamientoGoogle getAlmacenamientoGoogleByIdForm(int codNit, String carpeta) throws Exception;
 	
 	public Contrato createContrato(Contrato contrato) throws Exception;
@@ -77,5 +80,7 @@ public interface UserService {
 	public Pqrs createPqrs(Pqrs pqrs) throws Exception;
 	
 	public Pqrs getPqrsByIdConsecutivoForm(int copNit) throws Exception;
+	
+	public Propietarios getPropietariosByIdCedula(int proCc) throws Exception;
 	
 }

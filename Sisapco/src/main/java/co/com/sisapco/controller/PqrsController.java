@@ -73,10 +73,9 @@ public class PqrsController {
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivopqrs", consecutivo);
 		
-		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        model.addAttribute("fechacreacion", calendar);
-		
+		//Fecha Actual del sistema
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();
 		String copIdEcr = String.valueOf(copId);
@@ -84,7 +83,10 @@ public class PqrsController {
 		copIdEncryted = encrypted.encrypted(copIdEcr);
 		copIdEncryted = copIdEncryted.replace("=", "co");
 		
-		model.addAttribute("pqrsForm", new Pqrs());		
+		Pqrs pqrsform = new Pqrs();
+		pqrsform.setPqrsFechaCreacion(timeStamp);
+		
+		model.addAttribute("pqrsForm", pqrsform);		
 		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));		
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));		
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
@@ -125,17 +127,17 @@ public class PqrsController {
 		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
 		int copId = copropiedadDTO.getCopId();
 		
-		//String directoryNameHome = System.getProperty("user.home");
-		//String uploadfolder=directoryNameHome;
-		
+		//Fecha actual del sistema
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+		pqrs.setPqrsFechaCreacion(timeStamp);
 		
 		if(result.hasErrors()) {
 			model.addAttribute("pqrsForm", pqrs);
 			model.addAttribute("errorcampos","active");
 		}else {
 			try {
+				//Asignamos el ID del usuario que esta registros la PQRS en el log
 				pqrs.setPqrsLogs(String.valueOf(usuId));				
-				int idpqrs = pqrs.getIdPqrs();
 
 				//Consultamos el ID de Google para guardar el contrato
 				AlmacenamientoGoogle almacenamientoGooglePqrs = userService.getAlmacenamientoGoogleByIdForm(copNit, "pqrs");
@@ -151,7 +153,6 @@ public class PqrsController {
 					  String name = filesPqrs[i].getOriginalFilename();					  
 					  String formato = filesPqrs[i].getContentType();					 
 					  byte[] bytes = file.getBytes();
-
 					  
 					    if(!file.isEmpty()) {						         
 						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
@@ -174,7 +175,7 @@ public class PqrsController {
 						    guardarPqrs.setPqrsFechaCreacion(pqrs.getPqrsFechaCreacion());
 						    guardarPqrs.setPqrsFechaRespuesta(pqrs.getPqrsFechaRespuesta());
 						    guardarPqrs.setPqrsVisualizacion(codigoVista);
-						    						  						 
+						    guardarPqrs.setPqrsLogs(pqrs.getPqrsLogs());						  						 
 						    userService.createPqrs(guardarPqrs);
 					    }			   
 				  }
@@ -190,7 +191,6 @@ public class PqrsController {
 		        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 				model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
-//				model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
 			}
@@ -199,13 +199,12 @@ public class PqrsController {
         model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
-		//model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 		model.addAttribute("copNombre", copNombre);
 		model.addAttribute("copNit", copNit);
 		model.addAttribute("rutaroot", "");
 		model.addAttribute("seguimiento", "");
 		model.addAttribute("copId", copId);
-		
+			
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();
 		String copIdEcr = String.valueOf(copId);
@@ -214,7 +213,7 @@ public class PqrsController {
 		copIdEncryted = copIdEncryted.replace("=", "co");
 		model.addAttribute("copIdEncryted", copIdEncryted);
 		
-		//menu atras
+		//Menu Atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
 		
@@ -240,19 +239,26 @@ public class PqrsController {
 		int copNit = copropiedadDTO.getCopNit();
 		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
 		int copId = copropiedadDTO.getCopId();
-		
-		
+				
 		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));		
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));		
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 		
-		model.addAttribute("contratolist", userService.getContratoByNit(copNit));
+		model.addAttribute("pqrslist", userService.getPqrsByNit(copNit));
 		model.addAttribute("copNombre", copNombre);
 		model.addAttribute("copNit", copNit);
 		model.addAttribute("copId", copId);
 		
 		model.addAttribute("admin","active");
 		model.addAttribute("consejo","active");
+		model.addAttribute("perfil",userPanel.getPerId());
+		
+		//Validarmos si es perfil administrador para activarle botones de respuesta
+		if(userPanel.getPerId() == 1) {
+			model.addAttribute("activarRespuesta",true);
+		}else {
+			model.addAttribute("activarRespuesta",false);
+		}
 		
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();
@@ -269,6 +275,58 @@ public class PqrsController {
 		return "administrador/consultapqrs";
 	}
 	
-	
+	@RequestMapping("/respuestapqrs")
+	public String pqrsRespuesta(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit =copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		
+		int copId =  copropiedadDTO.getCopId();
+		
+		//consultamos el ultimo consecutivo
+		Pqrs pqrsconsecutivo = userService.getPqrsByIdConsecutivoForm(copNit);
+		int consecutivo = pqrsconsecutivo.getIdPqrs();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivopqrs", consecutivo);
+		
+		//Fecha Actual del sistema
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        
+		//Instanciamos la clase para cifrar el codigo
+		MD5DatosGet encrypted = new MD5DatosGet();
+		String copIdEcr = String.valueOf(copId);
+	    String copIdEncryted ="";
+		copIdEncryted = encrypted.encrypted(copIdEcr);
+		copIdEncryted = copIdEncryted.replace("=", "co");
+		
+		Pqrs pqrsform = new Pqrs();
+		pqrsform.setPqrsFechaCreacion(timeStamp);
+		
+		model.addAttribute("pqrsForm", pqrsform);		
+		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));		
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));		
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("copId", copId);
+		model.addAttribute("copIdEncryted", copIdEncryted);
+		
+		model.addAttribute("admin","active");
+		model.addAttribute("consejo","active");
+		
+		//menu atras
+		String menuAdmin = rutamenu+"admin";
+		model.addAttribute("rutamenu", menuAdmin);
+		
+		
+		return "administrador/pqrs";
+	}
 
 }

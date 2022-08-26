@@ -72,8 +72,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public String login() {
-	
+	public String login(Model model) {
+		model.addAttribute("param.error", false);
 		return "login";
 	}
 	

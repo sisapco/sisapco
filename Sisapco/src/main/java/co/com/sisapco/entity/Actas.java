@@ -65,6 +65,9 @@ public class Actas implements Serializable{
 	
 	@Column
 	private Date actFecha;
+	
+	@Column
+	private String actFirmaSecretario;
 
 	public int getActId() {
 		return actId;
@@ -178,6 +181,14 @@ public class Actas implements Serializable{
 		this.actFecha = actFecha;
 	}
 
+	public String getActFirmaSecretario() {
+		return actFirmaSecretario;
+	}
+
+	public void setActFirmaSecretario(String actFirmaSecretario) {
+		this.actFirmaSecretario = actFirmaSecretario;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -186,6 +197,7 @@ public class Actas implements Serializable{
 		result = prime * result + ((actConvoca == null) ? 0 : actConvoca.hashCode());
 		result = prime * result + ((actDesarrolloDia == null) ? 0 : actDesarrolloDia.hashCode());
 		result = prime * result + ((actFecha == null) ? 0 : actFecha.hashCode());
+		result = prime * result + ((actFirmaSecretario == null) ? 0 : actFirmaSecretario.hashCode());
 		result = prime * result + ((actFirmas == null) ? 0 : actFirmas.hashCode());
 		result = prime * result + ((actHoraFin == null) ? 0 : actHoraFin.hashCode());
 		result = prime * result + ((actHoraInicio == null) ? 0 : actHoraInicio.hashCode());
@@ -227,6 +239,11 @@ public class Actas implements Serializable{
 			if (other.actFecha != null)
 				return false;
 		} else if (!actFecha.equals(other.actFecha))
+			return false;
+		if (actFirmaSecretario == null) {
+			if (other.actFirmaSecretario != null)
+				return false;
+		} else if (!actFirmaSecretario.equals(other.actFirmaSecretario))
 			return false;
 		if (actFirmas == null) {
 			if (other.actFirmas != null)
@@ -278,11 +295,7 @@ public class Actas implements Serializable{
 				+ actReunion + ", actConvoca=" + actConvoca + ", actMunicipio=" + actMunicipio + ", actLugar="
 				+ actLugar + ", actHoraInicio=" + actHoraInicio + ", actAsistentes=" + actAsistentes + ", actOrdenDia="
 				+ actOrdenDia + ", actDesarrolloDia=" + actDesarrolloDia + ", actFirmas=" + actFirmas + ", actHoraFin="
-				+ actHoraFin + ", actFecha=" + actFecha + "]";
+				+ actHoraFin + ", actFecha=" + actFecha + ", actFirmaSecretario=" + actFirmaSecretario + "]";
 	}
-
-	
-	
-	
 	
 }

@@ -25,13 +25,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import co.com.sisapco.dto.CopropiedadDTO;
 import co.com.sisapco.entity.Actas;
+import co.com.sisapco.entity.Actividades;
+import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.service.UserService;
+import co.com.sisapco.util.CreateGoogleFile;
 import co.com.sisapco.util.MD5DatosGet;
 
 import java.io.FileOutputStream; 
@@ -75,6 +82,12 @@ public class ActaController {
 		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
 		int copId = copropiedadDTO.getCopId();
 		
+		//consultamos el ultimo consecutivo del acta
+		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
+		int consecutivo = actaconsecutivo.getActId();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivoactas", consecutivo);
+		
 		model.addAttribute("actasForm", new Actas());
         model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
@@ -99,10 +112,15 @@ public class ActaController {
 	}
 	
 	@PostMapping("/crearacta")
-	public String crearActasAdmin(@Valid @ModelAttribute("actasForm")Actas actas,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-			
+	public String crearActasAdmin(@Valid @ModelAttribute("actasForm")Actas actas,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp,
+			@RequestParam("actFirmasAdjunto") MultipartFile[] filesPresidente, @RequestParam("actFirmasSecretarioAdjunto") MultipartFile[] filesSecretario) throws Exception {
+					
 		String usuariologin = authenticationnn.getName();
 		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		String actNumero = req.getParameter("actNumeroConsecutivo");
+		int actNumeroCon = Integer.parseInt(actNumero);		
+		actas.setActNumero(actNumeroCon);
 		
 		HttpSession session = request.getSession();
 		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
@@ -116,9 +134,54 @@ public class ActaController {
 			model.addAttribute("errorcampos","active");
 		}else {
 			try {
-				actas = userService.createActa(actas);
-				model.addAttribute("actasForm", actas);
-				model.addAttribute("bien","active");
+				
+				//Consultamos el ID de Google para guardar las imagenenes de Evidencia Antes y despues
+				AlmacenamientoGoogle almacenamientoGooglePresidente = userService.getAlmacenamientoGoogleByIdForm(copNit, "firma_presidente");
+				AlmacenamientoGoogle almacenamientoGoogleSecretario = userService.getAlmacenamientoGoogleByIdForm(copNit, "firma_secretario");
+				String codigoGooglePresidente = almacenamientoGooglePresidente.getAlmaIdcarpeta();
+				String codigoGoogleSecretario = almacenamientoGoogleSecretario.getAlmaIdcarpeta();
+				
+				//Instanciar la clase de google para guardar la imagen
+				CreateGoogleFile createGoogleFile = new CreateGoogleFile();
+				
+				//Guardar Firma presidente
+				for (int i = 0; i < filesPresidente.length; i++) {
+				  
+					  MultipartFile file = filesPresidente[i];
+					  String name = filesPresidente[i].getOriginalFilename();					  
+					  String formato = filesPresidente[i].getContentType();					 
+					  byte[] bytes = file.getBytes();
+
+					    if(!file.isEmpty()) {						         
+						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
+					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGooglePresidente, formato, name, bytes);						    
+						    String codigoDescarga = googleFile.getWebContentLink();
+						    String codigoVista = googleFile.getWebViewLink();
+						    actas.setActFirmas(codigoVista);						   						
+					    }			   
+				 }
+				
+				//Guardar Firma Secretario
+				for (int i = 0; i < filesSecretario.length; i++) {
+				  
+					  MultipartFile file = filesSecretario[i];
+					  String name = filesSecretario[i].getOriginalFilename();
+					  String formato = filesSecretario[i].getContentType();					  
+					  byte[] bytes = file.getBytes();
+					  
+					    if(!file.isEmpty()) {					    	 						    
+						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
+					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleSecretario, formato, name, bytes);						    
+						    String codigoDescarga = googleFile.getWebContentLink();
+						    String codigoVista = googleFile.getWebViewLink();
+						    actas.setActFirmaSecretario(codigoVista);
+						    
+					    }			   
+				  }
+				
+				  actas = userService.createActa(actas);
+				  model.addAttribute("actasForm", actas);
+				  model.addAttribute("bien","active");
 				
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -138,6 +201,12 @@ public class ActaController {
 		model.addAttribute("copNombre", copNombre);
 		model.addAttribute("copNit", copNit);
 		model.addAttribute("copId", copId);
+		
+		//Consultamos el ultimo consecutivo del acta
+		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
+		int consecutivo = actaconsecutivo.getActId();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivoactas", consecutivo);
 		
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();

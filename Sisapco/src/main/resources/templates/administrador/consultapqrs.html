@@ -143,6 +143,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Numero PQRS</th>
                                             <th>Nombre Copropietario</th>
                                             <th>Apellidos Copropietario</th>
                                             <th>Numero Residencia</th>
@@ -153,11 +154,12 @@
                                             <th>Estado PQRS</th>
                                             <th>Fecha de creación PQRS</th>
                                             <th>Respuesta PQRS</th>
-                                            <th>Dar Respuesta PRS</th>
+                                            <th><div th:if="${activarRespuesta}">Dar Respuesta PRS</div></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>Numero PQRS</th>
                                             <th>Nombre Copropietario</th>
                                             <th>Apellidos Copropietario</th>
                                             <th>Numero Residencia</th>
@@ -168,11 +170,12 @@
                                             <th>Estado PQRS</th>
                                             <th>Fecha de creación PQRS</th>
                                             <th>Respuesta PQRS</th>
-                                            <th>Dar Respuesta PRS</th>
+                                            <th><div th:if="${activarRespuesta}">Dar Respuesta PRS</div></th>
                                         </tr>
                                     </tfoot>
                                     <tbody >
                                        <tr th:each="pqrs: ${pqrslist}" >
+                                            <td th:text="${pqrs.idPqrs}"></td>
                                             <td th:text="${pqrs.proNombres}"></td>
                                             <td th:text="${pqrs.proApellidos}"></td>
                                             <td th:text="${pqrs.proNumeroResidencia}"></td>
@@ -184,10 +187,12 @@
                                             <td th:text="${pqrs.pqrsFechaCreacion}"></td>
                                             <td th:text="${pqrs.pqrsRespuestaPqrs}"></td>                                         
                                             <td>
-	                                            <form class="user" role="form" action="visualizarpqrsadmin" method="get">
+                                            <div th:if="${activarRespuesta}">
+	                                            <form class="user" role="form" action="respuestapqrs" method="get">
 	                                                <input id="idPqrs" type="hidden" name="idPqrs" th:value="${pqrs.pqrsLogs}" />   
 	                                                <input type="submit" class="btn btn-primary" value="Dar Respuesta PRS">
-	                                            </form>                                         
+	                                            </form>
+	                                         </div>                                         
                                             </td>
                                         </tr>
                                     </tbody>

@@ -107,13 +107,13 @@ if (!('webkitSpeechRecognition' in window)) {
     recognizing = true;
     showInfo('info_speak_now');
     if(opciontextGlobal=='actDesarrolloDia'){
-    	start_img.src = 'img/microfono/mic-animate.gif';
+    	start_img.src = 'img/microfono/mic-animate.gif';   	
     }
     if(opciontextGlobal=='actOrdenDia'){
     	 start_img_2.src = 'img/microfono/mic-animate.gif';
     }
     if(opciontextGlobal=='actAsistentes'){
-   	 start_img_3.src = 'img/microfono/mic-animate.gif';
+   	 start_img_3.src = 'img/microfono/mic-animate.gif';   	
     }
    
   };
@@ -125,6 +125,8 @@ if (!('webkitSpeechRecognition' in window)) {
       start_img_3.src = 'img/microfono/mic.gif';
       showInfo('info_no_speech');
       ignore_onend = true;
+      //Activamos de nuevo el modal para validar los campos
+      document.getElementById("mocrofonoactivo").value="N";
     }
     if (event.error == 'audio-capture') {
       start_img.src = 'img/microfono/mic.gif';
@@ -293,9 +295,11 @@ function startButton(event) {
 }
 function startActDesarrolloDia(event,opciontext) {
 	  if (recognizing) {
+		document.getElementById("mocrofonoactivo").value="R";
 	    recognition.stop();
 	    return;
 	  }
+	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
 	  final_transcript = '';
 	  recognition.lang = select_dialect.value;
@@ -311,9 +315,11 @@ function startActDesarrolloDia(event,opciontext) {
 
 function startActOrdenDia(event,opciontext) {
 	  if (recognizing) {
+		document.getElementById("mocrofonoactivo").value="R";
 	    recognition.stop();
 	    return;
 	  }
+	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
 	  final_transcript = '';
 	  recognition.lang = select_dialect.value;  
@@ -328,9 +334,11 @@ function startActOrdenDia(event,opciontext) {
 }
 function startActAsistentes(event,opciontext) {
 	  if (recognizing) {
+		document.getElementById("mocrofonoactivo").value="R";
 	    recognition.stop();
 	    return;
 	  }
+	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
 	  final_transcript = '';
 	  recognition.lang = select_dialect.value;  
