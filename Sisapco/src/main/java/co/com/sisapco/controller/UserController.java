@@ -452,4 +452,6 @@ public class UserController {
 		
 		return "administrador/propietariosadministrador";
 	}
+	
+	
 }
