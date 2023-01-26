@@ -68,6 +68,9 @@ public class Contrato implements Serializable{
 	
 	@Column
 	private String contraVisualizacion;
+	
+	@Column
+	private String contraFechaRegistro;
 
 	public int getContraId() {
 		return contraId;
@@ -197,6 +200,14 @@ public class Contrato implements Serializable{
 		this.contraVisualizacion = contraVisualizacion;
 	}
 
+	public String getContraFechaRegistro() {
+		return contraFechaRegistro;
+	}
+
+	public void setContraFechaRegistro(String contraFechaRegistro) {
+		this.contraFechaRegistro = contraFechaRegistro;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -206,6 +217,7 @@ public class Contrato implements Serializable{
 		result = prime * result + ((contraEstado == null) ? 0 : contraEstado.hashCode());
 		result = prime * result + ((contraFechaFin == null) ? 0 : contraFechaFin.hashCode());
 		result = prime * result + ((contraFechaInicio == null) ? 0 : contraFechaInicio.hashCode());
+		result = prime * result + ((contraFechaRegistro == null) ? 0 : contraFechaRegistro.hashCode());
 		result = prime * result + contraId;
 		result = prime * result + ((contraInterventor == null) ? 0 : contraInterventor.hashCode());
 		result = prime * result + ((contraLog == null) ? 0 : contraLog.hashCode());
@@ -255,6 +267,11 @@ public class Contrato implements Serializable{
 			if (other.contraFechaInicio != null)
 				return false;
 		} else if (!contraFechaInicio.equals(other.contraFechaInicio))
+			return false;
+		if (contraFechaRegistro == null) {
+			if (other.contraFechaRegistro != null)
+				return false;
+		} else if (!contraFechaRegistro.equals(other.contraFechaRegistro))
 			return false;
 		if (contraId != other.contraId)
 			return false;
@@ -310,7 +327,10 @@ public class Contrato implements Serializable{
 				+ contraPlazo + ", contraTiempo=" + contraTiempo + ", contraValor=" + contraValor
 				+ ", contraInterventor=" + contraInterventor + ", contraDocumentoAdjunto=" + contraDocumentoAdjunto
 				+ ", contraEstado=" + contraEstado + ", contraObservaciones=" + contraObservaciones + ", contraLog="
-				+ contraLog + ", contraVisualizacion=" + contraVisualizacion + "]";
+				+ contraLog + ", contraVisualizacion=" + contraVisualizacion + ", contraFechaRegistro="
+				+ contraFechaRegistro + "]";
 	}
+
+	
 	
 }

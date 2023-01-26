@@ -172,30 +172,29 @@
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 
 
-								<div class="form-group">
+								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Referencia Contrato<span style="color: #ff0000">*</span></span>
 										<input type="text" class="form-control form-control-user"
 											id="contraNumContrato" placeholder="" th:field="${contratoForm.contraNumContrato}" required>
-										<div class="invalid-feedback">Ingresa un contrato valido
-											numerico.</div>
+										<div class="invalid-feedback">Ingresa un contrato valido.</div>
 									</div>
 									<div class="col-sm-6">
 										<span>Nombre Empresa/Contratista<span
 											style="color: #ff0000">*</span></span> 									
 									<input type="text"
 											 class="form-control form-control-user"
-											id="contraNombreContratista" placeholder="" th:field="${contratoForm.contraNombreContratista}" required>
-											
+											id="contraNombreContratista" placeholder="" th:field="${contratoForm.contraNombreContratista}" required>					
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
-									</div>
+									 </div>
 								</div>
 
-
-								<div class="form-group">
-									<span>Descripción del contrato:</span> <input type="text"
-										class="form-control form-control-user" id="contraDescripcion"
-										placeholder="" th:field="${contratoForm.contraDescripcion}">
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+									<span>Descripción del contrato:</span> 
+									<textarea class="form-control" id="contraDescripcion"
+											rows="3" th:field="${contratoForm.contraDescripcion}" required></textarea>
+										</div>
 								</div>
 
 								<div class="form-group row">

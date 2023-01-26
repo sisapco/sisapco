@@ -174,15 +174,15 @@
 									<div class="col-sm-6 mb-3 mb-sm-0" >
 											<span>Nombre Cotización<span
 											style="color: #ff0000">*</span></span> <input type="text"
-											pattern="[a-zA-Z ] +" class="form-control form-control-user"
+											 class="form-control form-control-user"
 											id="cotNombreCotizacion" placeholder="" th:field="${cotizacionesForm.cotNombreCotizacion}" required>
-										<div class="invalid-feedback">Ingresa un nombre valido solo letras y sin espacios.</div>
+										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									
 									</div>
 									<div class="col-sm-6">
 										<span>Descripción<span
 											style="color: #ff0000">*</span></span> <input type="text"
-											pattern="[a-zA-Z ]{2,45}" class="form-control form-control-user"
+											 class="form-control form-control-user"
 											id="cotDescripcion" placeholder="" th:field="${cotizacionesForm.cotDescripcion}" required>
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									</div>
@@ -224,27 +224,27 @@
 								 -->
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Costo:</span> <input type="number"
+										<span>Costo $:</span> <input type="number"
 											class="form-control form-control-user" id="cotCosto"
 											placeholder="" th:field="${cotizacionesForm.cotCosto}">
 										<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
 									<div class="col-sm-6">
-										<span>Tiempo de ejecución:</span> <input type="text"
+										<span>Tiempo de ejecución(Dias):</span> <input type="number"
 											class="form-control form-control-user" id="cotTiempoEjecucion"
 											placeholder="" th:field="${cotizacionesForm.cotTiempoEjecucion}">
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Garantia:</span> <input type="number"
+										<span>Garantia(Meses):</span> <input type="number"
 											class="form-control form-control-user" id="cotGarantia"
 											placeholder="" th:field="${cotizacionesForm.cotGarantia}">
 											<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
 
 									<div class="col-sm-6 ">
-										<span>Vigencia Cotizacion:</span> <input type="text"
+										<span>Vigencia Cotizacion(Meses):</span> <input type="number"
 											class="form-control form-control-user" id="cotVigenciaCotizacion"
 											placeholder="" th:field="${cotizacionesForm.cotVigenciaCotizacion}">
 									</div>
