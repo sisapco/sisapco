@@ -31,6 +31,9 @@
     
     <link href="css/menusisapco.css" rel="stylesheet">
     <link href="css/capturavos.css" rel="stylesheet">
+    
+    
+    <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
 
 </head>
 
@@ -241,7 +244,8 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Asistentes:</span>
-                                        <textarea class="form-control" id="actAsistentes" rows="3" th:field="${actasForm.actAsistentes}" required></textarea>                        
+                                        <!-- <textarea class="form-control" id="actAsistentes" rows="3" th:field="${actasForm.actAsistentes}" required></textarea>  -->
+                                        <textarea type="text" name="actAsistentes" id="actAsistentes" class="form-control" th:field="${actasForm.actAsistentes}" required></textarea>                        
                                     </div>
                                     <div class="right">
 									    <button id="start_button_3" class="start_button" onclick="startActAsistentes(event,'actAsistentes')">
@@ -460,6 +464,14 @@
     <!-- Page level custom scripts -->
     <script src="plantilla/js/demo/datatables-demo.js"></script>
     
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#actAsistentes' ) )
+            .catch( error => {
+            console.error( error );
+            } );
+        </script>
+        
         	<script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
 		(function() {

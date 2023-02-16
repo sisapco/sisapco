@@ -157,7 +157,7 @@ public class ActaController {
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGooglePresidente, formato, name, bytes);						    
 						    String codigoDescarga = googleFile.getWebContentLink();
 						    String codigoVista = googleFile.getWebViewLink();
-						    actas.setActFirmas(codigoVista);						   						
+						    actas.setActFirmas(codigoDescarga);						   						
 					    }			   
 				 }
 				
@@ -174,7 +174,7 @@ public class ActaController {
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleSecretario, formato, name, bytes);						    
 						    String codigoDescarga = googleFile.getWebContentLink();
 						    String codigoVista = googleFile.getWebViewLink();
-						    actas.setActFirmaSecretario(codigoVista);
+						    actas.setActFirmaSecretario(codigoDescarga);
 						    
 					    }			   
 				  }
@@ -363,4 +363,35 @@ public class ActaController {
 	}
 	
 
+	//impresion Acta
+	@RequestMapping("/impresionactas")
+	public String impresionActas(@Valid @ModelAttribute("actaForm")Actas actas,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		String actIdString = req.getParameter("actId");
+		int actId = Integer.parseInt(actIdString);
+		String directoryName = System.getProperty("user.home");
+		
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit =copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		String logoCopropiedad = copropiedadDTO.getCodLogo();
+		
+		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		model.addAttribute("actaForm", userService.getActaByIdForm(actId));
+		
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("rutaroot", directoryName);
+		model.addAttribute("logoCopropiedad", logoCopropiedad);
+	
+		return "administrador/impresionActas";
+	}
+	
 }
