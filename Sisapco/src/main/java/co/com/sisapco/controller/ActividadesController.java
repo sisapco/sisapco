@@ -528,7 +528,7 @@ public class ActividadesController {
 		model.addAttribute("rutamenu", menuAdmin);
 		model.addAttribute("rutamenuseguimiento", menuAdminSeguimiento);
 				
-		//return "administrador/visualizaractividades";
+	    //return "administrador/visualizaractividades";
 		
 		return "administrador/seguimientotareasadmin";
 	}
