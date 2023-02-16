@@ -1,0 +1,14 @@
+.titulo{
+   font-weight:bold!important;
+}
+.saltoDeLinea {
+	white-space:pre-wrap!important;
+}
+
+.estiloLetra{	
+	font-family:arial!important;
+	display: block!important;
+    font-size: 87.5%!important;
+    color: #3a3b45!important;
+}
+}
