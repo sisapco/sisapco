@@ -83,4 +83,6 @@ public interface UserService {
 	
 	public Propietarios getPropietariosByIdCedula(int proCc) throws Exception;
 	
+	public Pqrs getPqrsByIdForm(int idPqrs) throws Exception;
+	
 }

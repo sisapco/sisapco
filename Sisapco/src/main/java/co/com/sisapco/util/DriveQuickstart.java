@@ -60,7 +60,7 @@ public class DriveQuickstart {
              .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
              .setAccessType("offline")
              .build();
-     LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
+     LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8005).build();
      Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
      //Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("1035667384276-ecp2b5sis1p878m1g30jsev27sf6ieeb.apps.googleusercontent.com");
      

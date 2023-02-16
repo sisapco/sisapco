@@ -97,7 +97,7 @@ public class ContratoController {
 		return "administrador/contratos";
 	}
 	
-	
+	//Crear contrato
 	@PostMapping("/crearcontrato")
 	public String crearContrato(@Valid @ModelAttribute("contratoForm")Contrato contrato,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp, 
 			@RequestParam("contraDocumentoAdjuntos") MultipartFile[] filesContrato) throws Exception {

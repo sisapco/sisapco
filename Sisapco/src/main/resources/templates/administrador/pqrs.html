@@ -146,7 +146,7 @@
 						</div>
 						<div class="card-body">
 						
-						    <form class="user needs-validation" novalidate role="form" th:object="${pqrsForm}" action="crearpqrs" method="post" enctype="multipart/form-data">
+						    <form class="user needs-validation" novalidate role="form" th:object="${pqrsForm}" th:action="@{${rutaFormulario}}" method="post" enctype="multipart/form-data">
 								
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -156,10 +156,12 @@
 
 								<div th:if="${bien}" class="alert alert-success" role="alert">La PQRS fue
 									creada de forma exitosa.</div>
+							    <div th:if="${bienrespuesta}" class="alert alert-success" role="alert">La PQRS fue
+									guardada exitosamente.</div>
 									
 						        <input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
-
+                                <input class="form-control" type=hidden id="IdPqrs" th:field="${pqrsForm.IdPqrs}">
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Numero PQRS:</span> <input type="text"
@@ -167,16 +169,25 @@
 											placeholder="" th:value="${consecutivopqrs}" disabled>
 									</div>
 									<div class="col-sm-6">
-										<span>Cedula<span style="color: #ff0000">*</span></span> <input
-											type="Number" minlength="5" maxlength="25"
-											class="form-control form-control-user" id="proCc"
-											placeholder="" th:field="${pqrsForm.proCc}" required onchange="consultaBasicaPropietarios()">
-										<div class="invalid-feedback">Ingresa un dato valido
-											numerico.</div>
+										<span>Cedula<span style="color: #ff0000">*</span></span> 
+										<div th:if="${respuestaCedula}">
+											<input
+												type="Number" minlength="5" maxlength="25"
+												class="form-control form-control-user" id="proCc" name="proCc"
+												placeholder="" th:field="${pqrsForm.proCc}" onchange="consultaBasicaPropietarios()" required>
+											<div class="invalid-feedback">Ingresa un dato valido
+												numerico.</div>
+										</div>
+										<div th:if="${respuesta}">
+												<input
+												type="text"
+												title="No es un nombre valido"
+												class="form-control form-control-user" 
+												id="proCc"
+												placeholder="" th:field="${pqrsForm.proCc}" required th:readonly="${respuestainactivarcampos}">
+										</div>
 									</div>
 								</div>
-
-
 
 								<div class="form-group row">
 									<div class="col-sm-6">
@@ -184,13 +195,13 @@
 											type="text"
 											title="No es un nombre valido"
 											class="form-control form-control-user" id="proNombres"
-											placeholder="" th:field="${pqrsForm.proNombres}" required>
+											placeholder="" th:field="${pqrsForm.proNombres}" required th:readonly="${respuestainactivarcampos}">
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 									<div class="col-sm-6">
 										<span>Apellidos:</span> <input type="text"
 											class="form-control form-control-user" id="proApellidos"
-											placeholder="" th:field="${pqrsForm.proApellidos}">
+											placeholder="" th:field="${pqrsForm.proApellidos}" th:readonly="${respuestainactivarcampos}">
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 								</div>
@@ -199,42 +210,40 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Numero residencia:</span> <input type="text"
 											class="form-control form-control-user" id="proNumeroResidencia"
-											placeholder="" th:field="${pqrsForm.proNumeroResidencia}">
+											placeholder="" th:field="${pqrsForm.proNumeroResidencia}" th:readonly="${respuestainactivarcampos}">
 									</div>
 									<div class="col-sm-6">
 										<span>Dirección correspondencia:</span> <input type="text"
 											class="form-control form-control-user"
-											id="pqrsDireccionCorrespondecia" placeholder="" th:field="${pqrsForm.pqrsDireccionCorrespondecia}">
+											id="pqrsDireccionCorrespondecia" placeholder="" th:field="${pqrsForm.pqrsDireccionCorrespondecia}" th:readonly="${respuestainactivarcampos}">
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Telefono:</span> 
 										<input type="text" class="form-control form-control-user" id="pqrsTelefono"
-											placeholder="" th:field="${pqrsForm.pqrsTelefono}">
+											placeholder="" th:field="${pqrsForm.pqrsTelefono}" th:readonly="${respuestainactivarcampos}">
 									</div>
 
 									<div class="col-sm-6 ">
 										<span>email<span style="color: #ff0000">*</span></span> <input
 											type="email" class="form-control form-control-user"
-											id="pqrsEmail" placeholder="" th:field="${pqrsForm.pqrsEmail}" required>
+											id="pqrsEmail" placeholder="" th:field="${pqrsForm.pqrsEmail}" th:readonly="${respuestainactivarcampos}" required>
 										<div class="invalid-feedback">Ingresa un correo valido.</div>
 									</div>
 								</div>
-
-
 
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Fecha Creación:</span> <input type="text"
 											class="form-control form-control-user" id="pqrsFechaCreacion"
-											placeholder="" th:field="${pqrsForm.pqrsFechaCreacion}" disabled>
+											placeholder="" th:field="${pqrsForm.pqrsFechaCreacion}" th:readonly="${respuestainactivarcampos}">
 									</div>
 
 									<div class="col-sm-6 ">
 										<span>Fecha de Respuesta:</span> <input type="text"
 											class="form-control form-control-user"
-											id="pqrsFechaRespuesta" placeholder="" th:field="${pqrsForm.pqrsFechaRespuesta}" disabled>
+											id="pqrsFechaRespuesta" th:field="${pqrsForm.pqrsFechaRespuesta}" placeholder="" th:readonly="${respuestainactivarcampos}">
 									</div>
 								</div>
 
@@ -242,13 +251,13 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Descripción de la PQRS<span  style="color: #ff0000">*</span></span>
 										<textarea class="form-control" id="pqrsDescripcionPqrs"
-											rows="3" th:field="${pqrsForm.pqrsDescripcionPqrs}" required></textarea>
+											rows="3" th:field="${pqrsForm.pqrsDescripcionPqrs}" required th:readonly="${respuestainactivarcampos}"></textarea>
 										<div class="invalid-feedback">Debe de ingresar una
 											Descripción.</div>
 									</div>
 									<div class="col-sm-6 ">
 										<span>Estado:</span> <select class="form-select form-control"
-											aria-label="Default select example" id="pqrsEstado" th:field="${pqrsForm.pqrsEstado}" >
+											aria-label="Default select example" id="pqrsEstado" th:field="${pqrsForm.pqrsEstado}" th:readonly="${respuestainactivarcampos}">
 											<option selected value="1">Nueva</option>
 											<option value="2">Entratamiento</option>
 											<option value="3">Terminado</option>
@@ -265,13 +274,13 @@
 										<span>Adjuntar archivo:</span>
 										<div class=" form-group  " aria-label="Default select example">
 										
-										 <input class="form-control" type=hidden value=".." id="pqrsAdjunto" th:field="${pqrsForm.pqrsAdjunto}">
+										 <input class="form-control" type=hidden value=".." id="pqrsAdjunto" th:field="${pqrsForm.pqrsAdjunto}" th:readonly="${respuestainactivarcampos}">
 										 
 											<input id="pqrsDocumentoAdjuntos" type="file" style="display: none"
-												name="pqrsDocumentoAdjuntos">
+												name="pqrsDocumentoAdjuntos" th:readonly="${respuestainactivarcampos}">
 											<div class=" form-group row">
 												<input id="falso1" class="form-control form-control-user"
-													type="text"> <a
+													type="text" th:readonly="${respuestainactivarcampos}"> <a
 													class="btn btn-file  btn btn-secondary"><i
 													class="fa fa-folder-open-o "></i> Seleccionar</a>
 											</div>
@@ -298,8 +307,17 @@
 																					.val());
 														});
 									</script>
+									<div class="col-sm-6 " th:if="${respuesta}">
+		                                <span>Respuesta de la PQRS<span  style="color: #ff0000">*</span></span>
+										<textarea class="form-control" id="pqrsRespuestaPqrs"
+											rows="3" th:field="${pqrsForm.pqrsRespuestaPqrs}" required></textarea>
+										<div class="invalid-feedback">Debe de ingresar una
+											Respuesta.</div>
+									</div>
 
 								</div>
+								
+							
 								<!-- ********************************** -->
 
 

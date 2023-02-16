@@ -129,9 +129,12 @@ public class ActaController {
 		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
 		int copId = copropiedadDTO.getCopId();
 		
+		String seguimiento="";
+		
 		if(result.hasErrors()) {
 			model.addAttribute("actasForm", actas);
 			model.addAttribute("errorcampos","active");
+			seguimiento+="1.hasErrors";
 		}else {
 			try {
 				
@@ -143,6 +146,8 @@ public class ActaController {
 				
 				//Instanciar la clase de google para guardar la imagen
 				CreateGoogleFile createGoogleFile = new CreateGoogleFile();
+				
+				seguimiento+="2.AlmacenamientoGoogle";
 				
 				//Guardar Firma presidente
 				for (int i = 0; i < filesPresidente.length; i++) {
@@ -157,7 +162,7 @@ public class ActaController {
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGooglePresidente, formato, name, bytes);						    
 						    String codigoDescarga = googleFile.getWebContentLink();
 						    String codigoVista = googleFile.getWebViewLink();
-						    actas.setActFirmas(codigoVista);						   						
+						    actas.setActFirmas(codigoDescarga);						   						
 					    }			   
 				 }
 				
@@ -174,7 +179,7 @@ public class ActaController {
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleSecretario, formato, name, bytes);						    
 						    String codigoDescarga = googleFile.getWebContentLink();
 						    String codigoVista = googleFile.getWebViewLink();
-						    actas.setActFirmaSecretario(codigoVista);
+						    actas.setActFirmaSecretario(codigoDescarga);
 						    
 					    }			   
 				  }
@@ -183,6 +188,8 @@ public class ActaController {
 				  model.addAttribute("actasForm", actas);
 				  model.addAttribute("bien","active");
 				
+				  seguimiento+="3.createActa";
+				  
 			} catch (Exception e) {
 				model.addAttribute("error","active");
 				model.addAttribute("formErrorMessage",e.getMessage());
@@ -192,6 +199,8 @@ public class ActaController {
 				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				
+				 seguimiento+="3.catch="+e.getMessage();
 			}
 		}
 		
@@ -219,6 +228,7 @@ public class ActaController {
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
+		model.addAttribute("seguimientoerror", seguimiento);
 
 		return "administrador/formcrearacta";
 	}

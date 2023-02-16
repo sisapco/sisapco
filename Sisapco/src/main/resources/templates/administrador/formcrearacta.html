@@ -152,13 +152,15 @@
                              <form class="user needs-validation" novalidate role="form" th:object="${actividadesForm}" action="crearacta" method="post" enctype="multipart/form-data">
                                 <div th:if="${error}" class="alert alert-danger" role="alert">
 						           Se presento un error, inténtelo nuevamente.
+						           <span th:text="${formErrorMessage}"></span>
+						           <span th:text="${seguimientoerror}"></span>
 						        </div>
 						        <div th:if="${errorcampos}" class="alert alert-danger" role="alert">
 						           Se presento un error, por favor ingrese los datos en campos que son obligatorios de forma correcta.
 						        </div>
 						        
 						        <div th:if="${bien}" class="alert alert-success" role="alert">
-						            La acta fue creada de forma exitosa.
+						            La acta fue creada de forma exitosa.<span th:text="${seguimientoerror}"></span>
 						        </div>
 						        												        
 						        <div id="info">

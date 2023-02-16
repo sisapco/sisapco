@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -331,6 +333,22 @@ public class ActividadesController {
 		String copNombre = copropiedadDTO.getCopNombreCopropiedad();		
 		int copId = copropiedadDTO.getCopId();
 		
+
+		//Formateamos las fechas
+		//Instanciamos el objeto de Actividades
+		//Actividades actividadesMod = new Actividades();
+		//actividadesMod = userService.getActividadesByIdForm(actId);
+		
+		//Le damos el formato a la fecha
+		//String formato = "MM/dd/yyyy";
+		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formato);
+		//String actFechaEntregaRealMod = simpleDateFormat.format(actividadesMod.getActFechaEntregaReal());
+		
+		//Date fechaConvertida =  (Date) simpleDateFormat.parse(actFechaEntregaRealMod);
+		//fechaConvertida = (Date) simpleDateFormat.parse(actFechaEntregaRealMod);
+		
+		//actividadesMod.setActFechaEntregaReal(fechaConvertida);
+		
 		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
@@ -363,6 +381,7 @@ public class ActividadesController {
 		return "administrador/visualizaractividades";
 	}
 	
+	//Actualizar Actividades
 	@PostMapping("/actualizaractividadesadmin")
 	public String actualizarActividadesAdmin(@Valid @ModelAttribute("actividadesForm")Actividades actividades,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp, 
 			@RequestParam("actEvidenciaAntes") MultipartFile[] filesAntes, @RequestParam("actEvidenciaDespues") MultipartFile[] filesDespues) throws Exception {
@@ -509,7 +528,9 @@ public class ActividadesController {
 		model.addAttribute("rutamenu", menuAdmin);
 		model.addAttribute("rutamenuseguimiento", menuAdminSeguimiento);
 				
-		return "administrador/visualizaractividades";
+		//return "administrador/visualizaractividades";
+		
+		return "administrador/seguimientotareasadmin";
 	}
 
 }

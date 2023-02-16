@@ -337,5 +337,12 @@ public class UserServiceImpl implements UserService{
 	public Propietarios getPropietariosByIdCedula(int proCc) throws Exception {
 		return repositoryPropietarios.findByPropietariosCc(proCc);
 	}
+
+	@Override
+	public Pqrs getPqrsByIdForm(int idPqrs) throws Exception {
+		return repositoryPqrs.findByPqrsIdForm(idPqrs);
+	}
+	
+	
 	
 }

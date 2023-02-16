@@ -146,10 +146,10 @@
                                             <th>Numero PQRS</th>
                                             <th>Nombre Copropietario</th>
                                             <th>Apellidos Copropietario</th>
-                                            <th>Numero Residencia</th>
+                                           <!-- <th>Numero Residencia</th>
                                             <th>E-mail</th>
                                             <th>Teléfono</th>
-                                            <th>Dirección Correspondencia</th>
+                                            <th>Dirección Correspondencia</th>-->
                                             <th>Descripción PQRS</th>
                                             <th>Estado PQRS</th>
                                             <th>Fecha de creación PQRS</th>
@@ -157,12 +157,12 @@
                                             <th><div th:if="${activarRespuesta}">Dar Respuesta PRS</div></th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!-- <tfoot>
                                         <tr>
                                             <th>Numero PQRS</th>
                                             <th>Nombre Copropietario</th>
                                             <th>Apellidos Copropietario</th>
-                                            <th>Numero Residencia</th>
+                                             <th>Numero Residencia</th>
                                             <th>E-mail</th>
                                             <th>Teléfono</th>
                                             <th>Dirección Correspondencia</th>
@@ -172,16 +172,17 @@
                                             <th>Respuesta PQRS</th>
                                             <th><div th:if="${activarRespuesta}">Dar Respuesta PRS</div></th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot>-->
                                     <tbody >
                                        <tr th:each="pqrs: ${pqrslist}" >
                                             <td th:text="${pqrs.idPqrs}"></td>
                                             <td th:text="${pqrs.proNombres}"></td>
                                             <td th:text="${pqrs.proApellidos}"></td>
-                                            <td th:text="${pqrs.proNumeroResidencia}"></td>
+                                             <!-- <td th:text="${pqrs.proNumeroResidencia}"></td>
                                             <td th:text="${pqrs.pqrsEmail}"></td>
                                             <td th:text="${pqrs.pqrsTelefono}"></td>
                                             <td th:text="${pqrs.pqrsDireccionCorrespondecia}"></td>
+                                            -->
                                             <td th:text="${pqrs.pqrsDescripcionPqrs}"></td>   
                                             <td th:text="${pqrs.pqrsEstado}"></td>
                                             <td th:text="${pqrs.pqrsFechaCreacion}"></td>
@@ -189,7 +190,7 @@
                                             <td>
                                             <div th:if="${activarRespuesta}">
 	                                            <form class="user" role="form" action="respuestapqrs" method="get">
-	                                                <input id="idPqrs" type="hidden" name="idPqrs" th:value="${pqrs.pqrsLogs}" />   
+	                                                <input id="Pqrs" type="hidden" name="Pqrs" th:value="${pqrs.pqrsLogs}" />   
 	                                                <input type="submit" class="btn btn-primary" value="Dar Respuesta PRS">
 	                                            </form>
 	                                         </div>                                         

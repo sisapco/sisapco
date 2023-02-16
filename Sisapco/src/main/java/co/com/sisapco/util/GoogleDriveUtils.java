@@ -40,6 +40,7 @@ public class GoogleDriveUtils {
     private static FileDataStoreFactory DATA_STORE_FACTORY;
 
     private static HttpTransport HTTP_TRANSPORT;
+    
 
     private static Drive _driveService;
     
@@ -72,13 +73,25 @@ public class GoogleDriveUtils {
         InputStream in = DriveQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
 
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8081).build();
+
+       // LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8005).build();
+        
+      //  LocalServerReceiver receiver = null;
+        
+         LocalServerReceiver receiver = new LocalServerReceiver.Builder()
+        .setHost("localhost")
+        .setPort(8081)
+        .setCallbackPath("/Callback")
+        .build();
+        
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY,
                 clientSecrets, SCOPES).setDataStoreFactory(DATA_STORE_FACTORY).setAccessType("offline").build();
-        //Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
-        Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
         
+        //Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+        
+        Credential credential = new GoogleAuthCodeInstalledApp(flow, receiver).authorize("user");
+
 
         return credential;
     }
