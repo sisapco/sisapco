@@ -9,7 +9,7 @@ import co.com.sisapco.entity.Actas;
 @Repository
 public interface ActasRepository extends CrudRepository<Actas, Long>{
 
-	@Query("SELECT u FROM Actas u WHERE u.copNit = ?1")
+	@Query("SELECT u FROM Actas u WHERE u.copNit = ?1 ORDER BY u.actId DESC")
 	public Iterable<Actas> findByActasNit(int codNit);
 	
 	@Query("SELECT u FROM Actas u WHERE u.actId = ?1")

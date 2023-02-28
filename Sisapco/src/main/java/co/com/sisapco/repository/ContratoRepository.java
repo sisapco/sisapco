@@ -11,7 +11,7 @@ import co.com.sisapco.entity.Contrato;
 @Repository
 public interface ContratoRepository extends CrudRepository<Contrato, Long>{
 	
-	@Query("SELECT u FROM Contrato u WHERE u.copNit = ?1")
+	@Query("SELECT u FROM Contrato u WHERE u.copNit = ?1 ORDER BY u.contraId DESC")
 	public Iterable<Contrato> findByContratoNit(int copNit);
 	
 

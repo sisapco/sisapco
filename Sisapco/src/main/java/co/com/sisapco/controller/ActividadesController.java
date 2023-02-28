@@ -4,8 +4,10 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.el.parser.ParseException;
 
 import co.com.sisapco.dto.CopropiedadDTO;
 import co.com.sisapco.entity.Actividades;
@@ -304,11 +308,19 @@ public class ActividadesController {
 		copIdEncryted = copIdEncryted.replace("=", "co");
 		model.addAttribute("copIdEncryted", copIdEncryted);
 		
+		//Llenamos la lista copropiedadlist para poder devolvernos al menu administrador
+		model.addAttribute("copropiedadlist", userService.getCopropiedadById(copId));
+		
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
 		
-		return "administrador/asignaractividadesadmin";
+		//Activiamos el modal de guardar
+		model.addAttribute("activarmodalactualizar", "A");
+		
+		//return "administrador/asignaractividadesadmin";
+		return "administrador/admin";
+		
 	}
 	
 	@RequestMapping("/visualizaractividades")
@@ -332,28 +344,12 @@ public class ActividadesController {
 		int copNit =copropiedadDTO.getCopNit();
 		String copNombre = copropiedadDTO.getCopNombreCopropiedad();		
 		int copId = copropiedadDTO.getCopId();
-		
-
-		//Formateamos las fechas
-		//Instanciamos el objeto de Actividades
-		//Actividades actividadesMod = new Actividades();
-		//actividadesMod = userService.getActividadesByIdForm(actId);
-		
-		//Le damos el formato a la fecha
-		//String formato = "MM/dd/yyyy";
-		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formato);
-		//String actFechaEntregaRealMod = simpleDateFormat.format(actividadesMod.getActFechaEntregaReal());
-		
-		//Date fechaConvertida =  (Date) simpleDateFormat.parse(actFechaEntregaRealMod);
-		//fechaConvertida = (Date) simpleDateFormat.parse(actFechaEntregaRealMod);
-		
-		//actividadesMod.setActFechaEntregaReal(fechaConvertida);
-		
+				
 		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 		model.addAttribute("actividadesForm", userService.getActividadesByIdForm(actId));
-		model.addAttribute("actividadeslist", userService.getActividadesByIdForm(actId));
+		//model.addAttribute("actividadeslist", userService.getActividadesByIdForm(actId));
 		model.addAttribute("evidenciaactividadeslist", userService.getEvidenciaActividadesByActId(actId));
 		
 		model.addAttribute("copNombre", copNombre);
@@ -389,9 +385,9 @@ public class ActividadesController {
 		String usuariologin = authenticationnn.getName();
 		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
 		
-		String copNitString = req.getParameter("copNit");
-		int copNit = Integer.parseInt(copNitString);
-		String copNombre = req.getParameter("copNombre");
+		//String copNitString = req.getParameter("copNit");
+		//int copNit = Integer.parseInt(copNitString);
+		//String copNombre = req.getParameter("copNombre");
 		
 		long longusuariId=userPanel.getUsuId();
 		int usuId = (int) longusuariId;
@@ -400,6 +396,9 @@ public class ActividadesController {
 		HttpSession session = request.getSession();
 		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
 		int copId = copropiedadDTO.getCopId();
+	
+		int copNit = copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
 		
 		String directoryNameHome = System.getProperty("user.home");
 
@@ -483,7 +482,7 @@ public class ActividadesController {
 				  }
 				
 				
-				model.addAttribute("actividadesForm", actividades);
+				//model.addAttribute("actividadesForm", actividades);
 				model.addAttribute("bien","active");
 				
 			} catch (Exception e) {
@@ -505,6 +504,10 @@ public class ActividadesController {
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 		
 		model.addAttribute("actividadesForm", userService.getActividadesByIdForm(actId));
+		
+		model.addAttribute("actividadesForm",actividades);
+		
+		
 		model.addAttribute("actividadeslist", userService.getActividadesByIdForm(actId));
 		model.addAttribute("Evidenciaactividadeslist", userService.getEvidenciaActividadesByActId(actId));
 
@@ -528,9 +531,10 @@ public class ActividadesController {
 		model.addAttribute("rutamenu", menuAdmin);
 		model.addAttribute("rutamenuseguimiento", menuAdminSeguimiento);
 				
-	    //return "administrador/visualizaractividades";
+		model.addAttribute("activarmodalactualizar", "A");
 		
-		return "administrador/seguimientotareasadmin";
+	    return "administrador/visualizaractividades";
+		
 	}
-
+	
 }

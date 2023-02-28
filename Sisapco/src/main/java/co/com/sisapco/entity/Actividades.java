@@ -1,6 +1,7 @@
 package co.com.sisapco.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Actividades implements Serializable{
@@ -28,10 +31,10 @@ public class Actividades implements Serializable{
 	private int copNit;
 	
 	@Column
-	private Date actFechaInicio;
+    private String actFechaInicio;
 	
 	@Column
-	private Date actFechaFinal;
+	private String actFechaFinal;
 	
 	@Column
 	private String actNombreActividad;
@@ -52,7 +55,7 @@ public class Actividades implements Serializable{
 	private int actDesviacion;
 	
 	@Column
-	private Date actFechaEntregaReal;
+	private String actFechaEntregaReal;
 	
 	@Column
 	private String actActividades;
@@ -85,19 +88,19 @@ public class Actividades implements Serializable{
 		this.copNit = copNit;
 	}
 
-	public Date getActFechaInicio() {
+	public String getActFechaInicio() {
 		return actFechaInicio;
 	}
 
-	public void setActFechaInicio(Date actFechaInicio) {
+	public void setActFechaInicio(String actFechaInicio) {
 		this.actFechaInicio = actFechaInicio;
 	}
 
-	public Date getActFechaFinal() {
+	public String getActFechaFinal() {
 		return actFechaFinal;
 	}
 
-	public void setActFechaFinal(Date actFechaFinal) {
+	public void setActFechaFinal(String actFechaFinal) {
 		this.actFechaFinal = actFechaFinal;
 	}
 
@@ -149,11 +152,11 @@ public class Actividades implements Serializable{
 		this.actDesviacion = actDesviacion;
 	}
 
-	public Date getActFechaEntregaReal() {
+	public String getActFechaEntregaReal() {
 		return actFechaEntregaReal;
 	}
 
-	public void setActFechaEntregaReal(Date actFechaEntregaReal) {
+	public void setActFechaEntregaReal(String actFechaEntregaReal) {
 		this.actFechaEntregaReal = actFechaEntregaReal;
 	}
 
@@ -309,4 +312,5 @@ public class Actividades implements Serializable{
 				+ ", actPorcentajeEjecucion=" + actPorcentajeEjecucion + ", actObservaciones=" + actObservaciones
 				+ ", actLog=" + actLog + "]";
 	}
+
 }

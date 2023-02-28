@@ -225,12 +225,19 @@ public class ActaController {
 		copIdEncryted = copIdEncryted.replace("=", "co");
 		model.addAttribute("copIdEncryted", copIdEncryted);
 		
+		//Llenamos la lista copropiedadlist para poder devolvernos al menu administrador
+		model.addAttribute("copropiedadlist", userService.getCopropiedadById(copId));
+		
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
 		model.addAttribute("seguimientoerror", seguimiento);
+		
+		//Activiamos el modal de guardar
+	    model.addAttribute("activarmodalactualizar", "A");
 
-		return "administrador/formcrearacta";
+		//return "administrador/formcrearacta";
+		return "administrador/admin";
 	}
 	
 	@RequestMapping("/seguimientoactas")

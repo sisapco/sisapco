@@ -46,7 +46,8 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 	                <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
-	                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />                 
+	                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	               
 	                <button id="54545" class="btn btn-link rounded-circle mr-3" >
 	                        <i class="fa fa-bars"></i>
 	                        <img class="imagenLogoAdmin" style="width:100%!important" src="img/sisapco.png">
@@ -211,6 +212,28 @@
         <i class="fas fa-angle-up"></i>
         <img style="width:100%!important" src="img/to-top.png">
     </a>
+    
+    
+    <!-- Modal Guardar-->
+	<div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Actualizado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se actualizo el seguimiento de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -249,6 +272,7 @@
 
     <!-- Page level custom scripts -->
     <script src="plantilla/js/demo/datatables-demo.js"></script>
+    
 
 </body>
 
