@@ -5,6 +5,7 @@ import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
 import co.com.sisapco.entity.Contrato;
+import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
 import co.com.sisapco.entity.EvidenciaActividades;
@@ -85,4 +86,5 @@ public interface UserService {
 	
 	public Pqrs getPqrsByIdForm(int idPqrs) throws Exception;
 	
+	public ControlPagos createControlPagos(ControlPagos controlPagos) throws Exception;
 }

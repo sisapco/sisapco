@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 
-	
+@Entity	
 public class ControlPagos implements Serializable{
 
 	/**
@@ -24,10 +24,10 @@ public class ControlPagos implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native", strategy = "native")
-	private int controld;
+	private int controlId;
 	
 	@Column
-	private int codNit;
+	private int copNit;
 	
 	@Column
 	private String controlNombreProveedor;
@@ -36,10 +36,10 @@ public class ControlPagos implements Serializable{
 	private String controlDescripcion;
 	
 	@Column
-	private DecimalFormat controlValor;
+	private Double controlValor;
 	
 	@Column
-	private Date controlFechaPago;
+	private String controlFechaPago;
 	
 	@Column
 	private String controlEstadoPago;
@@ -53,20 +53,20 @@ public class ControlPagos implements Serializable{
 	@Column
 	private String controlAdjunto;
 
-	public int getControld() {
-		return controld;
+	public int getControlId() {
+		return controlId;
 	}
 
-	public void setControld(int controld) {
-		this.controld = controld;
+	public void setControlId(int controlId) {
+		this.controlId = controlId;
 	}
 
-	public int getCodNit() {
-		return codNit;
+	public int getCopNit() {
+		return copNit;
 	}
 
-	public void setCodNit(int codNit) {
-		this.codNit = codNit;
+	public void setCopNit(int copNit) {
+		this.copNit = copNit;
 	}
 
 	public String getControlNombreProveedor() {
@@ -85,19 +85,19 @@ public class ControlPagos implements Serializable{
 		this.controlDescripcion = controlDescripcion;
 	}
 
-	public DecimalFormat getControlValor() {
+	public Double getControlValor() {
 		return controlValor;
 	}
 
-	public void setControlValor(DecimalFormat controlValor) {
+	public void setControlValor(Double controlValor) {
 		this.controlValor = controlValor;
 	}
 
-	public Date getControlFechaPago() {
+	public String getControlFechaPago() {
 		return controlFechaPago;
 	}
 
-	public void setControlFechaPago(Date controlFechaPago) {
+	public void setControlFechaPago(String controlFechaPago) {
 		this.controlFechaPago = controlFechaPago;
 	}
 
@@ -137,16 +137,16 @@ public class ControlPagos implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + codNit;
 		result = prime * result + ((controlAdjunto == null) ? 0 : controlAdjunto.hashCode());
 		result = prime * result + ((controlDescripcion == null) ? 0 : controlDescripcion.hashCode());
 		result = prime * result + ((controlEstado == null) ? 0 : controlEstado.hashCode());
 		result = prime * result + ((controlEstadoPago == null) ? 0 : controlEstadoPago.hashCode());
 		result = prime * result + ((controlFechaPago == null) ? 0 : controlFechaPago.hashCode());
+		result = prime * result + controlId;
 		result = prime * result + ((controlNombreProveedor == null) ? 0 : controlNombreProveedor.hashCode());
 		result = prime * result + ((controlObservacion == null) ? 0 : controlObservacion.hashCode());
 		result = prime * result + ((controlValor == null) ? 0 : controlValor.hashCode());
-		result = prime * result + controld;
+		result = prime * result + copNit;
 		return result;
 	}
 
@@ -159,8 +159,6 @@ public class ControlPagos implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ControlPagos other = (ControlPagos) obj;
-		if (codNit != other.codNit)
-			return false;
 		if (controlAdjunto == null) {
 			if (other.controlAdjunto != null)
 				return false;
@@ -186,6 +184,8 @@ public class ControlPagos implements Serializable{
 				return false;
 		} else if (!controlFechaPago.equals(other.controlFechaPago))
 			return false;
+		if (controlId != other.controlId)
+			return false;
 		if (controlNombreProveedor == null) {
 			if (other.controlNombreProveedor != null)
 				return false;
@@ -201,24 +201,20 @@ public class ControlPagos implements Serializable{
 				return false;
 		} else if (!controlValor.equals(other.controlValor))
 			return false;
-		if (controld != other.controld)
+		if (copNit != other.copNit)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ControlPagos [controld=" + controld + ", codNit=" + codNit + ", controlNombreProveedor="
+		return "ControlPagos [controlId=" + controlId + ", copNit=" + copNit + ", controlNombreProveedor="
 				+ controlNombreProveedor + ", controlDescripcion=" + controlDescripcion + ", controlValor="
 				+ controlValor + ", controlFechaPago=" + controlFechaPago + ", controlEstadoPago=" + controlEstadoPago
 				+ ", controlEstado=" + controlEstado + ", controlObservacion=" + controlObservacion
 				+ ", controlAdjunto=" + controlAdjunto + "]";
 	}
+
 	
-	
-	
-	
-	
+
 }
-
-

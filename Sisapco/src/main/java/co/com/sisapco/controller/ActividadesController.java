@@ -195,8 +195,7 @@ public class ActividadesController {
 		int copId = copropiedadDTO.getCopId();
 		
 		String directoryNameHome = System.getProperty("user.home");
-		String uploadfolder=directoryNameHome;
-		
+
 		if(result.hasErrors()) {
 			model.addAttribute("actividadesForm", actividades);
 			model.addAttribute("errorcampos","active");
@@ -276,6 +275,8 @@ public class ActividadesController {
 				
 				model.addAttribute("actividadesForm", actividades);
 				model.addAttribute("bien","active");
+				//Activiamos el modal de guardar
+				model.addAttribute("activarmodalactualizar", "A");
 				
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -287,6 +288,8 @@ public class ActividadesController {
 				model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				//Activiamos el modal de guardar con error
+				model.addAttribute("activarmodalactualizar", "E");
 			}
 		}
 		
@@ -314,12 +317,8 @@ public class ActividadesController {
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
-		
-		//Activiamos el modal de guardar
-		model.addAttribute("activarmodalactualizar", "A");
-		
-		//return "administrador/asignaractividadesadmin";
-		return "administrador/admin";
+				
+		return "administrador/asignaractividadesadmin";
 		
 	}
 	
@@ -384,10 +383,6 @@ public class ActividadesController {
 		
 		String usuariologin = authenticationnn.getName();
 		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
-		
-		//String copNitString = req.getParameter("copNit");
-		//int copNit = Integer.parseInt(copNitString);
-		//String copNombre = req.getParameter("copNombre");
 		
 		long longusuariId=userPanel.getUsuId();
 		int usuId = (int) longusuariId;
@@ -481,9 +476,9 @@ public class ActividadesController {
 					    }			   
 				  }
 				
-				
-				//model.addAttribute("actividadesForm", actividades);
 				model.addAttribute("bien","active");
+				//Activamos el modal de confirmarcion actualizar
+				model.addAttribute("activarmodalactualizar", "A");
 				
 			} catch (Exception e) {
 				seguimiento= seguimiento+" error:"+e;
@@ -496,18 +491,17 @@ public class ActividadesController {
 				model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				//Activamos el modal de confirmarcion actualizar con error
+				model.addAttribute("activarmodalactualizar", "E");
 			}
 		}
 		
         model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
-		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
-		
-		model.addAttribute("actividadesForm", userService.getActividadesByIdForm(actId));
-		
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));		
+		model.addAttribute("actividadesForm", userService.getActividadesByIdForm(actId));		
 		model.addAttribute("actividadesForm",actividades);
-		
-		
+				
 		model.addAttribute("actividadeslist", userService.getActividadesByIdForm(actId));
 		model.addAttribute("Evidenciaactividadeslist", userService.getEvidenciaActividadesByActId(actId));
 
@@ -531,8 +525,6 @@ public class ActividadesController {
 		model.addAttribute("rutamenu", menuAdmin);
 		model.addAttribute("rutamenuseguimiento", menuAdminSeguimiento);
 				
-		model.addAttribute("activarmodalactualizar", "A");
-		
 	    return "administrador/visualizaractividades";
 		
 	}

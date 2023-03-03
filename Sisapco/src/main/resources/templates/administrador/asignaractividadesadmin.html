@@ -152,6 +152,7 @@
 						        </div>
                                 <input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
+                                <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
                                 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -298,18 +299,7 @@
                                 </div>
                                 <hr>
                                 <input type="submit" class="btn btn-primary" value="Guardar actividad">
-                                <hr>                         
-                                
-                                <div th:if="${error}" class="alert alert-danger" role="alert">
-						           Se presento un error, inténtelo nuevamente.
-						        </div>
-						        <div th:if="${errorcampos}" class="alert alert-danger" role="alert">
-						           Se presento un error, por favor ingrese los datos en campos que son obligatorios de forma correcta.
-						        </div>						        
-						        <div th:if="${bien}" class="alert alert-success" role="alert">
-						            La actividad fue creada de forma exitosa.
-						        </div>
-						        
+                                <hr>                         						        
                             </form>                            
                             
                         </div>
@@ -383,6 +373,52 @@
   </div>
 </div>
 
+
+<!-- Modal Guardar confirmar -->
+	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se guardo la actividad de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	      <form th:action="@{${rutamenu}}" method="get">
+	         <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	         <input type="submit" class="btn btn-primary" value="Close">
+	      </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- --- -->
+
+<!-- Modal Guardar confirmar error-->
+	<div class="modal fade" id="confirmarGuardarErrorModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro con error</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       Se presento un error al guardar el registro, por favor verifique los datos e intente nuevamente.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 <!-- --- -->
 
 
@@ -430,6 +466,17 @@
 
 			// Fetch all the forms we want to apply custom Bootstrap validation styles to
 			var forms = document.querySelectorAll('.needs-validation')
+			
+			//Activamos el modal de confirmacion guardar
+	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+	           if(activarmodalactualizar=="A"){
+	        	   $('#confirmarGuardarModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+	           if(activarmodalactualizar=="E"){
+	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
 
 			// Loop over them and prevent submission
 			Array.prototype.slice.call(forms).forEach(function(form) {
