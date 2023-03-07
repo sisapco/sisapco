@@ -271,20 +271,22 @@
 									id="copNombre" name="copNombre">
 
 								<div class="form-group row">
-
+									<div class="col-sm-6">
+										<span>Cedula del propietario<span
+											style="color: #ff0000">*</span></span> <input type="number"
+											minlength="5" maxlength="25"
+											class="form-control form-control-user" id="proCc"
+											placeholder="" required>
+										<div class="invalid-feedback">Ingresa una cedula valida</div>
+									</div>
+									
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Numero de la Residencia<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											class="form-control form-control-user"
 											id="proNumeroResidencia" placeholder="" required>
-										<div class="invalid-feedback">Ingresa un dato valido de residencia.</div>
-									</div>
-									<div class="col-sm-6">
-										<span>Cedula del propietario<span style="color: #ff0000">*</span></span> <input
-											type="number" minlength="5" maxlength="25"
-											class="form-control form-control-user" id="proCc"
-											placeholder="" required>
-										<div class="invalid-feedback">Ingresa una cedula valida</div>
+										<div class="invalid-feedback">Ingresa un dato valido de
+											residencia.</div>
 									</div>
 
 								</div>
@@ -307,8 +309,9 @@
 									<div class="col-sm-6">
 										<span>Numero Celular<span style="color: #ff0000">*</span></span>
 										<input type="number" class="form-control form-control-user"
-											id="pro_celular" placeholder="" maxlength="8" required >
-										<div class="invalid-feedback">Ingresa un numero telefonico.</div>
+											id="pro_celular" placeholder="" maxlength="8" required>
+										<div class="invalid-feedback">Ingresa un numero
+											telefonico.</div>
 									</div>
 									<div class="col-sm-6">
 										<span>Email<span style="color: #ff0000">*</span></span> <input
@@ -323,41 +326,75 @@
 									<div class="col-sm-6">
 										<span>Telefono:</span> <input type="number"
 											class="form-control form-control-user" id="proTelefono"
-											placeholder="" >
+											placeholder="">
 									</div>
 									<div class="col-sm-6">
 										<span>Matricula:</span> <input type="text"
 											class="form-control form-control-user" id="proMatricula"
-											placeholder="" >
+											placeholder="">
 									</div>
-									
+
 								</div>
-								
-									<div class="form-group row">
+
+								<div class="form-group row">
 									<div class="col-sm-6">
 										<span>Area:</span> <input type="number"
 											class="form-control form-control-user" id="proArea"
-											placeholder="" >
+											placeholder="">
 									</div>
 									<div class="col-sm-6">
 										<span>Coeficiente:</span> <input type="text"
 											class="form-control form-control-user" id="proCoeficiente"
-											placeholder="" >
+											placeholder="">
 									</div>
-									
-								</div>
-								
 
-								
+								</div>
+
+								<div class="form-group row">
+									<div class="col-sm-6">
+										<span>Numero residentes:</span> <input type="number"
+											class="form-control form-control-user"
+											id="proNumeroResidentes" placeholder="">
+									</div>
+									<div class="col-sm-6">
+										<span>Numero vehiculos:</span> <input type="text"
+											class="form-control form-control-user"
+											id="proNumeroNehiculos" placeholder="">
+									</div>
+
+								</div>
+
+								<div class="form-group row">
 									<div class="col-sm-6 ">
 										<span>Estado:</span> <select class="form-select form-control"
 											aria-label="Default select example">
 											<option value="1">Activo</option>
-											<option value="2">Inactivo</option>
+											<option value="0">Inactivo</option>
 										</select>
 
 									</div>
+									<div class="col-sm-6">
+										<span>Direccion correspondencia:</span> <input type="text"
+											class="form-control form-control-user"
+											id="proDireccionCorrespondencia" placeholder="">
+									</div>
+								</div>
 								
+								<div class="form-group row">
+									<div class="col-sm-6 ">
+										<span>Residente:</span> <select class="form-select form-control"
+											aria-label="Default select example">
+											<option value="SI">SI</option>
+											<option value="NO">NO</option>
+										</select>
+
+									</div>
+									<div class="col-sm-6">
+										<span>Observaciones:</span> <input type="text"
+											class="form-control form-control-user"
+											id="proDireccionCorrespondencia" placeholder="">
+									</div>
+								</div>
 								<!-- ********************************** -->
 
 
@@ -365,7 +402,7 @@
 
 								<hr>
 								<input type="submit" class="btn btn-primary"
-									value="Grabar Propietario">
+									value="Actualizar">
 								<hr>
 							</form>
 
@@ -382,7 +419,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2020</span>
+						<span>Copyright &copy; Sisapco</span>
 					</div>
 				</div>
 			</footer>
