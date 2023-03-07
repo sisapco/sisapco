@@ -206,12 +206,12 @@
 
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Valor pago:</span> <input type="number"
-											class="form-control form-control-user" id="controlValor"
-											min="0" data-bind="value:replyNumber"
-											th:field="${controlpagosForm.controlValor}" value="">
+										<span>Valor pago:</span> 
+										<input type="number" class="form-control form-control-user" id="controlValor"
+											min="0" data-bind="value:replyNumber" th:field="${controlpagosForm.controlValor}" value="">
 										<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
+
 									<div class="col-sm-6">
 										<span>control fecha pago:</span> <input type="text"
 											class="form-control form-control-user" id="controlFechaPago"
@@ -254,11 +254,8 @@
 										</span>
 										<div class=" form-group  " aria-label="Default select example">
 
-											<input class="form-control" type=hidden value=".."
-												id="controlAdjunto"
-												th:field="${controlpagosForm.controlAdjunto}" > <input
-												id="controlAdjunto" type="file" style="display: none"
-												name="controlAdjunto">
+											<input class="form-control" type=hidden value=".." id="controlAdjunto" th:field="${controlpagosForm.controlAdjunto}" > 
+											<input id="controlAdjuntos" type="file" style="display: none" name="controlAdjuntos">
 											<div class=" form-group row">
 												<input id="controlAdjunto"
 													class="form-control form-control-user" required type="text">

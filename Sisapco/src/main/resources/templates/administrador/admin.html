@@ -61,6 +61,7 @@
 	                     
 	                               <img class="imagenLogoAdmin" style="width:100%!important" src="img/sisapco.png">
 	                    </button>
+	                    <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
                     </form>
 	                
                     <!-- Boton Atras -->
@@ -376,6 +377,26 @@
         <i class="fas fa-angle-up"></i>
         <img style="width:100%!important" src="img/to-top.png">
     </a>
+    
+     <!-- Modal Guardar-->
+	<div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se guardo el registro de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -398,8 +419,8 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <!--<script src="plantilla/vendor/jquery/jquery.min.js"></script>
-    <script src="plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>  -->
+    <script src="plantilla/vendor/jquery/jquery.min.js"></script>
+    <script src="plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
    <!-- <script src="plantilla/vendor/jquery-easing/jquery.easing.min.js"></script>-->
@@ -413,7 +434,16 @@
     <!-- Page level custom scripts -->
     <script src="plantilla/js/demo/chart-area-demo.js"></script>
     <script src="plantilla/js/demo/chart-pie-demo.js"></script>
-
+    
+    
+    <script>
+           //Activamos el modal de actualizar
+           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+           if(activarmodalactualizar=="A"){
+        	   $('#guardarModal').modal('show');
+        	   document.getElementById("activarmodalactualizar").value="N";
+           }
+    </script>
 </body>
 
 </html>

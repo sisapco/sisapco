@@ -10,6 +10,7 @@ import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
 import co.com.sisapco.entity.Contrato;
+import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
 import co.com.sisapco.entity.EvidenciaActividades;
@@ -23,6 +24,7 @@ import co.com.sisapco.repository.ActasRepository;
 import co.com.sisapco.repository.ActividadesRepository;
 import co.com.sisapco.repository.AlmacenamientoGoogleRepository;
 import co.com.sisapco.repository.ContratoRepository;
+import co.com.sisapco.repository.ControlPagosRepository;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.CotizacionesRepository;
 import co.com.sisapco.repository.EvidenciaActividadesRepository;
@@ -74,6 +76,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	PropietariosRepository repositoryPropietarios;
+	
+	@Autowired
+	ControlPagosRepository repositoryControlPagos;
 	
 	
 	@Override
@@ -342,7 +347,11 @@ public class UserServiceImpl implements UserService{
 	public Pqrs getPqrsByIdForm(int idPqrs) throws Exception {
 		return repositoryPqrs.findByPqrsIdForm(idPqrs);
 	}
-	
-	
+
+	@Override
+	public ControlPagos createControlPagos(ControlPagos controlPagos) throws Exception {
+		controlPagos=repositoryControlPagos.save(controlPagos);
+		return controlPagos;
+	}
 	
 }

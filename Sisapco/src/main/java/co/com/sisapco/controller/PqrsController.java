@@ -76,7 +76,7 @@ public class PqrsController {
 		model.addAttribute("consecutivopqrs", consecutivo);
 		
 		//Fecha Actual del sistema
-		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+		String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
         
 		//Instanciamos la clase para cifrar el codigo
 		MD5DatosGet encrypted = new MD5DatosGet();
@@ -111,6 +111,9 @@ public class PqrsController {
 		
 		//Activamos el bloqueo de los campos
 		model.addAttribute("respuestainactivarcampos","false");
+		model.addAttribute("respuestainactivarcamposCreacion","true");
+		model.addAttribute("respuestainactivarcamposRespuesta","true");
+		
 		//Inactivamos el campo cedula con validacion
 		model.addAttribute("respuestaCedula","true");
 		
@@ -138,7 +141,7 @@ public class PqrsController {
 		int copId = copropiedadDTO.getCopId();
 		
 		//Fecha actual del sistema
-		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+		String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
 		pqrs.setPqrsFechaCreacion(timeStamp);
 		
 		if(result.hasErrors()) {
@@ -232,6 +235,12 @@ public class PqrsController {
 		int consecutivo = pqrsconsecutivo.getIdPqrs();
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivopqrs", consecutivo);
+		
+		//Activamos el bloqueo de los campos
+		model.addAttribute("respuestainactivarcampos","false");
+		model.addAttribute("respuestainactivarcamposCreacion","true");
+		model.addAttribute("respuestainactivarcamposRespuesta","true");
+		
 		
 		//Ruta Formulario
 		model.addAttribute("rutaFormulario", "crearpqrs");
@@ -354,6 +363,7 @@ public class PqrsController {
 		model.addAttribute("respuesta","active");
 		//Activamos el bloqueo de los campos
 		model.addAttribute("respuestainactivarcampos","true");
+		model.addAttribute("respuestainactivarcamposCreacion","true");
 		//Inactivamos el campo cedula con validacion
 		model.addAttribute("respuestaCedula","false");
 		
@@ -476,6 +486,7 @@ public class PqrsController {
 		
 		//Activamos el bloqueo de los campos
 		model.addAttribute("respuestainactivarcampos","true");
+		model.addAttribute("respuestainactivarcamposCreacion","true");
 		//Inactivamos el campo cedula con validacion
 		model.addAttribute("respuestaCedula","false");
 		model.addAttribute("respuesta","active");

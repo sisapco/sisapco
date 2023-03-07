@@ -172,7 +172,6 @@
 											            dateFormat: "dd/mm/yy"
 											        });
 											    </script>											    
-								       <input class="form-control" type=hidden th:value="${actividadesForm.actFechaInicio}" id="actFechaInicioHidden" name="actFechaInicioHidden" >
 								    
                                     </div>
                                     <div class="col-sm-6">
@@ -184,7 +183,6 @@
 											            uiLibrary: 'bootstrap4'
 											        });
 											    </script>
-									<input class="form-control" type=hidden th:value="${actividadesForm.actFechaFinal}" id="actFechaFinalHidden" name="actFechaFinalHidden" >
                                     </div>
                                 </div>
                                  <div class="form-group">
@@ -198,9 +196,9 @@
                                             placeholder="Estado" th:field="${actividadesForm.actEstado}">  -->
                                             <span>Seleccione el estado:</span>
                                             <select class="form-control" id="actEstado" th:field="${actividadesForm.actEstado}" required>
-	                                              <option value="1" selected>Abierto</option>
-	                                              <option value="2">En proceso</option>
-											      <option value="3">Cerrado</option>
+	                                              <option value="2" selected>Abierto</option>
+	                                              <option value="3">En proceso</option>
+											      <option value="4">Cerrado</option>
                                             </select>                                            
                                     </div>
                                     <div class="col-sm-6">
@@ -236,8 +234,7 @@
 											            uiLibrary: 'bootstrap4'
 											        });
 											    </script>
-											    
-											    <input class="form-control" type=hidden th:value="${actividadesForm.actFechaEntregaReal}" id="actFechaEntregaRealHidden" name="actFechaEntregaRealHidden" >
+											    	   
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -350,17 +347,8 @@
                                 </div>
                                 <hr>
                                 <input type="submit" class="btn btn-primary" value="Actualizar">
-                                <hr>
-                                 <div th:if="${error}" class="alert alert-danger" role="alert">
-						           Se presento un error, inténtelo nuevamente.
-						        </div>
-						        <div th:if="${errorcampos}" class="alert alert-danger" role="alert">
-						           Se presento un error, por favor ingrese los datos en campos que son obligatorios de forma correcta.
-						        </div>
-						        
-						        <div th:if="${bien}" class="alert alert-success" role="alert">
-						            La actividad fue actualizada de forma exitosa.
-						        </div>
+                                <hr>                           
+						        <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
                             </form>                            
                             
                         </div>
@@ -436,6 +424,50 @@
 
 <!-- --- -->
 
+<!-- Modal Guardar Confirmar-->
+	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Actualizado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se actualizo el seguimiento de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	      <form th:action="@{${rutamenuseguimiento}}" method="get">
+	         <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+	         <input type="submit" class="btn btn-primary" value="Close">
+	      </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Modal Guardar confirmar Error-->
+	<div class="modal fade" id="confirmarGuardarErrorModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro con error</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       Se presento un error al intentar actualizar el registro, por favor verifique los datos e intente nuevamente.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -481,32 +513,19 @@
 		(function() {
 			'use strict'
 
-			 //Formatiamos la fechas		
-			 //Fecha de inicio
-			 var fechainicio = document.getElementById("actFechaInicioHidden").value;
-			 var nuevafecha=formatoFecha(fechainicio);
-			 document.getElementById("actFechaInicio").value=nuevafecha;
-			 
-			 //Fecha final
-			 var fechafinal = document.getElementById("actFechaFinalHidden").value;
-			 var nuevafechafinal=formatoFecha(fechafinal);
-			 document.getElementById("actFechaFinal").value=nuevafechafinal;
-			 
-			 //Fecha Real
-			 var fechareal = document.getElementById("actFechaEntregaRealHidden").value;
-			 var nuevafechareal=formatoFecha(fechareal);
-			 document.getElementById("actFechaEntregaReal").value=nuevafechareal;
-			 
-
+			   //Activamos el modal de actualizar
+	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+	           if(activarmodalactualizar=="A"){
+	        	   $('#confirmarGuardarModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+	           if(activarmodalactualizar=="E"){
+	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+				
 			// Fetch all the forms we want to apply custom Bootstrap validation styles to
 			var forms = document.querySelectorAll('.needs-validation')
-			
-			
-			function formatoFecha(fechaDB){
-				 var date = new Date(fechaDB); // Or your date here
-				 var nuevafecha=((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
-				return nuevafecha;
-			}
 
 			// Loop over them and prevent submission
 			Array.prototype.slice.call(forms).forEach(function(form) {
