@@ -422,36 +422,8 @@ public class UserController {
 		return "administrador/reservas";
 	}
 
-	@RequestMapping("/propietariosadministrador")
-	public String propietariosAdministrador(Authentication authenticationnn,ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
-		String usuariologin = authenticationnn.getName();
-		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
-		
-		HttpSession session = request.getSession();
-		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
-		
-		int copNit = copropiedadDTO.getCopNit();
-		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
-		
-		long longusuariId=userPanel.getUsuId();
-		int usuId = (int) longusuariId;
-		
-		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
-		
-		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
-		
-		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
-		
-		model.addAttribute("actaslist", userService.getActasByNit(copNit));
-		model.addAttribute("copNombre", copNombre);
-		model.addAttribute("copNit", copNit);
-		
-		model.addAttribute("admin","active");
-		model.addAttribute("consejo","active");
-		
-		return "administrador/propietariosadministrador";
-	}
+	
+	
 	
 	
 }
