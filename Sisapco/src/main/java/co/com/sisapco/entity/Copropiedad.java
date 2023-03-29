@@ -52,10 +52,10 @@ public class Copropiedad implements Serializable {
 	private String copCarpeta;
 	
 	@Column
-	private Date copFechaCreacion;
+	private String copFechaCreacion;
 	
 	@Column 
-	private Date copFechaFin;
+	private String copFechaFin;
 	
 	@Column 
 	private String copLogo;
@@ -143,19 +143,19 @@ public class Copropiedad implements Serializable {
 		this.copCarpeta = copCarpeta;
 	}
 
-	public Date getCopFechaCreacion() {
+	public String getCopFechaCreacion() {
 		return copFechaCreacion;
 	}
 
-	public void setCopFechaCreacion(Date copFechaCreacion) {
+	public void setCopFechaCreacion(String copFechaCreacion) {
 		this.copFechaCreacion = copFechaCreacion;
 	}
 
-	public Date getCopFechaFin() {
+	public String getCopFechaFin() {
 		return copFechaFin;
 	}
 
-	public void setCopFechaFin(Date copFechaFin) {
+	public void setCopFechaFin(String copFechaFin) {
 		this.copFechaFin = copFechaFin;
 	}
 
@@ -179,8 +179,6 @@ public class Copropiedad implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((copLog == null) ? 0 : copLog.hashCode());
-		result = prime * result + ((copLogo == null) ? 0 : copLogo.hashCode());
 		result = prime * result + ((copBarrio == null) ? 0 : copBarrio.hashCode());
 		result = prime * result + ((copCarpeta == null) ? 0 : copCarpeta.hashCode());
 		result = prime * result + ((copDireccion == null) ? 0 : copDireccion.hashCode());
@@ -189,6 +187,8 @@ public class Copropiedad implements Serializable {
 		result = prime * result + ((copFechaCreacion == null) ? 0 : copFechaCreacion.hashCode());
 		result = prime * result + ((copFechaFin == null) ? 0 : copFechaFin.hashCode());
 		result = prime * result + copId;
+		result = prime * result + ((copLog == null) ? 0 : copLog.hashCode());
+		result = prime * result + ((copLogo == null) ? 0 : copLogo.hashCode());
 		result = prime * result + copNit;
 		result = prime * result + ((copNombreCopropiedad == null) ? 0 : copNombreCopropiedad.hashCode());
 		result = prime * result + ((copTelefono == null) ? 0 : copTelefono.hashCode());
@@ -205,16 +205,6 @@ public class Copropiedad implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Copropiedad other = (Copropiedad) obj;
-		if (copLog == null) {
-			if (other.copLog != null)
-				return false;
-		} else if (!copLog.equals(other.copLog))
-			return false;
-		if (copLogo == null) {
-			if (other.copLogo != null)
-				return false;
-		} else if (!copLogo.equals(other.copLogo))
-			return false;
 		if (copBarrio == null) {
 			if (other.copBarrio != null)
 				return false;
@@ -252,6 +242,16 @@ public class Copropiedad implements Serializable {
 			return false;
 		if (copId != other.copId)
 			return false;
+		if (copLog == null) {
+			if (other.copLog != null)
+				return false;
+		} else if (!copLog.equals(other.copLog))
+			return false;
+		if (copLogo == null) {
+			if (other.copLogo != null)
+				return false;
+		} else if (!copLogo.equals(other.copLogo))
+			return false;
 		if (copNit != other.copNit)
 			return false;
 		if (copNombreCopropiedad == null) {
@@ -278,6 +278,8 @@ public class Copropiedad implements Serializable {
 				+ ", copEstado=" + copEstado + ", copDireccion=" + copDireccion + ", copTelefono=" + copTelefono
 				+ ", copUbicacion=" + copUbicacion + ", copBarrio=" + copBarrio + ", copEmail=" + copEmail
 				+ ", copCarpeta=" + copCarpeta + ", copFechaCreacion=" + copFechaCreacion + ", copFechaFin="
-				+ copFechaFin + ", codLogo=" + copLogo + ", codLog=" + copLog + "]";
+				+ copFechaFin + ", copLogo=" + copLogo + ", copLog=" + copLog + "]";
 	}
+
+	
 }

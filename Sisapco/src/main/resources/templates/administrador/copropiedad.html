@@ -276,9 +276,11 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Nit<span style="color: #ff0000">*</span>
 										</span> <input type="number" class="form-control form-control-user"
-											id="copNit" placeholder="" required>
+											id="copNit" placeholder=""
+											th:field="${copropiedadForm.copNit}" required>
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
+
 
 								</div>
 
@@ -288,14 +290,16 @@
 										<span>Nombre de la Copropiedad<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											class="form-control form-control-user"
-											id="copNombreCopropiedad" placeholder="" required>
+											id="copNombreCopropiedad" placeholder=""
+											th:field="${copropiedadForm.copNombreCopropiedad}" required>
 										<div class="invalid-feedback">Ingresa el nombre de la
 											copropiedad.</div>
 									</div>
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Dirrección<span style="color: #ff0000">*</span>
 										</span> <input type="number" class="form-control form-control-user"
-											id="cop_direccion" placeholder="" required>
+											id="copDireccion" placeholder=""
+											th:field="${copropiedadForm.copDireccion}" required>
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 
@@ -305,12 +309,12 @@
 									<div class="col-sm-6">
 										<span>Ubicación:</span> <input type="text"
 											class="form-control form-control-user" id="copUbicacion"
-											placeholder="">
+											placeholder="" th:field="${copropiedadForm.copUbicacion}">
 									</div>
 									<div class="col-sm-6">
 										<span>Barrio:</span> <input type="text"
 											class="form-control form-control-user" id="copBarrio"
-											placeholder="">
+											placeholder="" th:field="${copropiedadForm.copBarrio}">
 									</div>
 								</div>
 
@@ -319,12 +323,13 @@
 									<div class="col-sm-6">
 										<span>Telefono:</span> <input type="number"
 											class="form-control form-control-user" id="copTelefono"
-											placeholder="">
+											placeholder="" th:field="${copropiedadForm.copTelefono}">
 									</div>
 									<div class="col-sm-6">
 										<span>Email<span style="color: #ff0000">*</span></span> <input
 											type="email" class="form-control form-control-user"
-											id="cop_email" placeholder="" required>
+											id="copEmail" placeholder=""
+											th:field="${copropiedadForm.copEmail}" required>
 										<div class="invalid-feedback">Ingresa un correo valido.</div>
 									</div>
 								</div>
@@ -334,12 +339,14 @@
 									<div class="col-sm-6">
 										<span>Fecha creación:</span> <input type="text"
 											class="form-control form-control-user" id="copFechaCreacion"
-											placeholder="" disabled>
+											placeholder="" th:field="${copropiedadForm.copFechaCreacion}"
+											disabled>
 									</div>
 									<div class="col-sm-6">
 										<span>Fecha fin:</span> <input type="text"
 											class="form-control form-control-user" id="copFechaFin"
-											placeholder="" disabled>
+											placeholder="" th:field="${copropiedadForm.copFechaFin}"
+											disabled>
 									</div>
 								</div>
 
@@ -348,10 +355,11 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Adjuntar logo:</span>
 										<div class=" form-group  " aria-label="Default select example">
-											<input id="coplogo" type="file" style="display: none"
+											<input id="copLogo" type="file" style="display: none"
 												name="pqrsAdjunto">
 											<div class=" form-group row">
-												<input id="cop_logo" class="form-control form-control-user"
+												<input id="coplogo" class="form-control form-control-user"
+													placeholder="" th:field="${copropiedadForm.copFechaFin}"
 													type="text"> <a
 													class="btn btn-file  btn btn-secondary "><i
 													class="fa fa-folder-open-o "></i> Seleccionar</a>
@@ -380,12 +388,14 @@
 														});
 									</script>
 									<div class="col-sm-6 ">
-										<span>Estado:</span> <select class="form-select form-control"
-											aria-label="Default select example">
-
-											<option value="1">Activa</option>
-											<option value="2">Inactiva</option>
+										<span>Estado:</span> <select class="form-control"
+											id="copEstado" th:field="${copropiedadForm.copEstado}">
+											<option value="1" selected>Activa</option>
+											<option value="0">Inactiva</option>
+											<option value="3">En proceso</option>
 										</select>
+
+
 
 									</div>
 								</div>

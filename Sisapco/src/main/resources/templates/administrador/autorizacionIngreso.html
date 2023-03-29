@@ -9,8 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Propietarios Administrador</title>
-
+<title>Autorizar ingreso</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -33,7 +32,7 @@
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
-
+ <link href="css/menusisapco.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -58,30 +57,24 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-					<form action="/admin" method="get" id="home34343"
-						Style="float: left" class="imagenLogoAdmin">
-						<input id="copId" type="hidden" name="copId"
-							th:value="${copIdEncryted}" />
-						<button id="54545" class="btn btn-link rounded-circle mr-3">
-							<i class="fa fa-bars"></i> <img class="imagenLogoAdmin"
-								style="width: 100% !important" src="img/sisapco.png">
-						</button>
-					</form>
-
-					<form action="/admin" method="get" id="home34343"
-						Style="float: left">
-						<input id="copId" type="hidden" name="copId"
-							th:value="${copIdEncryted}" />
-						<button id="sidebarToggleTop"
-							class="btn btn-link d-md rounded-circle mr-3">
-							<i class="fa fa-bars"></i> <img style="width: 250% !important"
-								src="img/imagenatras.png">
-						</button>
-					</form>
-
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    
+                    <form action="/admin" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
+	                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />            
+	                <button id="54545" class="btn btn-link rounded-circle mr-3" >
+	                        <i class="fa fa-bars"></i>
+	                        <img class="imagenLogoAdmin" style="width:100%!important" src="img/sisapco.png">
+	                </button>
+	              </form>
+                        
+                  <form action="/admin" method="get" id="home34343" Style="float:left">
+                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                            <img style="width:250%!important" src="img/imagenatras.png">
+                        </button>
+                    </form>     
+	           
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -113,14 +106,14 @@
 
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
-							<!--  <a class="nav-link dropdown-toggle" href="#"><span></span> - <span>Salir
+						
+						<!--  <a class="nav-link dropdown-toggle" href="#"><span></span> - <span>Salir
 							
 							</span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a> -->
-
-							<a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span
-								th:text="${#authentication.getPrincipal().getUsername()}"></span>
-								- <span>Salir </span><span class="float-right"><i
-									class="fas fa-sign-out-alt"></i></span></a> <!-- Dropdown - User Information -->
+                                    
+                            <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}"></span> - <span>Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>  
+                                    
+                                    <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
@@ -139,12 +132,11 @@
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</a>
-							</div>
-						</li>
+							</div></li>
 
 					</ul>
 
-				</nav>
+				</nav>				
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -153,14 +145,14 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">
-						Propietarios Administrador: <span></span>
+						Autorizar ingreso visitantes: <span></span>
 					</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Registrar un
-								Propietario:</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Autorizar
+								ingreso visitantes:</h6>
 						</div>
 						<div class="card-body">
 							<form class="user needs-validation" novalidate role="form"
@@ -172,162 +164,153 @@
 									un error, por favor ingrese los datos en campos que son
 									obligatorios de forma correcta.</div>
 
-								<div class="alert alert-success" role="alert">La acta fue
-									creada de forma exitosa.</div>
+								<div class="alert alert-success" role="alert">Se creo la
+									autorización de forma exitosa.</div>
 								<input class="form-control" type=hidden id="copNit"
 									name="copNit"> <input class="form-control" type=hidden
 									id="copNombre" name="copNombre">
 
 								<div class="form-group row">
-
+									<!--EL valor es cargado desde BD cuando el usuario se ha registrado  -->
 									<div class="col-sm-6">
-										<span>Cedula del propietario<span
-											style="color: #ff0000">*</span></span> <input type="number"
-											class="form-control form-control-user" minlength="5"
-											maxlength="25" id="proCc" placeholder=""
-											th:field="${propietariosadministradorForm.proCc}" required>
-										<div class="invalid-feedback">Ingresa una cedula valida</div>
+										<span>Cedula del propietario</span> <input type="number"
+											minlength="5" maxlength="25"
+											class="form-control form-control-user" id="proCc"
+											placeholder="" required>
 									</div>
 
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Numero de la Residencia<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											class="form-control form-control-user"
-											id="proNumeroResidencia" placeholder=""
-											th:field="${propietariosadministradorForm.proNumeroResidencia}"
+											id="proNumeroResidencia" placeholder="" required>
+
+									</div>
+
+								</div>
+
+								<div class="form-group row">
+									<div class="col-sm-6">
+										<span>Nombres visitante:</span> <input type="text"
+											class="form-control form-control-user" id="autoriNombres"
+											placeholder=""
+											th:field="${autorizacioningresoForm.autoriNombres}">
+									</div>
+									<div class="col-sm-6">
+										<span>Apellidos visitante:</span> <input type="text"
+											class="form-control form-control-user" id="autoriApellidos"
+											placeholder=""
+											th:field="${autorizacioningresoForm.autoriApellidos}">
+									</div>
+								</div>
+
+
+								<div class="form-group row">
+									<div class="col-sm-6">
+										<span>Cedula del visitante<span style="color: #ff0000">*</span></span>
+										<input type="number" minlength="5" maxlength="25"
+											class="form-control form-control-user" id="autoriCcVisitante"
+											placeholder=""
+											th:field="${autorizacioningresoForm.autoriCcVisitante}"
 											required>
-										<div class="invalid-feedback">Ingresa un dato valido de
-											residencia.</div>
-									</div>
-
-								</div>
-
-								<div class="form-group row">
-									<div class="col-sm-6">
-										<span>Nombres:</span> <input type="text"
-											class="form-control form-control-user" id="proNombres"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proNombres}">
+										<div class="invalid-feedback">Ingresa una cedula valida</div>
 									</div>
 									<div class="col-sm-6">
-										<span>Apellidos:</span> <input type="text"
-											class="form-control form-control-user" id="proApellidos"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proApellidos}">
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<div class="col-sm-6">
-										<span>Numero Celular<span style="color: #ff0000">*</span></span>
-										<input type="number" class="form-control form-control-user"
-											id="proCelular" maxlength="10" placeholder=""
-											th:field="${propietariosadministradorForm.proCelular}"
-											required />
-										<div class="invalid-feedback">Ingresa un numero Celular.</div>
-									</div>
-									<div class="col-sm-6">
-										<span>Email<span style="color: #ff0000">*</span></span> <input
-											type="email" class="form-control form-control-user"
-											id="proEmail" placeholder=""
-											th:field="${propietariosadministradorForm.proEmail}" required>
-										<div class="invalid-feedback">Ingresa un correo valido.</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<div class="col-sm-6">
-										<span>Telefono:</span> <input type="number"
-											class="form-control form-control-user" id="proTelefono"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proTelefono}">
-									</div>
-									<div class="col-sm-6">
-										<span>Matricula:</span> <input type="text"
-											class="form-control form-control-user" id="proMatricula"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proMatricula}">
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<div class="col-sm-6">
-										<span>Area:</span> <input type="number"
-											class="form-control form-control-user" id="proArea"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proArea}">
-									</div>
-									<div class="col-sm-6">
-										<span>Coeficiente:</span> <input type="text"
-											class="form-control form-control-user" id="proCoeficiente"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proCoeficiente}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-sm-6">
-										<span>Numero residentes:</span> <input type="number"
+										<span>Numero Placa Vehiculo</span> <input type="text"
 											class="form-control form-control-user"
-											id="proNumeroResidentes" placeholder=""
-											th:field="${propietariosadministradorForm.proNumeroResidentes}">
+											id="autoriPlacaVehiculo" placeholder=""
+											th:field="${autorizacioningresoForm.autoriPlacaVehiculo}"
+											required>
+
+									</div>
+								</div>
+
+
+								<div class="form-group row">
+									<div class="col-sm-6">
+										<span>Numero de visitantes:</span> <input type="number"
+											class="form-control form-control-user"
+											id="autoriCantidadPersonas" placeholder=""
+											th:field="${autorizacioningresoForm.autoriCantidadPersonas}">
+										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 									<div class="col-sm-6">
-										<span>Numero vehiculos:</span> <input type="number"
+										<span>Numero de vehiculos:</span> <input type="number"
 											class="form-control form-control-user"
-											id="proNumeroVehiculos" placeholder=""
-											th:field="${propietariosadministradorForm.proNumeroVehiculos}">
+											id="autoriCantidadVehiculos" placeholder=""
+											th:field="${autorizacioningresoForm.autoriCantidadVehiculos}">
+										<div class="invalid-feedback">Ingresa un dato valido.</div>
+									</div>
+
+								</div>
+
+								<div class="form-group row">
+									<div class="col-sm-6">
+										<span>Fecha ingreso:<span style="color: #ff0000">*</span></span>
+										<input type="text" class="form-control form-control-user"
+											id="autoriFechaIngreso" placeholder="dd-mm-yy"
+											th:field="${autorizacioningresoForm.autoriFechaIngreso}"
+											required>
+										<div class="invalid-feedback">Debe de ingresar una
+											fecha.</div>
+										<script>
+											$('#contraFechaFin').datepicker({
+												uiLibrary : 'bootstrap4',
+												dateFormat : "dd-mm-yy"
+											});
+										</script>
+									</div>
+									<div class="col-sm-6">
+										<span>Fecha Salida:<span style="color: #ff0000">*</span></span>
+										<input type="text" class="form-control form-control-user"
+											id="autoriFechaSalida" placeholder="dd-mm-yy"
+											th:field="${autorizacioningresoForm.autoriFechaSalida}"
+											required>
+										<div class="invalid-feedback">Debe de ingresar una
+											fecha.</div>
+										<script>
+											$('#contraFechaFin').datepicker({
+												uiLibrary : 'bootstrap4',
+												dateFormat : "dd-mm-yy"
+											});
+										</script>
 									</div>
 
 								</div>
 
 								<div class="form-group row">
 									<div class="col-sm-6 ">
-										<span>Estado:</span> <select class="form-select form-control"
-											id="proEstado"
-											th:field="${propietariosadministradorForm.proEstado}"
-											aria-label="Default select example">
-											<option value="1">Activo</option>
-											<option value="0">Inactivo</option>
-										</select>
-
-									</div>
-									<div class="col-sm-6">
-										<span>Direccion correspondencia:</span> <input type="text"
-											class="form-control form-control-user"
-											id="proDireccionCorrespondencia" placeholder=""
-											th:field="${propietariosadministradorForm.proDireccionCorrespondencia}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-sm-6 ">
-										<span>Residente:</span> <select
-											class="form-select form-control" id="proResidente"
-											aria-label="Default select example"
-											th:field="${propietariosadministradorForm.proResidente}">
-											<option value="SI">SI</option>
-											<option value="NO">NO</option>
+										<span>Estado:</span> <select class="form-control"
+											id="autoriEstado"
+											th:field="${autorizacioningresoForm.autoriEstado}">
+											<option value="1" selected>Activa</option>
+											<option value="0">Inactiva</option>
+											<option value="3">En proceso</option>
 										</select>
 
 									</div>
 									<div class="col-sm-6">
 										<span>Observaciones:</span>
-										<textarea class="form-control" id="proObservaciones" row="3"
-											placeholder=""
-											th:field="${propietariosadministradorForm.proObservaciones}"></textarea>
+										<textarea class="form-control" id="autoriObservaciones"
+											rows="3"
+											th:field="${autorizacioningresoForm.autoriObservaciones}"></textarea>
 									</div>
+
+
+
+
 								</div>
 
 								<!-- ********************************** -->
-
 								<hr>
 								<input type="submit" class="btn btn-primary"
-									value="Grabar Propietario">
+									value="Crear autorización">
 								<hr>
-
 							</form>
 
 						</div>
 					</div>
+
 				</div>
 				<!-- /.container-fluid -->
 
