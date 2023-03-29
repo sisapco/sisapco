@@ -169,6 +169,7 @@ public class CotizacionesController {
 				
 				model.addAttribute("cotizacionesForm", cotizaciones);
 				model.addAttribute("bien","active");
+				model.addAttribute("activarmodalactualizar", "A");
 				
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -180,6 +181,7 @@ public class CotizacionesController {
 				//model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				model.addAttribute("activarmodalactualizar", "E");
 			}
 		}
 		

@@ -53,16 +53,19 @@ function consultaBasicaPropietariosSanciones(){
             if(data[0] != null){
             	document.getElementById("proNombres").value=data[0].proNombres;
             	document.getElementById("proApellidos").value=data[0].proApellidos;
-            	document.getElementById("proNumeroResidencia").value=data[0].proNumeroResidencia;
-            
-            	document.getElementById("proDireccionCorrespondecia").value=data[0].proDireccionCorrespondencia;  	            	
+            	document.getElementById("proNumeroResidencia").value=data[0].proNumeroResidencia; 
+            	document.getElementById("proEmail").value=data[0].proEmail;             	
+            	document.getElementById("proDireccionCorrespondencia").value=data[0].proDireccionCorrespondencia;
+            	document.getElementById("cedulaNoExiste").style.display="none";
             }
             else{
             	document.getElementById("proNombres").value="";
             	document.getElementById("proApellidos").value="";
             	document.getElementById("proNumeroResidencia").value="";
-            	
-            	document.getElementById("proDireccionCorrespondecia").value=""; 
+            	document.getElementById("proEmail").value="";
+            	document.getElementById("proDireccionCorrespondencia").value="";
+            	document.getElementById("proCc").value="";
+            	document.getElementById("cedulaNoExiste").style.display="Block";
             }
         },
         error : function(request,error)

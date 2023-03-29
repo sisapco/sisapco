@@ -160,13 +160,14 @@ public class ControlPagosController {
 							    guardarControlPagos.setControlEstado("");
 							   
 							    //Guardamos el formulario de control pagos
-							    userService.createControlPagos(guardarControlPagos);
+							    userService.createControlPagos(guardarControlPagos);							    
 						    }			   
 					  }
 					
 					
 					model.addAttribute("controlpagosForm", controlPagos);
 					model.addAttribute("bien","active");
+					model.addAttribute("activarmodalactualizar", "A");
 					
 				} catch (Exception e) {
 					model.addAttribute("error","active");
@@ -178,6 +179,7 @@ public class ControlPagosController {
 					model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 					model.addAttribute("copNombre", copNombre);
 					model.addAttribute("copNit", copNit);
+					model.addAttribute("activarmodalactualizar", "E");
 				}
 			}
 			

@@ -155,6 +155,7 @@
                                             <th>Fecha de creación PQRS</th>
                                             <th>Respuesta PQRS</th>
                                             <th><div th:if="${activarRespuesta}">Dar Respuesta PRS</div></th>
+                                            <th><div th:if="${activarRespuestaAdjunto}">Archivo Adjunto Respuesta</div></th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -193,6 +194,11 @@
 	                                                <input id="Pqrs" type="hidden" name="Pqrs" th:value="${pqrs.pqrsLogs}" />   
 	                                                <input type="submit" class="btn btn-primary" value="Dar Respuesta PRS">
 	                                            </form>
+	                                         </div>                                         
+                                            </td>
+                                           <td>
+                                            <div th:if="${pqrs.pqrsAdjuntoRespuesta != null}">
+	                                             <a th:href="@{${pqrs.pqrsAdjuntoRespuesta}}" class="btn btn-primary">Descargar</a>
 	                                         </div>                                         
                                             </td>
                                         </tr>

@@ -21,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -134,7 +135,7 @@ public class ActaController {
 		if(result.hasErrors()) {
 			model.addAttribute("actasForm", actas);
 			model.addAttribute("errorcampos","active");
-			seguimiento+="1.hasErrors";
+			
 		}else {
 			try {
 				
@@ -146,8 +147,6 @@ public class ActaController {
 				
 				//Instanciar la clase de google para guardar la imagen
 				CreateGoogleFile createGoogleFile = new CreateGoogleFile();
-				
-				seguimiento+="2.AlmacenamientoGoogle";
 				
 				//Guardar Firma presidente
 				for (int i = 0; i < filesPresidente.length; i++) {
@@ -187,8 +186,8 @@ public class ActaController {
 				  actas = userService.createActa(actas);
 				  model.addAttribute("actasForm", actas);
 				  model.addAttribute("bien","active");
-				
-				  seguimiento+="3.createActa";
+				  model.addAttribute("activarmodalactualizar", "A");
+				  
 				  
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -199,8 +198,8 @@ public class ActaController {
 				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				model.addAttribute("activarmodalactualizar", "E");
 				
-				 seguimiento+="3.catch="+e.getMessage();
 			}
 		}
 		
@@ -225,21 +224,19 @@ public class ActaController {
 		copIdEncryted = copIdEncryted.replace("=", "co");
 		model.addAttribute("copIdEncryted", copIdEncryted);
 		
-		//Llenamos la lista copropiedadlist para poder devolvernos al menu administrador
-		model.addAttribute("copropiedadlist", userService.getCopropiedadById(copId));
-		
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
-		model.addAttribute("seguimientoerror", seguimiento);
+		//model.addAttribute("seguimientoerror", seguimiento);
 		
 		//Activiamos el modal de guardar
 	    model.addAttribute("activarmodalactualizar", "A");
 
-		//return "administrador/formcrearacta";
-		return "administrador/admin";
+		return "administrador/formcrearacta";
+		//return "administrador/admin";
 	}
 	
+	@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 	@RequestMapping("/seguimientoactas")
 	public String seguimientoTareasAdmin(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
@@ -283,6 +280,8 @@ public class ActaController {
 	}
 	
 	
+	//@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/visualizaracta")
 	public String visualizaracta(@Valid @ModelAttribute("actaForm")Actas actas,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		

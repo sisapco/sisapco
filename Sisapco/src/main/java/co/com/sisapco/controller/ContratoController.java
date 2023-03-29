@@ -175,6 +175,7 @@ public class ContratoController {
 				
 				model.addAttribute("contratoForm", contrato);
 				model.addAttribute("bien","active");
+				model.addAttribute("activarmodalactualizar", "A");
 				
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -186,6 +187,7 @@ public class ContratoController {
 				model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				model.addAttribute("activarmodalactualizar", "E");
 			}
 		}
 		

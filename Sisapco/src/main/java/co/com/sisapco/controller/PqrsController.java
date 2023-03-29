@@ -113,9 +113,13 @@ public class PqrsController {
 		model.addAttribute("respuestainactivarcampos","false");
 		model.addAttribute("respuestainactivarcamposCreacion","true");
 		model.addAttribute("respuestainactivarcamposRespuesta","true");
+		model.addAttribute("vistarespuestainactivarcamposRespuesta","true");
 		
 		//Inactivamos el campo cedula con validacion
 		model.addAttribute("respuestaCedula","true");
+		
+		//Activamos el campo para adjuntar archivos
+		model.addAttribute("respuestaAdjunto","true");
 		
 		return "administrador/pqrs";
 	}
@@ -196,6 +200,7 @@ public class PqrsController {
 				
 				model.addAttribute("pqrsForm", pqrs);
 				model.addAttribute("bien","active");
+				model.addAttribute("activarmodalactualizar", "A");
 				
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -206,6 +211,7 @@ public class PqrsController {
 				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				model.addAttribute("activarmodalactualizar", "E");
 			}
 		}
 		
@@ -235,12 +241,14 @@ public class PqrsController {
 		int consecutivo = pqrsconsecutivo.getIdPqrs();
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivopqrs", consecutivo);
+		model.addAttribute("consecutivopqrsguardado", (consecutivo-1));
 		
 		//Activamos el bloqueo de los campos
 		model.addAttribute("respuestainactivarcampos","false");
 		model.addAttribute("respuestainactivarcamposCreacion","true");
 		model.addAttribute("respuestainactivarcamposRespuesta","true");
 		
+		model.addAttribute("vistarespuestainactivarcamposRespuesta","false");
 		
 		//Ruta Formulario
 		model.addAttribute("rutaFormulario", "crearpqrs");
@@ -284,6 +292,9 @@ public class PqrsController {
 		}else {
 			model.addAttribute("activarRespuesta",false);
 		}
+		
+		//Activamos la respuesta del archivo adjunto
+		model.addAttribute("activarRespuestaAdjunto",true);
 		
         ///////////Ciframos el codigo del
         Iterable<Pqrs> pqrs= userService.getPqrsByNit(copNit);
@@ -361,11 +372,14 @@ public class PqrsController {
 		model.addAttribute("admin","active");
 		model.addAttribute("consejo","active");
 		model.addAttribute("respuesta","active");
+		
 		//Activamos el bloqueo de los campos
 		model.addAttribute("respuestainactivarcampos","true");
 		model.addAttribute("respuestainactivarcamposCreacion","true");
 		//Inactivamos el campo cedula con validacion
 		model.addAttribute("respuestaCedula","false");
+		
+		model.addAttribute("vistarespuestainactivarcamposRespuesta","true");
 		
 		//Menu atras
 		String menuAdmin = rutamenu+"consultapqrs";
@@ -380,7 +394,7 @@ public class PqrsController {
 	//Responder PRQS Administrador
 	@PostMapping("/responderpqrs")
 	public String responderPqrs(@Valid @ModelAttribute("pqrsForm")Pqrs pqrs,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp, 
-			@RequestParam("pqrsDocumentoAdjuntos") MultipartFile[] filesPqrs) throws Exception {
+			@RequestParam("pqrsDocumentoAdjuntos") MultipartFile[] filesPqrs, @RequestParam("pqrsAdjuntoRespuestas") MultipartFile[] filesPqrsRespuesta) throws Exception {
 		
 		String usuariologin = authenticationnn.getName();
 		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
@@ -412,6 +426,8 @@ public class PqrsController {
 				CreateGoogleFile createGoogleFile = new CreateGoogleFile();
 				String codigoDescarga ="";
 				String codigoVista ="";
+				String codigoDescargaRespuesta ="";
+				String codigoVistaRespuesta ="";
 				
 				//Guardar Archivo Adjunto en google
 				for (int i = 0; i < filesPqrs.length; i++) {
@@ -426,6 +442,23 @@ public class PqrsController {
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGooglePqrs, formato, name, bytes);						    
 						    codigoDescarga = googleFile.getWebContentLink();
 						    codigoVista = googleFile.getWebViewLink();
+						    
+					    }			   
+				 }
+				
+				//Guardar Archivo Adjunto Respuesta en google
+				for (int i = 0; i < filesPqrsRespuesta.length; i++) {
+				  
+					  MultipartFile file = filesPqrsRespuesta[i];
+					  String name = filesPqrsRespuesta[i].getOriginalFilename();					  
+					  String formato = filesPqrsRespuesta[i].getContentType();					 
+					  byte[] bytes = file.getBytes();
+					  
+					    if(!file.isEmpty()) {						         
+						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
+					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGooglePqrs, formato, name, bytes);						    
+						    codigoDescargaRespuesta = googleFile.getWebContentLink();
+						    codigoVistaRespuesta = googleFile.getWebViewLink();
 						    
 					    }			   
 				 }
@@ -448,11 +481,13 @@ public class PqrsController {
 			    guardarPqrs.setPqrsFechaRespuesta(pqrs.getPqrsFechaRespuesta());
 			    guardarPqrs.setPqrsVisualizacion(pqrs.getPqrsVisualizacion());
 			    guardarPqrs.setPqrsRespuestaPqrs(pqrs.getPqrsRespuestaPqrs());
+			    guardarPqrs.setPqrsAdjuntoRespuesta(codigoDescargaRespuesta);
 			    guardarPqrs.setPqrsLogs(pqrs.getPqrsLogs());						  						 
 			    userService.createPqrs(guardarPqrs);
 			    			   
 				model.addAttribute("pqrsForm", pqrs);
 				model.addAttribute("bienrespuesta","active");
+				model.addAttribute("activarmodalactualizar", "A");
 				
 			} catch (Exception e) {
 				model.addAttribute("error","active");
@@ -463,6 +498,7 @@ public class PqrsController {
 				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 				model.addAttribute("copNombre", copNombre);
 				model.addAttribute("copNit", copNit);
+				model.addAttribute("activarmodalactualizar", "E");
 			}
 		}
 		model.addAttribute("pqrsForm", userService.getPqrsByIdForm(pqrs.getIdPqrs()));	
@@ -487,9 +523,15 @@ public class PqrsController {
 		//Activamos el bloqueo de los campos
 		model.addAttribute("respuestainactivarcampos","true");
 		model.addAttribute("respuestainactivarcamposCreacion","true");
+		
+		model.addAttribute("vistarespuestainactivarcamposRespuesta","true");
+		
 		//Inactivamos el campo cedula con validacion
 		model.addAttribute("respuestaCedula","false");
 		model.addAttribute("respuesta","active");
+		
+		//Inactivamos el campo para adjuntar archivos
+		model.addAttribute("respuestaAdjunto","false");
 		
 		//Menu atras
 		String menuAdmin = rutamenu+"consultapqrs";

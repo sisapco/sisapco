@@ -162,6 +162,8 @@
 						        <input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 <input class="form-control" type=hidden id="IdPqrs" th:field="${pqrsForm.IdPqrs}">
+                                <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
+                                
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Numero PQRS:</span> <input type="text"
@@ -243,6 +245,10 @@
 									<div class="col-sm-6 ">
 										<span>Fecha de Respuesta:</span> <input type="text"
 											class="form-control form-control-user"
+											id="pqrsFechaRespuestaVista" th:value="${pqrsForm.pqrsFechaRespuesta}" name="pqrsFechaRespuestaVista" placeholder="" th:readonly="${vistarespuestainactivarcamposRespuesta}">
+											
+											<input type="hidden"
+											class="form-control form-control-user"
 											id="pqrsFechaRespuesta" th:field="${pqrsForm.pqrsFechaRespuesta}" placeholder="" th:readonly="${respuestainactivarcamposRespuesta}">
 									</div>
 								</div>
@@ -255,11 +261,20 @@
 										<div class="invalid-feedback">Debe de ingresar una
 											Descripción.</div>
 									</div>
-									<div class="col-sm-6 ">
+									<div class="col-sm-6 " th:if="${pqrsForm.pqrsEstado == null}">
 										<span>Estado:</span> <select class="form-select form-control"
 											aria-label="Default select example" id="pqrsEstado" th:field="${pqrsForm.pqrsEstado}" th:readonly="${respuestainactivarcampos}">
-											<option selected value="1">Nueva</option>
-											<option value="2">Entratamiento</option>
+											<option value="1">Nueva</option>
+											<option selected value="2">Entratamiento</option>
+											<option value="3">Terminado</option>
+
+										</select>
+
+									</div>
+									<div class="col-sm-6 " th:if="${respuesta}">
+										<span>Estado:</span> <select class="form-select form-control"
+											aria-label="Default select example" id="pqrsEstado" th:field="${pqrsForm.pqrsEstado}">
+											<option selected value="2">Entratamiento</option>
 											<option value="3">Terminado</option>
 
 										</select>
@@ -270,7 +285,7 @@
 
 								<!-- seccion para boton de cargar archivo-->
 								<div class="form-group ">
-									<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="col-sm-6 mb-3 mb-sm-0" th:if="${respuestaAdjunto}">
 										<span>Adjuntar archivo:</span>
 										<div class=" form-group  " aria-label="Default select example">
 										
@@ -285,8 +300,7 @@
 													class="fa fa-folder-open-o "></i> Seleccionar</a>
 											</div>
 										</div>
-									</div>
-									<script type="text/javascript">
+										<script type="text/javascript">
 										// http://duckranger.com/2012/06/pretty-file-input-field-in-bootstrap/ 
 										// Cuando se pulsa el falso manda el click al autentico
 										$('.btn-file').on('click', function() {
@@ -307,6 +321,8 @@
 																					.val());
 														});
 									</script>
+									</div>
+									
 									<div class="col-sm-6 " th:if="${respuesta}">
 		                                <span>Respuesta de la PQRS<span  style="color: #ff0000">*</span></span>
 										<textarea class="form-control" id="pqrsRespuestaPqrs"
@@ -314,7 +330,91 @@
 										<div class="invalid-feedback">Debe de ingresar una
 											Respuesta.</div>
 									</div>
-
+									
+									<div class="col-sm-6 " th:if="${respuesta}">
+										  <div th:if="${pqrsForm.pqrsAdjunto != null}">
+				                                <table class="table table-bordered" width="100%" cellspacing="0">
+				                                   <thead>
+				                                       <tr>
+				                                           <th>Descargar Archivo Adjunto</th>
+				                                       </tr>
+				                                   </thead>
+				                                   <tbody >
+				                                      <tr>
+									                      <td>
+										                          <a th:href="@{${pqrsForm.pqrsAdjunto}}" class="btn btn-primary">Descargar archivo</a>
+									                      </td> 
+				                                      </tr>
+				                                   </tbody>
+				                               </table>
+											</div>
+										</div>
+								</div>
+								
+								
+								<!-- seccion para boton de cargar archivo de respuesta  th:if="${respuesta}"-->
+								<div class="form-group ">
+									<div class="col-sm-6 mb-3 mb-sm-0"  th:if="${respuesta}">
+									
+									     <input class="form-control" type=hidden id="pqrsAdjunto" th:field="${pqrsForm.pqrsAdjunto}">
+									
+										<span>Adjuntar archivo de respuesta:</span>
+										<div class=" form-group  " aria-label="Default select example">
+										
+										 <input class="form-control" type=hidden value=".." id="pqrsAdjuntoRespuesta" th:field="${pqrsForm.pqrsAdjuntoRespuesta}">
+										 
+											<input id="pqrsAdjuntoRespuestas" type="file" style="display: none"
+												name="pqrsAdjuntoRespuestas">
+											<div class=" form-group row">
+												<input id="falso1" class="form-control form-control-user"
+													type="text"> <a
+													class="btn btn-file  btn btn-secondary"><i
+													class="fa fa-folder-open-o "></i> Seleccionar</a>
+											</div>
+										</div>
+										
+										<script type="text/javascript">
+										// http://duckranger.com/2012/06/pretty-file-input-field-in-bootstrap/ 
+										// Cuando se pulsa el falso manda el click al autentico
+										$('.btn-file').on('click', function() {
+											$(this).parent().prev().click();
+										});
+										// Cuando el autentico cambia hace cambiar al falso
+										$('input[type=file]')
+												.on(
+														'change',
+														function(e) {
+															$(this)
+																	.next()
+																	.find(
+																			'input')
+																	.val(
+																			$(
+																					this)
+																					.val());
+														});
+									</script>
+									</div>
+                                    
+									
+									 <div class="col-sm-6 " th:if="${respuesta}">
+		                                 <div th:if="${pqrsForm.pqrsAdjuntoRespuesta != null}">
+			                                <table class="table table-bordered" width="100%" cellspacing="0">
+			                                   <thead>
+			                                       <tr>
+			                                           <th>Descargar archivo de respuesta</th>
+			                                       </tr>
+			                                   </thead>
+			                                   <tbody >
+			                                      <tr>
+								                      <td>
+									                          <a th:href="@{${pqrsForm.pqrsAdjuntoRespuesta}}" class="btn btn-primary">Descargar</a>
+								                      </td> 
+			                                      </tr>
+			                                   </tbody>
+			                               </table>
+									    </div>
+									</div>
 								</div>
 								
 							
@@ -324,8 +424,10 @@
 
 
 								<hr>
-								<input type="submit" class="btn btn-primary "
-									value="Grabar PQRS">
+								<div th:if="${pqrsForm.pqrsEstado != '3'}">
+							    	<input type="submit" class="btn btn-primary "
+									 value="Grabar PQRS">
+							    </div>
 								<hr>
 
 							</form>
@@ -343,7 +445,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2022</span>
+						<span>Copyright &copy; Your Website 2023</span>
 					</div>
 				</div>
 			</footer>
@@ -403,6 +505,54 @@
 	</div>
 	
 	<!-- --- -->
+	<!-- Modal Guardar confirmar -->
+	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se guardo la PQRS <span class="negritaTexto" th:text="${consecutivopqrsguardado}"></span> de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	      <form th:action="@{${rutamenu}}" method="get">
+	         <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	         <input type="submit" class="btn btn-primary" value="Close">
+	      </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- --- -->
+
+<!-- Modal Guardar confirmar error-->
+	<div class="modal fade" id="confirmarGuardarErrorModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro con error</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       Se presento un error al guardar el registro, por favor verifique los datos e intente nuevamente.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- --- -->
+	
+	
 
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
@@ -455,6 +605,17 @@
 
 			// Fetch all the forms we want to apply custom Bootstrap validation styles to
 			var forms = document.querySelectorAll('.needs-validation')
+			
+			  //Activamos el modal de confirmacion guardar
+	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+	           if(activarmodalactualizar=="A"){
+	        	   $('#confirmarGuardarModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+	           if(activarmodalactualizar=="E"){
+	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
 
 			// Loop over them and prevent submission
 			Array.prototype.slice.call(forms).forEach(function(form) {

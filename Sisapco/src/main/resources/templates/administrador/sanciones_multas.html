@@ -157,7 +157,7 @@
 								Sanción:</h6>
 						</div>
 						<div class="card-body">
-							<form class="user needs-validation" novalidate role="form" th:object="${contratoForm}" action="crearcontrato" method="post" enctype="multipart/form-data">
+							<form class="user needs-validation" novalidate role="form" th:object="${sancionesMultaForm}" action="crearsancionesmultas" method="post" enctype="multipart/form-data">
 							
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -165,40 +165,47 @@
 									un error, por favor ingrese los datos en campos que son
 									obligatorios de forma correcta.</div>
 
-								<div th:if="${bien}" class="alert alert-success" role="alert">El contrato fue
+								<div th:if="${bien}" class="alert alert-success" role="alert">La sanción y Multa fue
 									creado de forma exitosa.</div>
 	
 								<input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
-                                
+                                <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
 
 								<div class="form-group row">
 										<div class="col-sm-6">
 										<span>Numero de Sanción<span style="color: #ff0000">*</span></span>
 										<input type="number" class="form-control form-control-user"
-											id="mulNumero" placeholder="" required disabled>
-										<div class="invalid-feedback">Ingresa un contrato valido
+											id="mulNumero2" th:field="${sancionesMultaForm.mulNumero}" placeholder="" required disabled>
+											<input type="hidden"
+											class="form-control form-control-user"
+											id="mulNumero" th:field="${sancionesMultaForm.mulNumero}" placeholder="" />		
+											
+										<div class="invalid-feedback">Ingresa un valor valido
 											numerico.</div>
 									</div>
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Fecha Creación:</span> <input type="text"
-											class="form-control form-control-user" id="mulFecha"
-											th:value="${mulFecha}" disabled >
-										
-
+											class="form-control form-control-user" id="mulFecha2" th:field="${sancionesMultaForm.mulFecha}"
+											th:value="${mulFecha}" disabled >	
+										<input type="hidden"
+											class="form-control form-control-user"
+											id="mulFecha" th:field="${sancionesMultaForm.mulFecha}" placeholder="" />	
+																				
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<span>Cedula:<span style="color: #ff0000">*</span></span> <input type="Number"
-											class="form-control form-control-user" id="proCc" min="5"
-											placeholder="" required onchange="consultaBasicaPropietariosSanciones()">
+										<span>Cedula:<span style="color: #ff0000">*</span></span> 
+										<input type="Number" minlength="5" maxlength="25"
+												class="form-control form-control-user" id="proCc" name="proCc"
+												placeholder="" th:field="${sancionesMultaForm.proCc}" onchange="consultaBasicaPropietariosSanciones()" required />
 											
-											<div class="invalid-feedback">Ingresa un numero de cedula.</div>
+											<div class="invalid-feedback">Ingresa un numero de cedula.</div><div id="cedulaNoExiste" class="invalid-feedback" style="display:none;">La cedula ingresada no existe en el sistema.</div>
 									</div>
 									<div class="col-sm-6">
 										<span>Nombres:</span> <input type="text"
-											class="form-control form-control-user" id="proNombres"
+											class="form-control form-control-user" id="proNombres" th:field="${sancionesMultaForm.proNombres}" 
 											placeholder="" onkeydown="return /[a-z]/i.test(event.key)">
 									</div>
 								</div>
@@ -209,12 +216,12 @@
 									
 									<div class="col-sm-6">
 										<span>Apellidos:</span> <input type="text"
-											class="form-control form-control-user" id="proApellidos"
+											class="form-control form-control-user" id="proApellidos" th:field="${sancionesMultaForm.proApellidos}" 
 											placeholder="" onkeydown="return /[a-z]/i.test(event.key)">
 									</div>
 									<div class="col-sm-6">
 										<span>Numero residencia:</span> <input type="text"
-											class="form-control form-control-user" id="proNumeroResidencia"
+											class="form-control form-control-user" id="proNumeroResidencia" th:field="${sancionesMultaForm.proNumeroResidencia}" 
 											placeholder="" >
 									</div>
 								</div>
@@ -224,14 +231,14 @@
 										<span>Tipo de Sanción<span
 											style="color: #ff0000">*</span></span> 									
 									<input type="text"
-											 class="form-control form-control-user"
-											id="contraNombreContratista" placeholder=""  required>
+											 class="form-control form-control-user" th:field="${sancionesMultaForm.mulTipoSancion}"
+											id="mulTipoSancion" placeholder=""  required>
 											
 										<div class="invalid-feedback">Ingresa el tipo de sanción.</div>
 									</div>
 								<div class="col-sm-6">
 									<span>Descripción de la Sanción:</span> 
-									<textarea class="form-control" id="mulDescripcion" rows="3" ></textarea>
+									<textarea class="form-control" id="mulDescripcion" rows="3" th:field="${sancionesMultaForm.mulDescripcion}"></textarea>
 									</div>									
 								</div>
 								
@@ -240,38 +247,52 @@
 										<span>Valor Sanción:</span> 
 																									
 										<input type="number" min="0"
-											class="form-control form-control-user" id="mulValor" 
+											class="form-control form-control-user" id="mulValor" th:field="${sancionesMultaForm.mulValor}"
 											
 											value="">																																	
 											<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
 
 									<div class="col-sm-6 ">
-										<span>Estado:</span> <input type="text" pattern="[a-Z]"
-											class="form-control form-control-user" id="mulEstado"
-											placeholder="" >
+										<span>Estado:</span> 
+											
+											<select class="form-control" id="mulEstado" th:field="${sancionesMultaForm.mulEstado}">
+	                                              <option value="1" selected>Activo</option>
+											      <option value="3">En proceso</option>
+											      <option value="8">Pendiente</option>
+											      <option value="9">Pagado</option>
+											      <option value="4">Cerrado</option>
+                                            </select>    
+																						
 									</div>
 								</div>
 
 
-
 								<!-- seccion para boton de cargar archivo evidencia Sancion -->
 								<div class="form-group row">
-								<div class="col-sm-6 mb-3 mb-sm-0 ">
-										<span>Dirección Correspondencia:</span> <input type="text"
-											class="form-control form-control-user" id="proDireccionCorrespondencia"
-											placeholder="" >
+								    <div class="col-sm-6 mb-3 mb-sm-0 ">
+										<span>Dirección Correspondencia:</span> 
+										<input type="text" class="form-control form-control-user" id="proDireccionCorrespondencia" name="proDireccionCorrespondencia"
+											placeholder="" th:field="${sancionesMultaForm.proDireccionCorrespondencia}">
 									</div>
+									<div class="col-sm-6 mb-3 mb-sm-0">
+                                           <span>Email:</span> <input type="text"
+											class="form-control form-control-user" id="proEmail" name="proEmail"
+											placeholder="" th:field="${sancionesMultaForm.proEmail}" />
+									</div>								
+								</div>
+                                <!-- seccion para boton de cargar archivo evidencia Sancion -->
+								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Adjuntar archivo<span style="color: #ff0000">*</span>
 										</span>
 										<div class=" form-group  " aria-label="Default select example">
 										
-										    <input class="form-control" type=hidden value=".." id="mulAdjuntoEvidencia" >
-											<input id="mulAdjuntoEvi" type="file"
-												style="display: none" name="mulAdjuntoEvi" >
+										    <input class="form-control" type=hidden value=".." id="mulAdjuntoEvidencia" th:field="${sancionesMultaForm.mulAdjuntoEvidencia}">
+											<input id="mulAdjuntoEvidencias" type="file"
+												style="display: none" name="mulAdjuntoEvidencias" >
 											<div class=" form-group row">
-												<input id="mulAdjuntoEvi"
+												<input id="mulAdjuntoEvidencias"
 													class="form-control form-control-user" type="text" required>
 												<a class="btn btn-file  btn btn-secondary "><i
 													class="fa fa-folder-open-o "></i> Seleccionar</a>
@@ -303,14 +324,13 @@
 									
 								</div>
 
-
 								<!-- ********************************** -->
 
 						
 
 								<hr>
 								<input type="submit" class="btn btn-primary"
-									value="Guardar Contrato">
+									value="Guardar Sanción y Multa">
 								<hr>
 							</form>
 
@@ -327,7 +347,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2020</span>
+						<span>Copyright &copy; Your Website 2023</span>
 					</div>
 				</div>
 			</footer>
@@ -387,6 +407,53 @@
 
 <!-- --- -->
 
+<!-- Modal Guardar confirmar -->
+	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se guardo la sanción de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	      <form th:action="@{${rutamenu}}" method="get">
+	         <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	         <input type="submit" class="btn btn-primary" value="Close">
+	      </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- --- -->
+
+<!-- Modal Guardar confirmar error-->
+	<div class="modal fade" id="confirmarGuardarErrorModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro con error</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       Se presento un error al guardar el registro, por favor verifique los datos e intente nuevamente.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- --- -->
+
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -435,6 +502,18 @@
 
 			// Fetch all the forms we want to apply custom Bootstrap validation styles to
 			var forms = document.querySelectorAll('.needs-validation')
+			
+			//Activamos el modal de confirmacion guardar
+	        var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+	           if(activarmodalactualizar=="A"){
+	        	   $('#confirmarGuardarModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+	           if(activarmodalactualizar=="E"){
+	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+
 
 			// Loop over them and prevent submission
 			Array.prototype.slice.call(forms).forEach(function(form) {

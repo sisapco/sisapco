@@ -19,6 +19,7 @@ import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Proyectos;
+import co.com.sisapco.entity.SancionesMulta;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.ActasRepository;
 import co.com.sisapco.repository.ActividadesRepository;
@@ -33,6 +34,7 @@ import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.repository.PqrsRepository;
 import co.com.sisapco.repository.PropietariosRepository;
 import co.com.sisapco.repository.ProyectosRepository;
+import co.com.sisapco.repository.SancionesMultaRepository;
 import co.com.sisapco.repository.UserRepository;
 
 @Service
@@ -79,6 +81,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	ControlPagosRepository repositoryControlPagos;
+	
+	@Autowired
+    SancionesMultaRepository repositorySancionesMulta;
 	
 	
 	@Override
@@ -352,6 +357,18 @@ public class UserServiceImpl implements UserService{
 	public ControlPagos createControlPagos(ControlPagos controlPagos) throws Exception {
 		controlPagos=repositoryControlPagos.save(controlPagos);
 		return controlPagos;
+	}
+
+	@Override
+	public SancionesMulta findBySancionesMultaNitConsecutivoForm(int copNit) throws Exception {
+		// TODO Auto-generated method stub
+		return repositorySancionesMulta.findBySancionesMultaNitConsecutivo(copNit);
+	}
+
+	@Override
+	public SancionesMulta createSancionesMulta(SancionesMulta sancionesMulta) throws Exception {
+		sancionesMulta = repositorySancionesMulta.save(sancionesMulta);
+		return sancionesMulta;
 	}
 	
 }

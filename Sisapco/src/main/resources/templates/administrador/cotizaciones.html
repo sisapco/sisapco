@@ -168,7 +168,7 @@
 	
 								<input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
-                                
+                                <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
 
 								<div class="form-group">
 									<div class="col-sm-6 mb-3 mb-sm-0" >
@@ -357,6 +357,95 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal Campos obligatorios-->
+<div class="modal fade" id="camposObligaroriosModal" tabindex="-1" role="dialog" aria-labelledby="camposObligaroriosModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Campos obligatorios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Por favor ingrese todos los campos que son obligatorios.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Guardar-->
+<div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Guardado..</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img class="imagenLogoAdmin" style="width:50%!important" src="img/cargando2.gif">
+      </div>
+      <div class="modal-footer">
+        <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --- -->
+
+<!-- Modal Guardar confirmar -->
+	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Se guardo la cotización de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	      <form th:action="@{${rutamenu}}" method="get">
+	         <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	         <input type="submit" class="btn btn-primary" value="Close">
+	      </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- Modal Guardar confirmar error-->
+	<div class="modal fade" id="confirmarGuardarErrorModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro con error</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       Se presento un error al guardar el registro, por favor verifique los datos e intente nuevamente.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- --- -->
+	
+	
 	<!-- Bootstrap core JavaScript-->
 	<script src="plantilla/vendor/jquery/jquery.min.js"></script>
 	<script src="plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -380,19 +469,32 @@
 
 			// Fetch all the forms we want to apply custom Bootstrap validation styles to
 			var forms = document.querySelectorAll('.needs-validation')
+			
+			//Activamos el modal de confirmacion guardar
+	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+	           if(activarmodalactualizar=="A"){
+	        	   $('#confirmarGuardarModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+	           if(activarmodalactualizar=="E"){
+	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
 
-			// Loop over them and prevent submission
-			Array.prototype.slice.call(forms).forEach(function(form) {
-				form.addEventListener('submit', function(event) {
-					if (!form.checkValidity()) {
-						event.preventDefault()
-						event.stopPropagation()
-					}
-
-					form.classList.add('was-validated')
-				}, false)
-			})
-		})()
+				// Loop over them and prevent submission
+				Array.prototype.slice.call(forms).forEach(function(form) {
+					form.addEventListener('submit', function(event) {
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+							$('#camposObligaroriosModal').modal('show');
+						}else{
+							$('#guardarModal').modal('show');
+						}
+						form.classList.add('was-validated')
+					}, false)
+				})
+			})()
 	</script>
 </body>
 

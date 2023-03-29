@@ -14,6 +14,7 @@ import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Proyectos;
+import co.com.sisapco.entity.SancionesMulta;
 import co.com.sisapco.entity.Usuarios;
 
 public interface UserService {
@@ -87,4 +88,8 @@ public interface UserService {
 	public Pqrs getPqrsByIdForm(int idPqrs) throws Exception;
 	
 	public ControlPagos createControlPagos(ControlPagos controlPagos) throws Exception;
+	
+	public SancionesMulta findBySancionesMultaNitConsecutivoForm(int copNit) throws Exception;
+	
+	public SancionesMulta createSancionesMulta(SancionesMulta sancionesMulta) throws Exception;
 }

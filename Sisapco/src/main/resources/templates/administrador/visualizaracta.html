@@ -34,7 +34,7 @@
 
 <body>
 	<!-- contenido para cabecera de titulo y logo -->
-	<div class="container-fluid">
+	<div class="container-fluid"  id="element-to-print">
 		<div class="row">
 			<div class="col-sm-4 bg-primary text-white"></div>
 			<div class="col-sm-4 bg-primary text-white">
@@ -183,11 +183,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 ">
-				<img th:src="${actaForm.actFirmas}">
-
-			</div>
+				<img th:src="${actaForm.actFirmas}" >
+			</div>	
+				<div id="henry" name="henry">
+				   <img src="https://www.elcarrocolombiano.com/wp-content/uploads/2021/02/20210208-TOP-75-CARROS-MAS-VENDIDOS-DE-COLOMBIA-EN-ENERO-2021-01.jpg">
+                 </div>
 			<div class="col-sm-6 ">
-				<spam th:src="${actaForm.actFirmas}">
+				<img th:src="${actaForm.actFirmas}">
 			</div>
 		</div>
 		<div class="row">
@@ -209,6 +211,5 @@
 	</div>
 
 </body>
-<!-- <script>btnCrearPdfBody()</script> -->
-	<script>btnCrearPdfBody()</script>
+<script>btnCrearPdfBody()</script>
 </html>
