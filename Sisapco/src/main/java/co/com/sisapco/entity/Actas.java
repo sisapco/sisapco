@@ -64,7 +64,7 @@ public class Actas implements Serializable{
 	private Time actHoraFin;
 	
 	@Column
-	private Date actFecha;
+	private String actFecha;
 	
 	@Column
 	private String actFirmaSecretario;
@@ -80,6 +80,9 @@ public class Actas implements Serializable{
 	
 	@Column
 	private String actCompromisos;
+	
+	@Column
+	private String actIdArchivoGoogle;
 
 	public int getActId() {
 		return actId;
@@ -185,11 +188,11 @@ public class Actas implements Serializable{
 		this.actHoraFin = actHoraFin;
 	}
 
-	public Date getActFecha() {
+	public String getActFecha() {
 		return actFecha;
 	}
 
-	public void setActFecha(Date actFecha) {
+	public void setActFecha(String actFecha) {
 		this.actFecha = actFecha;
 	}
 
@@ -233,6 +236,14 @@ public class Actas implements Serializable{
 		this.actCompromisos = actCompromisos;
 	}
 
+	public String getActIdArchivoGoogle() {
+		return actIdArchivoGoogle;
+	}
+
+	public void setActIdArchivoGoogle(String actIdArchivoGoogle) {
+		this.actIdArchivoGoogle = actIdArchivoGoogle;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -250,6 +261,7 @@ public class Actas implements Serializable{
 		result = prime * result + ((actHoraFin == null) ? 0 : actHoraFin.hashCode());
 		result = prime * result + ((actHoraInicio == null) ? 0 : actHoraInicio.hashCode());
 		result = prime * result + actId;
+		result = prime * result + ((actIdArchivoGoogle == null) ? 0 : actIdArchivoGoogle.hashCode());
 		result = prime * result + ((actLugar == null) ? 0 : actLugar.hashCode());
 		result = prime * result + ((actMunicipio == null) ? 0 : actMunicipio.hashCode());
 		result = prime * result + actNumero;
@@ -326,6 +338,11 @@ public class Actas implements Serializable{
 			return false;
 		if (actId != other.actId)
 			return false;
+		if (actIdArchivoGoogle == null) {
+			if (other.actIdArchivoGoogle != null)
+				return false;
+		} else if (!actIdArchivoGoogle.equals(other.actIdArchivoGoogle))
+			return false;
 		if (actLugar == null) {
 			if (other.actLugar != null)
 				return false;
@@ -367,8 +384,7 @@ public class Actas implements Serializable{
 				+ actHoraFin + ", actFecha=" + actFecha + ", actFirmaSecretario=" + actFirmaSecretario
 				+ ", actEstadoAprobacion=" + actEstadoAprobacion + ", actRespuestaCompromisos="
 				+ actRespuestaCompromisos + ", actAdjuntoRespuestaCompromisos=" + actAdjuntoRespuestaCompromisos
-				+ ", actCompromisos=" + actCompromisos + "]";
+				+ ", actCompromisos=" + actCompromisos + ", actIdArchivoGoogle=" + actIdArchivoGoogle + "]";
 	}
-	
-	
 }
+	

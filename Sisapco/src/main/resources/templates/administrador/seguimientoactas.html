@@ -156,10 +156,17 @@
                                             <td th:text="${act.actNumero}"></td>
                                             <td th:text="${act.actFecha}"></td>
                                             <td>
-                                            <form class="user" role="form" th:action="@{/visualizaracta}" method="post" target="_blank">
+                                            <!-- <form class="user" role="form" th:action="@{/visualizaracta}" method="post" target="_blank">
                                                 <input id="actId" type="hidden" name="actId" th:value="${act.actId}" />   
                                                 <input type="submit" class="btn btn-primary" value="Imprimir PDF">
+                                            </form> -->
+                                            
+                                            <form class="user" role="form" th:action="${act.actFirmas}" method="get" target="_blank">
+                                                <input type="submit" class="btn btn-primary" value="Consultar Acta">
                                             </form>
+                                            
+                                            <!--<a class="btn btn-primary" th:href="${act.actFirmas}" target="_blank">Consultar Acta</a>  -->
+                                            
                                             </td>
                                         </tr>
                                     </tbody>
@@ -178,7 +185,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2023</span>
                     </div>
                 </div>
             </footer>

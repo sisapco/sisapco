@@ -36,7 +36,7 @@
     </style>
     
      <link href="css/menusisapco.css" rel="stylesheet">
-
+     
 </head>
 
 <body id="page-top">
@@ -443,6 +443,19 @@
         	   $('#guardarModal').modal('show');
         	   document.getElementById("activarmodalactualizar").value="N";
            }
+    </script>
+    
+    <!-- Detectamos si se esta ingresando a la pagina web desde un dispositivo movil -->
+      <script>       
+        let navegador = navigator.userAgent;
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+            //alert("Estás usando un dispositivo móvil!!="+navegador);
+            //document.getElementById("3").style.display="none";
+            
+        } else {           
+            //alert("No estás usando un móvil="+navegador);
+           // document.getElementById("36").style.display="none";
+        }
     </script>
 </body>
 

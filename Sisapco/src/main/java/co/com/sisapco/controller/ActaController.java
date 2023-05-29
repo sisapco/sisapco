@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +42,7 @@ import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.service.UserService;
 import co.com.sisapco.util.CreateGoogleFile;
+import co.com.sisapco.util.CreateGoogleFileDoc;
 import co.com.sisapco.util.MD5DatosGet;
 
 import java.io.FileOutputStream; 
@@ -70,7 +73,7 @@ public class ActaController {
 	@Value("${rutamenu}")
 	private String rutamenu;
 	
-	@RequestMapping("/formcrearacta")
+	@RequestMapping("/formcrearactamv")
 	public String formCrearActaAdmin(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		String usuariologin = authenticationnn.getName();
@@ -88,6 +91,32 @@ public class ActaController {
 		int consecutivo = actaconsecutivo.getActId();
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivoactas", consecutivo);
+		
+		String rutaAbsolutaPlantillaActas = new File("plantillaacta/plantillaactas.docx").getAbsolutePath();
+		String rutaAbsolutaPlantillaMod= new File("plantillaacta/plantilla_mod.docx").getAbsolutePath();
+		
+		//Consultamos el ID de Google para guardar las imagenenes de Evidencia Antes y despues
+		AlmacenamientoGoogle almacenamientoGoogleActas = userService.getAlmacenamientoGoogleByIdForm(copNit, "actas");
+		String codigoGoogleActa = almacenamientoGoogleActas.getAlmaIdcarpeta();
+		String codigoVista="";
+		try {
+			//Instanciar la clase de google para guardar el acta en formato word (docx)
+			CreateGoogleFileDoc createGoogleFileDoc = new CreateGoogleFileDoc();
+			String consecutivoActa = String.valueOf(consecutivo);
+			com.google.api.services.drive.model.File googleFileDoc = createGoogleFileDoc.cargarArchivoGoogleActa(codigoGoogleActa, consecutivoActa,rutaAbsolutaPlantillaActas,rutaAbsolutaPlantillaMod);
+			codigoVista = googleFileDoc.getWebViewLink();		
+			model.addAttribute("codigoVistaWord",codigoVista);
+					
+			model.addAttribute("rutaAbsolutaPlantillaActas", rutaAbsolutaPlantillaActas);
+			model.addAttribute("rutaAbsolutaPlantillaMod", rutaAbsolutaPlantillaMod);
+			
+		}catch (Exception e) {
+			model.addAttribute("codigoVistaWord",codigoVista);	
+			model.addAttribute("rutaAbsolutaPlantillaActas", e);
+			model.addAttribute("rutaAbsolutaPlantillaMod",  e);
+		}
+		
+
 		
 		model.addAttribute("actasForm", new Actas());
         model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
@@ -112,7 +141,60 @@ public class ActaController {
 		return "administrador/formcrearacta";
 	}
 	
-	@PostMapping("/crearacta")
+	//Para dispositivo movil
+	@RequestMapping("/formcrearacta")
+	public String formCrearActaAdminMovil(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit = copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		int copId = copropiedadDTO.getCopId();
+		
+		//consultamos el ultimo consecutivo del acta
+		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
+		int consecutivo = actaconsecutivo.getActId();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivoactas", consecutivo);
+		
+		String rutaAbsolutaPlantillaActas = new File("plantillaacta/plantillaactas.docx").getAbsolutePath();
+		String rutaAbsolutaPlantillaMod= new File("plantillaacta/plantilla_mod.docx").getAbsolutePath();
+		
+	    //Fecha Actual del sistema, para asignarsela al campo de Fecha de Creación
+	    String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+	    String horaInicio = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime());
+		Actas actaform = new Actas();
+		actaform.setActFecha(timeStamp);
+		actaform.setActHoraInicio(horaInicio);
+		
+		model.addAttribute("actasForm", actaform);
+        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("copId", copId);
+		
+		//Instanciamos la clase para cifrar el codigo
+		MD5DatosGet encrypted = new MD5DatosGet();
+		String copIdEcr = String.valueOf(copId);
+	    String copIdEncryted ="";
+		copIdEncryted = encrypted.encrypted(copIdEcr);
+		copIdEncryted = copIdEncryted.replace("=", "co");
+		model.addAttribute("copIdEncryted", copIdEncryted);
+		
+		//menu atras
+		String menuAdmin = rutamenu+"admin";
+		model.addAttribute("rutamenu", menuAdmin);
+
+		return "administrador/formcrearacta";
+	}
+	
+	@PostMapping("/crearactamv")
 	public String crearActasAdmin(@Valid @ModelAttribute("actasForm")Actas actas,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp,
 			@RequestParam("actFirmasAdjunto") MultipartFile[] filesPresidente, @RequestParam("actFirmasSecretarioAdjunto") MultipartFile[] filesSecretario) throws Exception {
 					
@@ -235,6 +317,122 @@ public class ActaController {
 		return "administrador/formcrearacta";
 		//return "administrador/admin";
 	}
+	
+	@PostMapping("/crearacta")
+	public String crearActasAdminMovil(@Valid @ModelAttribute("actasForm")Actas actas,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp,
+			@RequestParam("actFirmasAdjunto") MultipartFile[] filesPresidente, @RequestParam("actFirmasSecretarioAdjunto") MultipartFile[] filesSecretario) throws Exception {
+					
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		String actNumero = req.getParameter("actNumeroConsecutivo");
+		int actNumeroCon = Integer.parseInt(actNumero);		
+		actas.setActNumero(actNumeroCon);
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit = copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		int copId = copropiedadDTO.getCopId();
+		
+		String seguimiento="";
+		
+		if(result.hasErrors()) {
+			model.addAttribute("actasForm", actas);
+			model.addAttribute("errorcampos","active");
+			
+		}else {
+			try {
+								
+				/////////////////////////////////////////////////
+				String rutaAbsolutaPlantillaActas = new File("plantillaacta/plantillaactas.docx").getAbsolutePath();
+				String rutaAbsolutaPlantillaMod= new File("plantillaacta/plantilla_mod.docx").getAbsolutePath();
+				
+				//Consultamos el ID de Google para guardar las imagenenes de Evidencia Antes y despues
+				AlmacenamientoGoogle almacenamientoGoogleActas = userService.getAlmacenamientoGoogleByIdForm(copNit, "actas");
+				String codigoGoogleActa = almacenamientoGoogleActas.getAlmaIdcarpeta();
+				String codigoVista="";
+				String codigoActa="";
+				try {
+					//Instanciar la clase de google para guardar el acta en formato word (docx)
+					CreateGoogleFileDoc createGoogleFileDoc = new CreateGoogleFileDoc();
+					String consecutivoActa = String.valueOf(actas.getActNumero());
+					com.google.api.services.drive.model.File googleFileDoc = createGoogleFileDoc.cargarArchivoGoogleActaMovil(codigoGoogleActa, 
+							consecutivoActa,actas.getActFecha(),actas.getActHoraInicio(),
+							actas.getActReunion(),actas.getActConvoca(),actas.getActMunicipio(),
+							actas.getActLugar(),actas.getActAsistentes(),actas.getActOrdenDia(),
+							actas.getActDesarrolloDia(),filesPresidente,filesSecretario, 
+							rutaAbsolutaPlantillaActas,rutaAbsolutaPlantillaMod);
+							
+					codigoVista = googleFileDoc.getWebViewLink();
+					codigoActa = googleFileDoc.getId();
+					actas.setActFirmas(codigoVista);
+					actas.setActIdArchivoGoogle(codigoActa);
+							
+					model.addAttribute("rutaAbsolutaPlantillaActas", rutaAbsolutaPlantillaActas);
+					model.addAttribute("rutaAbsolutaPlantillaMod", rutaAbsolutaPlantillaMod);
+					
+				}catch (Exception e) {
+					model.addAttribute("rutaAbsolutaPlantillaActas", e);
+					model.addAttribute("rutaAbsolutaPlantillaMod",  e);
+				}
+				
+				/////////////////////////////////////////////	
+				actas = userService.createActa(actas);
+			    model.addAttribute("actasForm", actas);
+			    model.addAttribute("bien","active");
+			    model.addAttribute("activarmodalactualizar", "A");
+				  				  
+			} catch (Exception e) {
+				model.addAttribute("error","active");
+				model.addAttribute("formErrorMessage",e.getMessage());
+				model.addAttribute("actasForm", actas);
+		        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+				model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+				model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+				model.addAttribute("copNombre", copNombre);
+				model.addAttribute("copNit", copNit);
+				model.addAttribute("activarmodalactualizar", "E");
+				
+			}
+		}
+		
+        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("copId", copId);
+		
+		
+		//Consultamos el ultimo consecutivo del acta
+		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
+		int consecutivo = actaconsecutivo.getActId();
+		consecutivo = consecutivo+1;
+		model.addAttribute("consecutivoactas", consecutivo);
+		model.addAttribute("consecutivoactaguardado", (consecutivo-1));
+		
+		//Instanciamos la clase para cifrar el codigo
+		MD5DatosGet encrypted = new MD5DatosGet();
+		String copIdEcr = String.valueOf(copId);
+	    String copIdEncryted ="";
+		copIdEncryted = encrypted.encrypted(copIdEcr);
+		copIdEncryted = copIdEncryted.replace("=", "co");
+		model.addAttribute("copIdEncryted", copIdEncryted);
+		
+		//menu atras
+		String menuAdmin = rutamenu+"admin";
+		model.addAttribute("rutamenu", menuAdmin);
+		//model.addAttribute("seguimientoerror", seguimiento);
+		
+		//Activiamos el modal de guardar
+	    model.addAttribute("activarmodalactualizar", "A");
+
+		return "administrador/formcrearacta";
+		//return "administrador/admin";
+	}
+	
 	
 	@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 	@RequestMapping("/seguimientoactas")

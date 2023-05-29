@@ -33,6 +33,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
+		 http
+	        .cors()
+	             .configurationSource(corsConfigurationSource())
+		    .and()
+	        .authorizeRequests()
+	        .antMatchers(resources).permitAll()  
+	        .antMatchers("/","/index","/signup","/contacto","/login","/files/","/copropiedad/","/ingresarcuenta","/Callback").permitAll()
+	            .anyRequest().authenticated()
+	            .and()
+	        .formLogin()
+	            .loginPage("/login")
+	            .permitAll()
+	            .defaultSuccessUrl("/propiedad")
+	            .failureUrl("/login?error=true")
+	            .usernameParameter("username")
+	            .passwordParameter("password")
+	            .and()
+	            .csrf().disable()
+	        .logout()
+	            .permitAll()
+	            .logoutSuccessUrl("/login?logout");
+	    
+    }
+	
+/*	
+	@Override
+    protected void configure(HttpSecurity http) throws Exception {
     	http
         .authorizeRequests()
         .antMatchers(resources).permitAll()  
@@ -42,9 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .formLogin()
             .loginPage("/login")
             .permitAll()
-            //.defaultSuccessUrl("/userForm")
             .defaultSuccessUrl("/propiedad")
-            //.defaultSuccessUrl("/admin")
             .failureUrl("/login?error=true")
             .usernameParameter("username")
             .passwordParameter("password")
@@ -54,6 +79,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .permitAll()
             .logoutSuccessUrl("/login?logout");
     }
+	
+	*/
+
 	
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -72,6 +100,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
     
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
     
     
 }

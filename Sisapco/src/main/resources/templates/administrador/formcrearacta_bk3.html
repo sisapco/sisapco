@@ -147,23 +147,23 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Crear nueva acta:</h6>
-                           <!-- <span th:text="${rutaAbsolutaPlantillaActas}"></span>-->
-                            <!--  <span th:text="${rutaAbsolutaPlantillaMod}"></span>-->
+                            <span th:text="${rutaAbsolutaPlantillaActas}"></span>
+                            <br>
+                            <span th:text="${rutaAbsolutaPlantillaMod}"></span>
                         </div>
                         <div class="card-body">                          
                              <form class="user needs-validation" novalidate role="form" th:object="${actividadesForm}" action="crearacta" method="post" enctype="multipart/form-data">
                                 <div th:if="${error}" class="alert alert-danger" role="alert">
 						           Se presento un error, inténtelo nuevamente.
 						           <span th:text="${formErrorMessage}"></span>
-						           <!--  <span th:text="${seguimientoerror}"></span>-->
+						           <span th:text="${seguimientoerror}"></span>
 						        </div>
 						        <div th:if="${errorcampos}" class="alert alert-danger" role="alert">
 						           Se presento un error, por favor ingrese los datos en campos que son obligatorios de forma correcta.
 						        </div>
 						        
 						        <div th:if="${bien}" class="alert alert-success" role="alert">
-						            La acta fue creada de forma exitosa.
-						            <!--<span th:text="${seguimientoerror}"></span>-->
+						            La acta fue creada de forma exitosa.<span th:text="${seguimientoerror}"></span>
 						        </div>
 						        												        
 						        <div id="info">
@@ -201,7 +201,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                        <span>Reunión:</span>
-                                       <input type="text" class="form-control form-control-user" id="actReunion"
+                                       <input type="hidden" class="form-control form-control-user" id="actReunion"
                                         placeholder="" th:field="${actasForm.actReunion}" required> 
 
                                     </div>
@@ -221,19 +221,19 @@
                                  <div class="form-group row">
                                    <div class="col-sm-6 mb-3 mb-sm-0">
                                        <span>Convoca:</span>
-                                       <input type="text" class="form-control form-control-user" id="actConvoca"
+                                       <input type="hidden" class="form-control form-control-user" id="actConvoca"
                                         placeholder="" th:field="${actasForm.actConvoca}" required>
                                    </div>
                                     <div class="col-sm-6">
                                        <span>Municipio:</span>
-                                       <input type="text" class="form-control form-control-user" id="actMunicipio"
+                                       <input type="hidden" class="form-control form-control-user" id="actMunicipio"
                                         placeholder="Municipio" th:field="${actasForm.actMunicipio}" required>                                              
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                      <span>Lugar:</span>
-                                        <input type="text" class="form-control form-control-user" id="actLugar"
+                                        <input type="hidden" class="form-control form-control-user" id="actLugar"
                                             placeholder="Lugar" th:field="${actasForm.actLugar}" required  x-webkit-speech lang="es">
                                     </div>
                                     <div class="col-sm-6">
@@ -247,7 +247,8 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Asistentes:</span>
-                                        <textarea class="form-control" id="actAsistentes" rows="3" th:field="${actasForm.actAsistentes}" required></textarea>                   
+                                        <input type="hidden" id="actAsistentes" th:field="${actasForm.actAsistentes}"/>
+                                        <!--  <textarea class="form-control" id="actAsistentes" rows="3" th:field="${actasForm.actAsistentes}" required></textarea> -->                    
                                     </div>
                                     <div class="right">
 									    <button id="start_button_3" class="start_button" onclick="startActAsistentes(event,'actAsistentes')">
@@ -370,7 +371,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2023</span>
+                        <span>Copyright &copy; Your Website 2022</span>
                     </div>
                 </div>
             </footer>
@@ -439,7 +440,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        Se guardo el acta <span class="negritaTexto" th:text="${consecutivoactaguardado}"></span> de forma exitosa.
+	        Se guardo el acta de forma exitosa.
 	      </div>
 	      <div class="modal-footer">
 	      <form th:action="@{${rutamenu}}" method="get">
@@ -551,6 +552,9 @@
 		
 	 <script src="js/capturavos.js"></script>
 	 
+	 <iframe th:src="${codigoVistaWord}"  title="iframe Example 1" width="70%" height="70%">
+  <p>Your browser does not support iframes.</p>
+</iframe>
 </body>
 
 </html>

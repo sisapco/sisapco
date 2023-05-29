@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import co.com.sisapco.dto.CopropiedadDTO;
 import co.com.sisapco.util.ConvertCopropiedad;
+import co.com.sisapco.util.CORSConfig;
 
 @SpringBootApplication
 public class SisapcoApplication extends SpringBootServletInitializer  {
@@ -30,5 +31,11 @@ public class SisapcoApplication extends SpringBootServletInitializer  {
 		
 		return new CopropiedadDTO();
 	}
+	
+	/*@Bean
+	public CORSConfig corsConfig() {
+	      return new CORSConfig();
+	}
+	*/
 	
 }

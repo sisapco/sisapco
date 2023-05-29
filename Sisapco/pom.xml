@@ -22,6 +22,8 @@
 	
 	<packaging>war</packaging>
 	
+
+	
 	<dependencies>
 	    <dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -180,7 +182,8 @@
             </exclusion>
         </exclusions>
     </dependency>
-	
+    	
+ 
 <!--  -->
 <!--  CORS -->
 	<dependency>
@@ -188,6 +191,78 @@
 	  <artifactId>httpclient</artifactId>
 	  <scope>test</scope>
 	</dependency>
+	
+	<dependency>
+	   <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+	   <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-starter-web-services</artifactId>
+	</dependency>
+	<dependency>
+	   <groupId>org.springframework.security</groupId>
+	   <artifactId>spring-security-web</artifactId>
+	</dependency>
+	<dependency>
+	   <groupId>org.springframework.security</groupId>
+	   <artifactId>spring-security-config</artifactId>
+	</dependency>
+	<dependency>
+	   <groupId>org.springframework.security</groupId>
+	   <artifactId>spring-security-oauth2-jose</artifactId>
+	</dependency>	
+<!--  --> 	
+
+<!-- Generar PDF -->	
+	 <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>7.1.12</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>html2pdf</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+<!--  -->
+
+   <!-- Editar word -->
+
+	<!-- https://mvnrepository.com/artifact/com.groupdocs/groupdocs-java-client -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi</artifactId>
+	    <version>4.1.2</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-mock -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-mock</artifactId>
+	    <version>2.0.8</version>
+	    <scope>test</scope>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-scratchpad</artifactId>
+	    <version>3.0.1-FINAL</version>
+	</dependency>
+	
+	<dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>4.1.2</version>
+    </dependency>
+    
+
+	
+
+
+      
 
 		
 	</dependencies>
