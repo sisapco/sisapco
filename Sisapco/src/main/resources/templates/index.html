@@ -1,246 +1,422 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="">
-	    <meta name="author" content="SISAPCOP">
-	    <meta name="generator" content="Hugo 0.82.0">
-	    <title>SISAPCOP</title>
-	
-	  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-      <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	
-	    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="SISAPCOP">
+<meta name="generator" content="Hugo 0.82.0">
+<title>SISAPCOP</title>
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 
-     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      
-      .bg-dark {
-            background-color: #fefefe!important;
-      }
-      
-      .navbar-dark .navbar-nav .nav-link {
-         color: #000!important;
-     }
-     
-     .navbar-toggler{
-         background-color:#0d6efd;
-     }
-    </style>
+<!-- Bootstrap core CSS -->
+<link
+	href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
-    
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/5.0/examples/carousel/carousel.css" rel="stylesheet">
-    
-    <link href="css/menusisapco.css" rel="stylesheet">
-   
+<style>
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+.bg-dark {
+	background-color: #fefefe !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: #808080 !important;
+}
+
+.navbar-toggler {
+	background-color: #0d6efd;
+}
+</style>
+
+
+<!-- Custom styles for this template -->
+<link
+	href="https://getbootstrap.com/docs/5.0/examples/carousel/carousel.css"
+	rel="stylesheet">
+
+<link href="css/menusisapco.css" rel="stylesheet">
+
 
 <title>Insert title here</title>
 </head>
 <body>
 
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-     <img class="imagenLogo" style="width:15%" src="img/sisapco.png" /> <a class="navbar-brand" href="/">  </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/ingresarcuenta">Ingresar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contacto">Contáctenos</a>
-          </li>
-           <li class="nav-item">
-            <a class="nav-link" href="/contacto">prueba</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-</header>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<div class="container-fluid">
+				<img class="imagenLogo" style="width: 15%" src="img/sisapco.png" />
+				<a class="navbar-brand" href="/"> </a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+					aria-controls="navbarCollapse" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/">Home</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/ingresarcuenta">Ingresar</a></li>
+						<li class="nav-item"><a class="nav-link" href="/contacto">Contáctenos</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="/contacto">prueba</a>
+						</li>
+					</ul>
+					<form class="d-flex">
+						<input class="form-control me-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
 
-<main>
+	<main>
 
-  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <img class="d-block w-50" src="img/carrusel/1.jpeg" alt="Second slide">
-        <div class="container">
-          <div class="carousel-caption text-start" style="color:#2e4cb9">
+		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#myCarousel"
+					data-bs-slide-to="0" class="active" aria-current="true"
+					aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#myCarousel"
+					data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#myCarousel"
+					data-bs-slide-to="2" aria-label="Slide 3"></button>
+				<button type="button" data-bs-target="#myCarousel"
+					data-bs-slide-to="3" aria-label="Slide 4"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<svg class="bd-placeholder-img" width="100%" height="100%"
+						xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+						preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="#777" /></svg>
+					<img class="d-block w-50" src="img/carrusel/banner.jpg"
+						alt="Second slide">
+					<div class="container">
+
+						<!--  <div class="carousel-caption text-start" style="color:#2e4cb9">
             <h1>SISAPCO</h1>
-            <p style="color:#10cc6c">Software fácil y seguro para la administración de Propiedad Horizontal.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Mas detalles</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <img class="d-block w-50" src="img/carrusel/2.jpeg" alt="Second slide">
-        <div class="container">
-          <div class="carousel-caption text-start" style="color:#2e4cb9">
-            <h1>Optimizas tu tiempo</h1>
-            <p style="color:#10cc6c">Optimiza el tiempo y automatiza las actividades diarias, enfocando la atención en el bienestar de los residentes y la copropiedad.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Mas detalles</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <img class="d-block w-50" src="img/carrusel/3.jpeg" alt="Second slide">
-        <div class="container">
-          <div class="carousel-caption text-end" style="color:#2e4cb9">
-            <h1>Aumenta la confianza</h1>
-            <p style="color:#10cc6c">Aumenta la transparencia en tu gestión. Con nuestra plataforma podrás tener la información que necesitas para cada uno de los perfiles: Administrador, consejero, residente y propietario.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <img class="d-block w-50" src="img/carrusel/6.jpeg" alt="Second slide">
-        <div class="container">
-          <div class="carousel-caption text-end" style="color:#2e4cb9">
-            <h1>Facturas digitales</h1>
-            <p style="color:#10cc6c">Los residentes podrán ver el detalle de sus cuentas de cobro y consultar su estado de cuenta con un solo clic.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Mas detalles</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+            <p style="color:#2e4cb9">Sistema Para administrar Copropiedad.</p>
+             <p><a class="btn btn-lg btn-primary" href="#">Mas detalles</a></p>  -->
+
+					</div>
+				</div>
+				<div class="carousel-item">
+					<svg class="bd-placeholder-img" width="100%" height="100%"
+						xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+						preserveAspectRatio="xMidYMid slice" focusable="false">
+						<rect width="100%" height="100%" fill="#777" /></svg>
+					<img class="d-block w-50" src="img/carrusel/banner4.jpg"
+						alt="Second slide">
+					<div class="container">
+						<div class="carousel-caption text-start" style="color: #FFFFFF">
+							<h1>Conexión</h1>
+							<h3 style="color: #FFFFFF">Permite la conectividad con la
+								copropiedad de una manera rápida y práctica.</h3>
+							<!-- <p><a class="btn btn-lg btn-primary" href="#">Mas detalles</a></p>   -->
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<svg class="bd-placeholder-img" width="100%" height="100%"
+						xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+						preserveAspectRatio="xMidYMid slice" focusable="false">
+						<rect width="100%" height="100%" fill="#777" /></svg>
+					<img class="d-block w-50" src="img/carrusel/banner2.jpg"
+						alt="Second slide">
+					<div class="container">
+						<div class="carousel-caption text-start" style="color: #FFFFFF">
+							<h1>Aumenta la confianza</h1>
+							<h3 style="color: #FFFFFF">Con SISAPCO podrás tener la
+								información necesaria, para cada uno de los perfiles:
+								Administrador, consejero, residente y propietario.</h3>
+							<!-- <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>  -->
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<svg class="bd-placeholder-img" width="100%" height="100%"
+						xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+						preserveAspectRatio="xMidYMid slice" focusable="false">
+						<rect width="100%" height="100%" fill="#777" /></svg>
+					<img class="d-block w-50" src="img/carrusel/banner5.jpg"
+						alt="Second slide">
+					<div class="container">
+						<div class="carousel-caption text-end" style="color: #FFFFFF">
+							<h1>Administración</h1>
+							<h3 style="color: #FFFFFF">Permite facilitar la gestión
+								administrativa en documentación seguimiento de actividades y
+								comunicación con residentes y copropietarios.</h3>
+							<!--  <p><a class="btn btn-lg btn-primary" href="#">Mas detalles</a></p> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#myCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#myCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
 
 
-  <div class="container marketing">
+		<div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+			<!-- Three columns of text below the carousel -->
+			<div class="row">
+				<div class="col-lg-4">
+					<!--     <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
 
-        <h2>Heading</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+					<img src="img/consejo.jpg" class="rounded-circle">
+					<h1>Consejo</h1>
+					<p>Permite a los miembros de consejo tener un mayor control de
+						gestión administrativa.</p>
 
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary"
+						data-bs-toggle="modal" data-bs-target="#exampleModal">
+						Ver detalles</button>
 
-        <h2>Heading</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Modulo del
+										Consejo</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body"><p align="left">Este modulo permite a todos los miembros del consejo tener un mayor control sobre la gestión administrativa, donde se tiene las siguientes opciones: <br><br>
+								                        •	Asignar actividades al administrador. <BR> <BR>
+								                        •	Seguimiento de actividades al administrador. <BR><BR>
+														•	Actas para las reuniones de consejo, creación / consulta. <BR><BR>
+														•	Seguimiento de proyectos asignados en la asamblea general de la copropiedad. <BR><BR>
+														•	Seguimiento de contratos. <BR><BR>
+														•	Revisión de las cotizaciones realizadas por administración. <BR><BR>
+														•	Consulta de estados financieros. <BR><BR>
+														•	Análisis de sanciones y multas. <BR><BR>
+														</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Close</button>
 
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
-
-  </div><!-- /.container -->
+								</div>
+							</div>
+						</div>
+					</div>
 
 
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-</main>
+				</div>
+				<!-- /.col-lg-4 -->
+				<div class="col-lg-4">
+					
+					<img src="img/administrador5.jpg" class="rounded-circle">
+					<h1>Administrador</h1>
+					<p>facilitar la gestión administrativa de las copropiedades que
+						esté bajo su responsabilidad.</p>
+						
+						<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary"
+						data-bs-toggle="modal" data-bs-target="#exampleModal1">
+						Ver detalles</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal1" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Modulo de Administrador</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body"><p align="left">En la gestión de administrador, el sistema le facilitara su trabajo con la administración de las 
+								                                        diferentes unidades que tenga a bajo su responsabilidad optimizando el tiempo de tal manera le permita 
+								                                        tener varias unidades administradas, el sistema cuenta con las siguientes opciones: <br><br>
+								                        •	Gestión de PQRS. <br><br>
+														•	Seguimientos proyectos.<br><br>
+														•	Control de pagos.<br><br>
+														•	Seguimiento de actividades asignadas por el consejo.<br><br>
+														•	Gestión cobro de cartera deudores morosos.<br><br>
+														•	Sanción/multas.<br><br>
+														•	Informes de gestión administrativa: Actividades, cartera.<br><br>
+														•	Contratos. <br><br>
+														•	Cotizaciones. <br><br>
+														•	Crear Agenda de actividades y comunicados.<br><br>
+														</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Close</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- /.col-lg-4 -->
+				<div class="col-lg-4">
+				
+					<img src="img/propietarios5.jpg" class="rounded-circle">
+					<h1>Propietario</h1>
+					<p>Facilita la comunicación con todos los temas relacionados de
+						la copropiedad.</p>
+											
+						<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary"
+						data-bs-toggle="modal" data-bs-target="#exampleModal2">
+						Ver detalles</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal2" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Modulo de Propietarios</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body"><p align="left">Facilita tener un acercamiento con la administración en temas de comunicación sobre el estado de la copropiedad con las siguientes opciones: <br><br>
+								                    •	Certificado de Paz y salvo.  <br><br>
+													•	Pagos de administración por medio de PSE. <br><br>
+													•	Permisos ingreso / autorizaciones visitantes, control de correspondencia.  <br><br>
+													•	Consulta de Documentos: Acceso a reglamento de propiedad Horizontal, Acceso al manual de convivencia, estados financieros, cotizaciones, contratos)  <br><br>
+													•	Seguimiento de proyectos. <br><br>
+													•	Agenda: Consulta las actividades programadas por parte de la administración. <br><br>
+													•	Creación de PQRS. <br><br>
+													•	Noticias, comunicados, circular. <br><br>
+													•	Publicación y consulta de anuncios.
+														</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Close</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- /.col-lg-4 -->
+			</div>
+			<!-- /.row -->
 
 
-    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
+			<!-- START THE FEATURETTES -->
+
+			<hr class="featurette-divider">
+
+			<div class="row featurette">
+				<div class="col-md-7">
+					<h2 class="featurette-heading">
+						PQRS<span class="text-muted"></span>
+					</h2>
+					<p class="lead">El módulo de Peticiones, Quejas, Reclamos y Sugerencias (PQRS), permite conocer las inquietudes y manifestaciones que se tienen en la copropiedad 
+					con este módulo se puede tener la oportunidad de fortalecer una buena gestión administrativa.</p>
+				</div>
+				<div class="col-md-5">
+					<img class="d-block w-60" src="img/PQRS.jpg">
+			
+				</div>
+			</div>
+
+			<hr class="featurette-divider">
+
+			<div class="row featurette">
+				<div class="col-md-7">
+					<img class="d-block w-80" src="img/documentacion2.jpg">
+				</div>
+				<div class="col-md-5 ">
+					<h2 class="featurette-heading">
+						Gestión Documental<span class="text-muted"></span>
+					</h2>
+					<p class="lead">Acceda a todos los documentos de la copropiedad
+						en un solo click desde la comidad de su computador o smartphone.</p>				
+				</div>
+			</div>
+
+			<hr class="featurette-divider">
+
+			<div class="row featurette">
+				<div class="col-md-7">
+					<h2 class="featurette-heading">
+						Noticias: <span class="text-muted"></span>
+					</h2>
+					<p class="lead">Este módulo permite al administrador difundir
+						Circulares, novedades que estén ocurriendo en la copropiedad,
+						manteniendo a todos los copropietarios informados.</p>
+				</div>
+				<div class="col-md-5">
+					<img class="d-block w-60" src="img/noticias.jpg">
+					<!--   <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+           -->
+				</div>
+			</div>
+
+			<hr class="featurette-divider">
+
+			<!-- /END THE FEATURETTES -->
+
+		</div>
+		<!-- /.container -->
+
+
+		<!-- FOOTER -->
+		<footer class="container">
+			<p class="float-end">
+				<a href="#">Back to top</a>
+			</p>
+			<p>
+				&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a>
+				&middot; <a href="#">Terms</a>
+			</p>
+		</footer>
+	</main>
+
+
+	<script
+		src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
