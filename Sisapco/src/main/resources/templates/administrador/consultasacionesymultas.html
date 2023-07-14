@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Seguimiento Actas</title>
+    <title>Consulta Sanciones y Multas</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,14 +22,19 @@
 
     <!-- Custom styles for this page -->
     <link href="plantilla/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-     <link href="css/menusisapco.css" rel="stylesheet">
-
+   <link href="css/menusisapco.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
+
+        <!-- Sidebar -->
+        <!--<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <div th:include="administrador/menu.html" th:remove="tag"></div>
+        </ul>  -->
+        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -39,23 +44,24 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-	                 
-	                 <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
+
+	                <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
 	                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />                 
 	                <button id="54545" class="btn btn-link rounded-circle mr-3" >
 	                        <i class="fa fa-bars"></i>
 	                        <img class="imagenLogoAdmin" style="width:100%!important" src="img/sisapco.png">
 	                </button>
 	                 </form>
-                      
-                      <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left">
+               
+                     <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left">
                        <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />  
                         <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                             <img style="width:250%!important" src="img/imagenatras.png">
                         </button>
                       </form>
-
+                      
+                      
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -83,6 +89,7 @@
                             </div>
                         </li>
 
+                        
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -129,40 +136,53 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Seguimiento Actas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Consulta Sanciones y Multas</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Numero acta</th>
-                                            <th>Fecha Acta</th>
-                                            <th>Seguimiento</th>
+                                            <th>Numero de multa</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Descripción de la multa</th>
+                                            <th>Tipo de sanción</th>
+                                            <th>Estado de la multa</th>
+                                            <th>Fecha de la multa</th>
+                                            <th>Detalle</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
-                                        <tr>                                      
-                                            <th>Numero acta</th>
-                                            <th>Fecha Acta</th>
-                                            <th>Seguimiento</th>
+                                        <tr>
+                                            <th>Numero de multa</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Descripción de la multa</th>
+                                            <th>Tipo de sanción</th>
+                                            <th>Estado de la multa</th>
+                                            <th>Fecha de la multa</th>
+                                            <th>Detalle</th>
                                         </tr>
                                     </tfoot>
                                     <tbody >
-                                       <tr th:each="act: ${actaslist}" >
-                                            <td th:text="${act.actNumero}"></td>
-                                            <td th:text="${act.actFecha}"></td>
+                                       <tr th:each="sm: ${sacionesmultaslist}" >
+                                            <td th:text="${sm.mulNumero}"></td>
+                                            <td th:text="${sm.proNombres}"></td>
+                                            <td th:text="${sm.proApellidos}"></td>
+                                            <td th:text="${sm.mulDescripcion}"></td>
+                                            <td th:text="${sm.mulTipoSancion}"></td>
+                                            <td th:text="${sm.mulEstado}"></td>
+                                            <td th:text="${sm.mulFecha}"></td>                                          
                                             <td>
-                                            <!-- <form class="user" role="form" th:action="@{/visualizaracta}" method="post" target="_blank">
-                                                <input id="actId" type="hidden" name="actId" th:value="${act.actId}" />   
-                                                <input type="submit" class="btn btn-primary" value="Imprimir PDF">
-                                            </form> -->
+                                            <a class="btn btn-primary" th:href="${sm.mulAdjuntoEvidencia}">Visualizar</a>
                                             
-                                            <form class="user" role="form" th:action="${act.actFirmas}" method="get" target="_blank">
-                                                <input type="submit" class="btn btn-primary" value="Consultar Acta">
-                                            </form>
-                                            
-                                            <!--<a class="btn btn-primary" th:href="${act.actFirmas}" target="_blank">Consultar Acta</a>  -->
+                                             <div th:if="${activarRespuesta}">
+	                                            <form class="user" role="form" action="respuestasacionesmultas" method="get">
+	                                                <input id="Pqrs" type="hidden" name="Pqrs" th:value="${pqrs.pqrsLogs}" />   
+	                                                <input type="submit" class="btn btn-primary" value="Dar Respuesta">
+	                                            </form>
+	                                         </div>
                                             
                                             </td>
                                         </tr>

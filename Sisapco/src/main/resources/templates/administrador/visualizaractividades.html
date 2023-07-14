@@ -202,9 +202,9 @@
                                             </select>                                            
                                     </div>
                                     <div class="col-sm-6">
-                                     <span>Descripción:</span>
-                                        <input type="text" class="form-control form-control-user" id="actDescripcion"
-                                            placeholder="Descripción" th:field="${actividadesForm.actDescripcion}" required>
+                                     <span>Descripción:</span>                                           
+                                            <textarea class="form-control" id="actDescripcion"
+											rows="3" th:field="${actividadesForm.actDescripcion}" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -257,8 +257,9 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Observaciones:</span>
-                                        <input type="text" class="form-control form-control-user" id="actObservaciones"
-                                            placeholder="Observaciones" th:field="${actividadesForm.actObservaciones}" required>
+                                              <textarea class="form-control" id="actObservaciones"
+											  rows="3" th:field="${actividadesForm.actObservaciones}" required></textarea>
+                                            
                                     </div>
                                 </div>
                                 <div class="form-group row">

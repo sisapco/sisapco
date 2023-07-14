@@ -67,7 +67,7 @@ var langs =
  ['Lingua latīna',   ['la']]];
 
 for (var i = 0; i < langs.length; i++) {
-  select_language.options[i] = new Option(langs[i][0], i);
+  select_language.options[i] = new Option(langs[i][0], i);	
 }
 select_language.selectedIndex = 7;
 updateCountry();
@@ -83,6 +83,7 @@ function updateCountry() {
     select_dialect.options.add(new Option(list[i][1], list[i][0]));
   }
   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+  
 }
 
 var create_email = false;
@@ -91,11 +92,12 @@ var recognizing = false;
 var ignore_onend;
 var start_timestamp;
 var opciontextGlobal="";
+
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
 	
-	
+	 
 	
   start_button.style.display = 'inline-block';
   start_button_2.style.display = 'inline-block';
@@ -104,7 +106,8 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.interimResults = true;
 
   recognition.onstart = function() {
-    recognizing = true;
+	  
+   recognizing = true;
     showInfo('info_speak_now');
     if(opciontextGlobal=='actDesarrolloDia'){
     	start_img.src = 'img/microfono/mic-animate.gif';   	
@@ -115,10 +118,11 @@ if (!('webkitSpeechRecognition' in window)) {
     if(opciontextGlobal=='actAsistentes'){
    	 start_img_3.src = 'img/microfono/mic-animate.gif';   	
     }
-   
+    
   };
 
   recognition.onerror = function(event) {
+	  
     if (event.error == 'no-speech') {
       start_img.src = 'img/microfono/mic.gif';
       start_img_2.src = 'img/microfono/mic.gif';
@@ -146,6 +150,7 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 
   recognition.onend = function() {
+	 
     recognizing = false;
     if (ignore_onend) {
       return;
@@ -191,6 +196,7 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 
   recognition.onresult = function(event) {
+	  
     var interim_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
@@ -202,19 +208,20 @@ if (!('webkitSpeechRecognition' in window)) {
     final_transcript = capitalize(final_transcript);
    // final_span.innerHTML = linebreak(final_transcript);
     if(opciontextGlobal=='actDesarrolloDia'){
-    	actDesarrolloDia.value = linebreak(final_transcript);
+    	actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value +""+linebreak(final_transcript);
     }
     if(opciontextGlobal=='actOrdenDia'){
-    	actOrdenDia.value = linebreak(final_transcript);
+    	actOrdenDia.value = document.getElementById("actOrdenDia").value +""+linebreak(final_transcript);
     }
     if(opciontextGlobal=='actAsistentes'){
-    	actAsistentes.value = linebreak(final_transcript);
+    	actAsistentes.value = document.getElementById("actAsistentes").value +""+linebreak(final_transcript);
     }
     
     interim_span.innerHTML = linebreak(interim_transcript);
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
     }
+    
   };
   
   
@@ -291,7 +298,7 @@ function startButton(event) {
   
   showInfo('info_allow');
   showButtons('none');
-  start_timestamp = event.timeStamp;
+  start_timestamp = event.timeStamp; 
 }
 function startActDesarrolloDia(event,opciontext) {
 	  if (recognizing) {
@@ -305,7 +312,7 @@ function startActDesarrolloDia(event,opciontext) {
 	  recognition.lang = select_dialect.value;
 	  recognition.start();
 	  ignore_onend = false;
-	  actDesarrolloDia.value = '';
+	  actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value;
 	  interim_span.innerHTML = '';
 	  start_img.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');
@@ -325,14 +332,17 @@ function startActOrdenDia(event,opciontext) {
 	  recognition.lang = select_dialect.value;  
 	  recognition.start();
 	  ignore_onend = false;
-	  actOrdenDia.value = '';
+	  actOrdenDia.value = document.getElementById("actOrdenDia").value;
 	  interim_span.innerHTML = '';
 	  start_img_2.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');
 	  showButtons('none');
 	  start_timestamp = event.timeStamp;
 }
+
+var contadortexto=0;
 function startActAsistentes(event,opciontext) {
+	
 	  if (recognizing) {
 		document.getElementById("mocrofonoactivo").value="R";
 	    recognition.stop();
@@ -343,8 +353,9 @@ function startActAsistentes(event,opciontext) {
 	  final_transcript = '';
 	  recognition.lang = select_dialect.value;  
 	  recognition.start();
-	  ignore_onend = false;
-	  actAsistentes.value = '';
+	  ignore_onend = false;	  
+	  actAsistentes.value = document.getElementById("actAsistentes").value;
+	  //actAsistentes.value = '';
 	  interim_span.innerHTML = '';
 	  start_img_3.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');

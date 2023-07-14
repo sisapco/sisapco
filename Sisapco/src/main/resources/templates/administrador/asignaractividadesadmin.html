@@ -195,8 +195,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                      <span>Descripción:</span>
-                                        <input type="text" class="form-control form-control-user" id="actDescripcion"
-                                            placeholder="Descripción" th:field="${actividadesForm.actDescripcion}" required>
+                                            <textarea class="form-control" id="actDescripcion"
+											rows="3" th:field="${actividadesForm.actDescripcion}" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -230,9 +230,9 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <span>Actividades:</span>
-                                        <input type="text" class="form-control form-control-user" id="actActividades"
-                                            placeholder="Actividades" th:field="${actividadesForm.actActividades}" required>
+                                        <span>Actividades:</span>                                      
+                                         <textarea class="form-control" id="actActividades"
+											rows="3"  th:field="${actividadesForm.actActividades}" required></textarea>
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Numero actividades:</span>
@@ -248,8 +248,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Observaciones:</span>
-                                        <input type="text" class="form-control form-control-user" id="actObservaciones"
-                                            placeholder="Observaciones" th:field="${actividadesForm.actObservaciones}">
+                                             <textarea class="form-control" id="actObservaciones"
+											  rows="3" th:field="${actividadesForm.actObservaciones}" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -315,7 +315,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2022</span>
+                        <span>Copyright &copy; Your Website 2023</span>
                     </div>
                 </div>
             </footer>
@@ -380,9 +380,9 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button> -->
 	      </div>
 	      <div class="modal-body">
 	        Se guardo la actividad de forma exitosa.

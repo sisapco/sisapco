@@ -29,7 +29,7 @@ public class Cotizaciones implements Serializable{
 	private int copNit;
 	
 	@Column
-	private Date cotFechaCarga;
+	private String cotFechaCarga;
 	
 	@Column
 	private String cotNombreCotizacion;
@@ -74,11 +74,11 @@ public class Cotizaciones implements Serializable{
 		this.copNit = copNit;
 	}
 
-	public Date getCotFechaCarga() {
+	public String getCotFechaCarga() {
 		return cotFechaCarga;
 	}
 
-	public void setCotFechaCarga(Date cotFechaCarga) {
+	public void setCotFechaCarga(String cotFechaCarga) {
 		this.cotFechaCarga = cotFechaCarga;
 	}
 
@@ -246,5 +246,7 @@ public class Cotizaciones implements Serializable{
 				+ ", cotTiempoEjecucion=" + cotTiempoEjecucion + ", cotGarantia=" + cotGarantia
 				+ ", cotVigenciaCotizacion=" + cotVigenciaCotizacion + ", cotVisualizacion=" + cotVisualizacion + "]";
 	}
+
+	
 
 }

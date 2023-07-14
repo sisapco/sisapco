@@ -12,7 +12,7 @@ public interface SancionesMultaRepository  extends CrudRepository<SancionesMulta
 	
 
 	@Query("SELECT u FROM SancionesMulta u WHERE u.copNit = ?1 ORDER BY u.mulId DESC")
-	public Iterable<SancionesMulta> findBySancionesMultaNit(int codNit);
+	public Iterable<SancionesMulta> findBySancionesMultaNit(int copNit);
 	
 	@Query("SELECT u FROM SancionesMulta u WHERE u.mulId = ?1")
 	public SancionesMulta findBySancionesMultaIdForm(int actId);

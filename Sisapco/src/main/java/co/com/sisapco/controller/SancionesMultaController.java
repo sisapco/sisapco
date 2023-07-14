@@ -237,4 +237,45 @@ public class SancionesMultaController {
 		
 		return "administrador/sanciones_multas";
 	}
+	
+	@RequestMapping("/consultasacionesymultas")
+	public String consultaSacionesMultas(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit = copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		int copId = copropiedadDTO.getCopId();
+		
+		
+		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));		
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));		
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		
+		model.addAttribute("sacionesmultaslist", userService.getSancionesMultaByNit(copNit));
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("copId", copId);
+		
+		model.addAttribute("admin","active");
+		model.addAttribute("consejo","active");
+		
+		//Instanciamos la clase para cifrar el codigo
+		MD5DatosGet encrypted = new MD5DatosGet();
+		String copIdEcr = String.valueOf(copId);
+	    String copIdEncryted ="";
+		copIdEncryted = encrypted.encrypted(copIdEcr);
+		copIdEncryted = copIdEncryted.replace("=", "co");
+		model.addAttribute("copIdEncryted", copIdEncryted);
+		
+		//menu atras
+		String menuAdmin = rutamenu+"admin";
+		model.addAttribute("rutamenu", menuAdmin);
+		
+		return "administrador/consultasacionesymultas";
+	}
 }

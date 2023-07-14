@@ -92,4 +92,6 @@ public interface UserService {
 	public SancionesMulta findBySancionesMultaNitConsecutivoForm(int copNit) throws Exception;
 	
 	public SancionesMulta createSancionesMulta(SancionesMulta sancionesMulta) throws Exception;
+	
+	public Iterable<SancionesMulta> getSancionesMultaByNit(int copNit) throws Exception;
 }

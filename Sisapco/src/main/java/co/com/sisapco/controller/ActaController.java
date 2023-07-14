@@ -88,7 +88,7 @@ public class ActaController {
 		
 		//consultamos el ultimo consecutivo del acta
 		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
-		int consecutivo = actaconsecutivo.getActId();
+		int consecutivo = actaconsecutivo.getActNumero();
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivoactas", consecutivo);
 		
@@ -156,8 +156,15 @@ public class ActaController {
 		int copId = copropiedadDTO.getCopId();
 		
 		//consultamos el ultimo consecutivo del acta
+		int consecutivo=0;
 		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
-		int consecutivo = actaconsecutivo.getActId();
+		if(actaconsecutivo == null) {
+			consecutivo=0;
+		}
+		else {
+		    consecutivo = actaconsecutivo.getActNumero();
+		}
+		
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivoactas", consecutivo);
 		
@@ -294,7 +301,7 @@ public class ActaController {
 		
 		//Consultamos el ultimo consecutivo del acta
 		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
-		int consecutivo = actaconsecutivo.getActId();
+		int consecutivo = actaconsecutivo.getActNumero();
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivoactas", consecutivo);
 		
@@ -408,7 +415,7 @@ public class ActaController {
 		
 		//Consultamos el ultimo consecutivo del acta
 		Actas actaconsecutivo = userService.getActasByIdConsecutivoForm(copNit);
-		int consecutivo = actaconsecutivo.getActId();
+		int consecutivo = actaconsecutivo.getActNumero();
 		consecutivo = consecutivo+1;
 		model.addAttribute("consecutivoactas", consecutivo);
 		model.addAttribute("consecutivoactaguardado", (consecutivo-1));

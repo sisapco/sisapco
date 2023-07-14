@@ -370,5 +370,10 @@ public class UserServiceImpl implements UserService{
 		sancionesMulta = repositorySancionesMulta.save(sancionesMulta);
 		return sancionesMulta;
 	}
+
+	@Override
+	public Iterable<SancionesMulta> getSancionesMultaByNit(int copNit) throws Exception {		
+		return repositorySancionesMulta.findBySancionesMultaNit(copNit);		
+	}
 	
 }

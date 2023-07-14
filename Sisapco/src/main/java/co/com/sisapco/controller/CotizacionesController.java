@@ -158,9 +158,9 @@ public class CotizacionesController {
 						    //Hallamos la fecha actual
 						    Date myDate = new Date();
 						    String fechacarga = (new SimpleDateFormat("yyyy-MM-dd").format(myDate));
-						    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM-dd");
+						    //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM-dd");
 						    //Date datecarga = formatter.parse(fechacarga); 
-						    guardarCotizaciones.setCotFechaCarga(myDate);
+						    guardarCotizaciones.setCotFechaCarga(fechacarga);
 						    
 						    userService.createCorizaciones(guardarCotizaciones);
 					    }			   
