@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.poi.hssf.record.formula.functions.Replace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -361,14 +362,18 @@ public class ActaController {
 				String codigoGoogleActa = almacenamientoGoogleActas.getAlmaIdcarpeta();
 				String codigoVista="";
 				String codigoActa="";
+				String asistentesBR="";
 				try {
+					
+					//Reemplazamos el <br> por /n para el salto de linea
+					asistentesBR = actas.getActAsistentes().replace("<br>", "\n");
 					//Instanciar la clase de google para guardar el acta en formato word (docx)
 					CreateGoogleFileDoc createGoogleFileDoc = new CreateGoogleFileDoc();
 					String consecutivoActa = String.valueOf(actas.getActNumero());
 					com.google.api.services.drive.model.File googleFileDoc = createGoogleFileDoc.cargarArchivoGoogleActaMovil(codigoGoogleActa, 
 							consecutivoActa,actas.getActFecha(),actas.getActHoraInicio(),
 							actas.getActReunion(),actas.getActConvoca(),actas.getActMunicipio(),
-							actas.getActLugar(),actas.getActAsistentes(),actas.getActOrdenDia(),
+							actas.getActLugar(),asistentesBR,actas.getActOrdenDia(),
 							actas.getActDesarrolloDia(),filesPresidente,filesSecretario, 
 							rutaAbsolutaPlantillaActas,rutaAbsolutaPlantillaMod);
 							

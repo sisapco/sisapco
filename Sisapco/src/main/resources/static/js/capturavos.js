@@ -66,6 +66,8 @@ var langs =
  ['日本語',           ['ja-JP']],
  ['Lingua latīna',   ['la']]];
 
+var sensormicrofono=0;
+
 for (var i = 0; i < langs.length; i++) {
   select_language.options[i] = new Option(langs[i][0], i);	
 }
@@ -150,6 +152,7 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 
   recognition.onend = function() {
+	  
 	 
     recognizing = false;
     if (ignore_onend) {
@@ -158,6 +161,7 @@ if (!('webkitSpeechRecognition' in window)) {
     start_img.src = 'img/microfono/mic.gif';
     start_img_2.src = 'img/microfono/mic.gif';
     start_img_3.src = 'img/microfono/mic.gif';
+    
     if (!final_transcript) {
       showInfo('info_start');
       return;
@@ -195,36 +199,54 @@ if (!('webkitSpeechRecognition' in window)) {
     }
   };
 
+  contadortext=0;
+  final_transcript_anterior="";
+  interim_transcript_anterior="";
+  var textotemporal = "";
   recognition.onresult = function(event) {
-	  
+	 
     var interim_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
-      if (event.results[i].isFinal) {
-        final_transcript += event.results[i][0].transcript;
-      } else {
-        interim_transcript += event.results[i][0].transcript;
+      if (event.results[i].isFinal) {	    	
+	    	final_transcript += event.results[i][0].transcript;	    	
+      } else {   	 
+    		interim_transcript += event.results[i][0].transcript;
       }
     }
+
+     
+
+     //actAsistentes.value = textotemporal;
+    
+    
     final_transcript = capitalize(final_transcript);
    // final_span.innerHTML = linebreak(final_transcript);
     if(opciontextGlobal=='actDesarrolloDia'){
-    	actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value +""+linebreak(final_transcript);
+    	//actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value +""+linebreak(final_transcript);
+    	actDesarrolloDia.value = linebreak(final_transcript);
     }
-    if(opciontextGlobal=='actOrdenDia'){
-    	actOrdenDia.value = document.getElementById("actOrdenDia").value +""+linebreak(final_transcript);
+    if(opciontextGlobal=='actOrdenDia' ){
+    	//actOrdenDia.value = document.getElementById("actOrdenDia").value +""+linebreak(final_transcript);
+    	actOrdenDia.value = linebreak(final_transcript);
+    	
     }
-    if(opciontextGlobal=='actAsistentes'){
-    	actAsistentes.value = document.getElementById("actAsistentes").value +""+linebreak(final_transcript);
+    if(opciontextGlobal=='actAsistentes' && final_transcript_anterior!=linebreak(final_transcript)){
+    	final_transcript_anterior = linebreak(final_transcript);
+    	actAsistentes.value = linebreak(final_transcript);
+    	//actAsistentes.value = document.getElementById("actAsistentes").value +""+linebreak(final_transcript);   	
     }
     
+ 
     interim_span.innerHTML = linebreak(interim_transcript);
+    
+    //alert("interim_span.innerHTML"+interim_span.innerHTML);
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
+      interim_transcript_anterior = interim_transcript;
     }
     
   };
-  
-  
+ 
 }
 
 function upgrade() {
@@ -236,7 +258,7 @@ function upgrade() {
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
-  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+  return s.replace(two_line, '<p></p>').replace(one_line, '\n');
 }
 
 var first_char = /\S/;
@@ -308,11 +330,17 @@ function startActDesarrolloDia(event,opciontext) {
 	  }
 	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
-	  final_transcript = '';
+	  //final_transcript = '';
+	  final_transcript=""+document.getElementById("actDesarrolloDia").value;
 	  recognition.lang = select_dialect.value;
 	  recognition.start();
 	  ignore_onend = false;
 	  actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value;
+	  if(final_transcript!=""){
+		  actDesarrolloDia.value = final_transcript;
+	  }else{
+		  actDesarrolloDia.value = "";
+	  }
 	  interim_span.innerHTML = '';
 	  start_img.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');
@@ -328,34 +356,53 @@ function startActOrdenDia(event,opciontext) {
 	  }
 	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
-	  final_transcript = '';
+	  //final_transcript = '';
+	  final_transcript=""+document.getElementById("actOrdenDia").value;
 	  recognition.lang = select_dialect.value;  
 	  recognition.start();
 	  ignore_onend = false;
-	  actOrdenDia.value = document.getElementById("actOrdenDia").value;
+	  //actOrdenDia.value = document.getElementById("actOrdenDia").value;
+	  
+	  if(final_transcript!=""){
+		  actOrdenDia.value = final_transcript;
+	  }else{
+		  actOrdenDia.value = "";
+	  }
+	  
 	  interim_span.innerHTML = '';
 	  start_img_2.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');
 	  showButtons('none');
 	  start_timestamp = event.timeStamp;
 }
-
-var contadortexto=0;
+//henry
 function startActAsistentes(event,opciontext) {
 	
 	  if (recognizing) {
+		  
 		document.getElementById("mocrofonoactivo").value="R";
 	    recognition.stop();
+	    sensormicrofono=1;
 	    return;
 	  }
+	  
 	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
-	  final_transcript = '';
+	  //final_transcript = '';
+	  textoEnter = document.getElementById("actAsistentes").value;
+	  final_transcript=""+textoEnter;
+	  
 	  recognition.lang = select_dialect.value;  
 	  recognition.start();
 	  ignore_onend = false;	  
-	  actAsistentes.value = document.getElementById("actAsistentes").value;
-	  //actAsistentes.value = '';
+	 // actAsistentes.value = document.getElementById("actAsistentes").value;
+	  if(final_transcript!=""){
+		  actAsistentes.value = final_transcript;
+	  }else{
+		  actAsistentes.value = "";
+	  }
+	  
+	  
 	  interim_span.innerHTML = '';
 	  start_img_3.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');
