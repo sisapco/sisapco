@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.apache.poi.hpsf.Decimal;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -200,6 +201,7 @@ public class Actividades implements Serializable{
 		this.actLog = actLog;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -313,4 +315,5 @@ public class Actividades implements Serializable{
 				+ ", actLog=" + actLog + "]";
 	}
 
+	
 }
