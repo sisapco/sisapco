@@ -168,7 +168,7 @@
                                 <div class="form-group row">
                                     
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                       <span>Fecha de inicio:</span>
+                                       <span>Fecha de inicio:<span style="color: #ff0000">*</span></span>
                                         <input type="text" class="form-control form-control-user" id="actFechaInicio"
                                             placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaInicio}" required>
                                               
@@ -181,7 +181,7 @@
                                     </div>
                                     
                                     <div class="col-sm-6">
-                                    <span>Fecha final:</span>
+                                    <span>Fecha final:<span style="color: #ff0000">*</span></span>
                                         <input type="text" class="form-control form-control-user" id="actFechaFinal"
                                             placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaFinal}" required>
                                                 <script>
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                  <div class="form-group">
-                                 <span>Nombre de la actividad:</span>
+                                 <span>Nombre de la actividad:<span style="color: #ff0000">*</span></span>
                                     <input type="text" class="form-control form-control-user" id="actNombreActividad"
                                         placeholder="" th:field="${actividadesForm.actNombreActividad}" required>
                                 </div>
@@ -200,39 +200,40 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <!--<input type="text" class="form-control form-control-user" id="actEstado"
                                             placeholder="Estado" th:field="${actividadesForm.actEstado}">  -->
-                                            <span>Seleccione el estado:</span>
-                                            <select class="form-control" id="actEstado" th:field="${actividadesForm.actEstado}" required>
+                                            <span>Seleccione el estado:</span> <span class="help-block">Indicar el estado en el que se encuentra la actidad.</span>
+                                            <select class="form-control" id="actEstado" th:field="${actividadesForm.actEstado}" placeholder="Ingresar una descripción de la actividad"required>
 	                                              <option value="1" selected>Abierto</option>
 	                                              <option value="2">En proceso</option>
 											      <option value="3">Cerrado</option>
                                             </select>                                            
                                     </div>
                                     <div class="col-sm-6">
-                                     <span>Descripción:</span>
+                                     <span>Descripción:<span style="color: #ff0000">*</span></span>
                                             <textarea class="form-control" id="actDescripcion"
-											rows="3" th:field="${actividadesForm.actDescripcion}" required></textarea>
+											rows="3" placeholder="Ingresar una descripción de la actividad" th:field="${actividadesForm.actDescripcion}" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <span>Costo $:</span>
-                                        <input onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control form-control-user" id="actCosto"
-                                            placeholder="Costo" th:field="${actividadesForm.actCosto}" required>
+                                    <span>Costo $:<span style="color: #ff0000">*</span></span>
+                                        <input onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control form-control-user" id="actCosto2"
+                                            placeholder="Ingresar el valor de la actividad" required>
+                                             <input  class="form-control" type=hidden th:field="${actividadesForm.actCosto}" id="actCosto" name="actCosto">
                                     </div>
                                     <div class="col-sm-6">
-                                        <span>Responsable:</span>
+                                        <span>Responsable:<span style="color: #ff0000">*</span></span>
                                         <input type="text" class="form-control form-control-user" id="actResponsable"
-                                            placeholder="Responsable" th:field="${actividadesForm.actResponsable}" required>
+                                            placeholder="Digita el Responsable de la actividad a realizar" th:field="${actividadesForm.actResponsable}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <span>Desviacion:</span>
+                                 <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Desviación:</span>
                                         <input type="text" class="form-control form-control-user" id="actDesviacion"
-                                            placeholder="Desviacion" th:field="${actividadesForm.actDesviacion}" required>
+                                            placeholder="La desviación se calcula automatica" th:field="${actividadesForm.actDesviacion}" disabled>
                                     </div>
                                     <div class="col-sm-6">
-                                        <span>Fecha entrega real:</span>
+                                        <span>Fecha entrega real:<span style="color: #ff0000">*</span></span>
                                         <input type="text" class="form-control form-control-user" id="actFechaEntregaReal"
                                             placeholder="Fecha entrega real" th:field="${actividadesForm.actFechaEntregaReal}" required>
                                                 <script>
@@ -244,7 +245,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <span>Actividades:</span>                                      
+                                        <span>Actividades:<span style="color: #ff0000">*</span></span>                                      
                                          <textarea class="form-control" id="actActividades"
 											rows="3"  th:field="${actividadesForm.actActividades}" required></textarea>
                                     </div>
@@ -258,10 +259,10 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Porcentaje ejecución:</span>
                                         <input type="text" class="form-control form-control-user" id="actPorcentajeEjecucion"
-                                            placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" required>
+                                            placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" >
                                     </div>
                                     <div class="col-sm-6">
-                                        <span>Observaciones:</span>
+                                        <span>Observaciones:<span style="color: #ff0000">*</span></span>
                                              <textarea class="form-control" id="actObservaciones"
 											  rows="3" th:field="${actividadesForm.actObservaciones}" required></textarea>
                                     </div>
@@ -444,7 +445,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <input type="submit" class="btn btn-primary" value="Guardar actividad">
+                                <input type="submit" class="btn btn-primary" onclick="quitarpesos()" value="Guardar actividad">
                                 <hr>                         						        
                             </form>                            
                             
@@ -709,9 +710,23 @@ function NUM(s, dec) {
   }
 }
 
+<<<<<<< HEAD
 //funcion limpiar campos de las imagenes
 function limpiarcampo(idcampo){
 	document.getElementById(idcampo).value="";	
+=======
+function quitarpesos(){
+     alert("quitar pesos");
+	valor = document.getElementById("actCosto2").value;
+	valor=valor.replace("$","");
+	valor=valor.replace(".00","");
+	valor=valor.replace(",",".");
+	valor=valor.replace(".","");
+	
+	alert("valor="+valor);
+	document.getElmentById("actCosto").value=valor;
+	alert("valor="+actCosto);
+>>>>>>> branch 'master' of https://github.com/sisapco/sisapco.git
 }
 		
 	</script>
