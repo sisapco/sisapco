@@ -347,7 +347,7 @@
                                              <tr>
 		                                          <td width="90%"><input type="file" class="form-control" name="actEvidenciaAntes" id="5"></td>
 		                                          <td width="10%"> 
-		                                             <div onclick="limpiarcampo(4)" class="bi bi-file-excel">
+		                                             <div onclick="limpiarcampo(5)" class="bi bi-file-excel">
 		                                              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-excel" viewBox="0 0 16 16">
 													    <path d="M5.18 4.616a.5.5 0 0 1 .704.064L8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 0 1 .064-.704z"/>
 													    <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
@@ -687,47 +687,47 @@
   return XMASK;
 }
 
-// Convierte una cadena alfanumérica a numérica (incluyendo formulas aritméticas)
-//
-// s   = cadena a ser convertida a numérica
-// dec = numero de decimales a redondear
-//
-// La función devuelve el numero redondeado
+	// Convierte una cadena alfanumérica a numérica (incluyendo formulas aritméticas)
+	//
+	// s   = cadena a ser convertida a numérica
+	// dec = numero de decimales a redondear
+	//
+	// La función devuelve el numero redondeado
 
-function NUM(s, dec) {
-  for (var s = s+"", num = "", x = 0 ; x < s.length ; x++) {
-    c = s.charAt(x);
-    if (".-+/*".indexOf(c)+1 || c != " " && !isNaN(c)) { num+=c; }
-  }
-  if (isNaN(num)) { num = eval(num); }
-  if (num == "")  { num=0; } else { num = parseFloat(num); }
-  if (dec != undefined) {
-    r=.5; if (num<0) r=-r;
-    e=Math.pow(10, (dec>0) ? dec : 0 );
-    return parseInt(num*e+r) / e;
-  } else {
-    return num;
-  }
-}
+	function NUM(s, dec) {
+	  for (var s = s+"", num = "", x = 0 ; x < s.length ; x++) {
+	    c = s.charAt(x);
+	    if (".-+/*".indexOf(c)+1 || c != " " && !isNaN(c)) { num+=c; }
+	  }
+	  if (isNaN(num)) { num = eval(num); }
+	  if (num == "")  { num=0; } else { num = parseFloat(num); }
+	  if (dec != undefined) {
+	    r=.5; if (num<0) r=-r;
+	    e=Math.pow(10, (dec>0) ? dec : 0 );
+	    return parseInt(num*e+r) / e;
+	  } else {
+	    return num;
+	  }
+	}
 
-<<<<<<< HEAD
-//funcion limpiar campos de las imagenes
-function limpiarcampo(idcampo){
-	document.getElementById(idcampo).value="";	
-=======
-function quitarpesos(){
-     alert("quitar pesos");
-	valor = document.getElementById("actCosto2").value;
-	valor=valor.replace("$","");
-	valor=valor.replace(".00","");
-	valor=valor.replace(",",".");
-	valor=valor.replace(".","");
+
+	function quitarpesos(){
+	     alert("quitar pesos");
+		valor = document.getElementById("actCosto2").value;
+		valor=valor.replace("$","");
+		valor=valor.replace(".00","");
+		valor=valor.replace(",",".");
+		valor=valor.replace(".","");
+		
+		alert("valor="+valor);
+		document.getElmentById("actCosto").value=valor;
+		alert("valor="+actCosto);
+	}
 	
-	alert("valor="+valor);
-	document.getElmentById("actCosto").value=valor;
-	alert("valor="+actCosto);
->>>>>>> branch 'master' of https://github.com/sisapco/sisapco.git
-}
+	//funcion limpiar campos de las imagenes
+	function limpiarcampo(idcampo){
+		document.getElementById(idcampo).value="";	
+	}
 		
 	</script>
 </body>

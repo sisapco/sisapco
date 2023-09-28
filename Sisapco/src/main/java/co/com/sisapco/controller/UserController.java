@@ -66,6 +66,11 @@ public class UserController {
 		return "index";
 	}
 	
+	@GetMapping("/index2")
+	public String index2() {
+		return "index2";
+	}
+	
 	@GetMapping("/ingresar")
 	public String ingresar() {
 		return "ingresar";

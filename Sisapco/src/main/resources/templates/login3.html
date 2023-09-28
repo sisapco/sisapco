@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="SISAPCOP">
+	    <meta name="generator" content="Hugo 0.82.0">
+	    <title>SISAPCOP - Login</title>
+	
+	  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+      <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
+      <!-- Bootstrap core CSS -->
+      <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+      .bg-dark {
+            background-color: #fefefe!important;
+      }
+      
+      .navbar-dark .navbar-nav .nav-link {
+         color: #000!important;
+     }
+     
+     .navbar-toggler{
+         background-color:#0d6efd;
+     }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/5.0/examples/carousel/carousel.css" rel="stylesheet">
+    <link href="css/menusisapco.css" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+     <img class="imagenLogo" style="width:15%" src="img/sisapco.png" /> <a class="navbar-brand" href="/">  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ingresarcuenta">Ingresar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contacto">Contáctenos</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img style="width:40%!important" src="img/logodedificio.png" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <h1>Administración de Propiedad Horizontal</h1>
+            <p class="font-italic text-muted mb-0">Bienvenido a la app de Sisapcop, inicia sesión para acceder a la plataforma.
+
+</p>
+            <p class="font-italic text-muted">¿Necesita ayuda? Entre a nuestro centro de ayuda
+            </p>
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form th:action="@{/login}" method="post">
+                <div class="row">
+                    <h3>Inicia sesión</h3>
+                    </br>
+                    </br>
+                    </br>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+		            Nombre de usuario o contraseña inválidos.
+		        </div>
+		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+		            Usted ha sido desconectado.
+		        </div>
+
+                    <!-- usuario -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="username" type="text" name="username" placeholder="Nombre de usuario" class="form-control bg-white border-left-0 border-md">
+                    </div>
+                    
+                    <!-- password -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+
+
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                         <button type="submit" class="btn btn-primary btn-block py-2 font-weight-bold"><i class="fas fa-sign-in-alt"></i>Iniciar sesión</button>
+                    </div>
+                    
+
+
+                    <!-- Divider Text -->
+                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                        <div class="border-bottom w-100 ml-5"></div>
+                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                        <div class="border-bottom w-100 mr-5"></div>
+                    </div>
+
+                    <!-- Social Login -->
+                    <div class="form-group col-lg-12 mx-auto">
+                        <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
+                            
+                            <span class="font-weight-bold">Solicitar enlace de acceso rápido</span>
+                        </a>
+                    </div>
+
+                    <!-- Already Registered -->
+                    <div class="text-center w-100">
+                        <p class="text-muted font-weight-bold">Olvide mi constraseña <a href="#" class="text-primary ml-2">Login</a></p>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>&copy; 2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+
+
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -28,7 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	String[] resources = new String[]{
-            "/include/**","/css/**","/min.css/**","/plantilla/**","/icons/**","/img/**","/js/**","/layer/**","/files/**","/copropiedad/**"
+            "/include/**","/css/**","/min.css/**","/plantilla/**","/plantillaindex/**","/icons/**","/img/**","/js/**","/layer/**","/files/**","/copropiedad/**"
     };
 	
 	@Override
@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		    .and()
 	        .authorizeRequests()
 	        .antMatchers(resources).permitAll()  
-	        .antMatchers("/","/index","/signup","/contacto","/login","/files/","/copropiedad/","/ingresarcuenta","/Callback").permitAll()
+	        .antMatchers("/","/index","/index2","/signup","/contacto","/login","/files/","/copropiedad/","/ingresarcuenta","/Callback").permitAll()
 	            .anyRequest().authenticated()
 	            .and()
 	        .formLogin()

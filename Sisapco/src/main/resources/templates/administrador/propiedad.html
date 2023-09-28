@@ -27,9 +27,25 @@
 	       color:#000!important
 	    
 	    }
+		#header {
+		  background: rgba(40, 58, 90, 0.9)!important;
+		}
     </style>
     
     <link href="css/menusisapco.css" rel="stylesheet">
+    
+    
+  <!-- Vendor CSS Files -->
+  <link href="plantillaindex/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">  
+    
+  <!-- Template Main CSS File -->
+  <link href="plantillaindex/assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -45,42 +61,24 @@
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+             
+                <!-- Topbar
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top fixed-top ">
 
                 <div class="sidebar-brand-text mx-3">
                 <img class="imagenLogo" src="img/sisapco.png" />
                 </div>
-                    <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search 
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>-->
-
-                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -99,20 +97,10 @@
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <!--<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>  -->
-                            <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}" class="negritaTexto"></span><span class="negritaTexto"> - </span><span class="negritaTexto"> Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span>
-                            <!--  <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">-->
+                           
+                            <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}" class="negritaTexto"></span><span class="negritaTexto"> - </span><span class="negritaTexto"> Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span>                           
                             </a>
-                            <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -137,7 +125,26 @@
 
                     </ul>
 
-                </nav>
+                </nav> -->
+                
+                  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/"><img class="imagenLogo" style="width: 100%" src="img/sisapco.png"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="getstarted scrollto" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}" ></span><span> - </span><span> Salir  </span><span class="float-right"></span></a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+                
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -147,7 +154,7 @@
 
 
                     <!-- Content Row -->
-
+                    <br><br><br><br><br>
                     <div class="row">
 
                         <!-- Area Chart -->
@@ -232,15 +239,70 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2022</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Sisapco</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Sisapco</span></strong>. All Rights Reserved
+      </div>
+
+    </div>
+  </footer>
+  <!-- End Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
@@ -289,6 +351,9 @@
     <!-- Page level custom scripts -->
     <script src="plantilla/js/demo/chart-area-demo.js"></script>
     <script src="plantilla/js/demo/chart-pie-demo.js"></script>
+    
+      <!-- Template Main JS File -->
+  <script src="plantillaindex/assets/js/main.js"></script>
 
 </body>
 

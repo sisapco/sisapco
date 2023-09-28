@@ -44,7 +44,7 @@ public class ManualConvivencia implements Serializable{
 	private String conviLog;
 	
 	@Column
-	private double conviVisualizacion;
+	private String conviVisualizacion;
 
 	public int getConviId() {
 		return conviId;
@@ -102,11 +102,11 @@ public class ManualConvivencia implements Serializable{
 		this.conviLog = conviLog;
 	}
 
-	public double getConviVisualizacion() {
+	public String getConviVisualizacion() {
 		return conviVisualizacion;
 	}
 
-	public void setConviVisualizacion(double conviVisualizacion) {
+	public void setConviVisualizacion(String conviVisualizacion) {
 		this.conviVisualizacion = conviVisualizacion;
 	}
 
@@ -120,9 +120,7 @@ public class ManualConvivencia implements Serializable{
 		result = prime * result + conviId;
 		result = prime * result + ((conviLog == null) ? 0 : conviLog.hashCode());
 		result = prime * result + ((conviNombre == null) ? 0 : conviNombre.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(conviVisualizacion);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((conviVisualizacion == null) ? 0 : conviVisualizacion.hashCode());
 		result = prime * result + copNit;
 		return result;
 	}
@@ -163,7 +161,10 @@ public class ManualConvivencia implements Serializable{
 				return false;
 		} else if (!conviNombre.equals(other.conviNombre))
 			return false;
-		if (Double.doubleToLongBits(conviVisualizacion) != Double.doubleToLongBits(other.conviVisualizacion))
+		if (conviVisualizacion == null) {
+			if (other.conviVisualizacion != null)
+				return false;
+		} else if (!conviVisualizacion.equals(other.conviVisualizacion))
 			return false;
 		if (copNit != other.copNit)
 			return false;
@@ -177,8 +178,4 @@ public class ManualConvivencia implements Serializable{
 				+ conviEstado + ", conviLog=" + conviLog + ", conviVisualizacion=" + conviVisualizacion + "]";
 	}
 	
-	
-
-	
-
 }

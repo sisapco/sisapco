@@ -257,8 +257,10 @@ function upgrade() {
 
 var two_line = /\n\n/g;
 var one_line = /\n/g;
-function linebreak(s) {
-  return s.replace(two_line, '<p></p>').replace(one_line, '\n');
+function linebreak(s) {	
+	//s = s.replace(two_line, '<p></p>').replace(one_line, '\n');
+	//s = s.replace(two_line, '<p></p><p></p>').replace(one_line, '\n\n');
+    return s;
 }
 
 var first_char = /\S/;
@@ -331,16 +333,25 @@ function startActDesarrolloDia(event,opciontext) {
 	  document.getElementById("mocrofonoactivo").value="S";
 	  opciontextGlobal = opciontext;
 	  //final_transcript = '';
-	  final_transcript=""+document.getElementById("actDesarrolloDia").value;
+	  //alert("dispositivo="+tipodispositivo);
+	  if(tipodispositivo=="M"){
+		  final_transcript = '';
+	  }else{
+		  final_transcript=""+document.getElementById("actDesarrolloDia").value;
+	  }
+	  
 	  recognition.lang = select_dialect.value;
 	  recognition.start();
 	  ignore_onend = false;
-	  actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value;
+	  	  
+	  actDesarrolloDia.value = document.getElementById("actDesarrolloDia").value;	  
 	  if(final_transcript!=""){
 		  actDesarrolloDia.value = final_transcript;
 	  }else{
 		  actDesarrolloDia.value = "";
 	  }
+       
+	  
 	  interim_span.innerHTML = '';
 	  start_img.src = 'img/microfono/mic-slash.gif';
 	  showInfo('info_allow');
@@ -375,7 +386,7 @@ function startActOrdenDia(event,opciontext) {
 	  showButtons('none');
 	  start_timestamp = event.timeStamp;
 }
-//henry
+
 function startActAsistentes(event,opciontext) {
 	
 	  if (recognizing) {

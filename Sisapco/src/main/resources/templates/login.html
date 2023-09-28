@@ -1,179 +1,386 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-        <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="">
-	    <meta name="author" content="SISAPCOP">
-	    <meta name="generator" content="Hugo 0.82.0">
-	    <title>SISAPCOP - Login</title>
-	
-	  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-      <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-      <!-- Bootstrap core CSS -->
-      <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Sisapco - Login</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+  <!-- Favicons -->
+  <link href="plantillaindex/assets/img/favicon.png" rel="icon">
+  <link href="plantillaindex/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      
-      .bg-dark {
-            background-color: #fefefe!important;
-      }
-      
-      .navbar-dark .navbar-nav .nav-link {
-         color: #000!important;
-     }
-     
-     .navbar-toggler{
-         background-color:#0d6efd;
-     }
-    </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/5.0/examples/carousel/carousel.css" rel="stylesheet">
-    <link href="css/menusisapco.css" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="plantillaindex/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="plantillaindex/assets/css/style.css" rel="stylesheet">
+  
+   <!-- Bootstrap core CSS -->
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+
 <body>
 
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-     <img class="imagenLogo" style="width:15%" src="img/sisapco.png" /> <a class="navbar-brand" href="/">  </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/ingresarcuenta">Ingresar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contacto">Contáctenos</a>
-          </li>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/"><img class="imagenLogo" style="width: 100%" src="img/sisapco.png"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="/#about">Beneficios</a></li>
+          <li><a class="nav-link scrollto" href="/#services">Servicios</a></li>
+          <!--<li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>-->
+          <li><a class="nav-link scrollto" href="/#team">Testimonios</a></li>
+		  <li><a class="nav-link scrollto" href="/#pricing">Precios</a></li>
+          <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>-->
+          <li><a class="nav-link scrollto" href="/#contact">Contactenos</a></li>
+          <li><a class="getstarted scrollto" href="/#ingresar">Ingresar</a></li>
         </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section style="background-color: #3c4c6a">
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section id="ingresar" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Sistema administrativo para copropiedades</h2>
+          <p>Bienvenido a la app de Sisapcop, inicia sesión para acceder a la plataforma. ¿Necesita ayuda? Entre a nuestro centro de ayuda</p>
+        </div>
+
+        <div class="row">
+        
+        <div class="row py-5 mt-4 align-items-center">
+ 
+        
+	        <!-- Registeration Form -->
+	        <div class="col-md-7 col-lg-6 ml-auto">
+	            <form th:action="@{/login}" method="post">
+	                <div class="row">
+	                    <h3>Inicia sesión</h3>
+	                    </br>
+	                    </br>
+	                    </br>
+	                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+			            Nombre de usuario o contraseña inválidos.
+			        </div>
+			        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+			            Usted ha sido desconectado.
+			        </div>
+	
+	                    <!-- usuario -->
+	                    <div class="input-group col-lg-12 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-envelope text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="username" type="text" name="username" placeholder="Nombre de usuario" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+	                    
+	                    <!-- password -->
+	                    <div class="input-group col-lg-12 mb-4">
+	                        <div class="input-group-prepend">
+	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+	                                <i class="fa fa-lock text-muted"></i>
+	                            </span>
+	                        </div>
+	                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+	                    </div>
+	
+	
+	
+	                    <!-- Submit Button -->
+	                    <div class="form-group col-lg-12 mx-auto mb-0">
+	                         <button type="submit" class="btn btn-primary btn-block py-2 font-weight-bold" style="width:100%"><i class="fas fa-sign-in-alt"></i>Iniciar sesión</button>
+	                    </div>
+	                    
+	
+	
+	                    <!-- Divider Text -->
+	                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+	                        <div class="border-bottom w-100 ml-5"></div>
+	                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+	                        <div class="border-bottom w-100 mr-5"></div>
+	                    </div>
+	
+	                    <!-- Social Login -->
+	                    <div class="form-group col-lg-12 mx-auto">
+	                        <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
+	                            
+	                            <span class="font-weight-bold">Solicitar enlace de acceso rápido</span>
+	                        </a>
+	                    </div>
+	
+	                    <!-- Already Registered -->
+	                    <div class="text-center w-100">
+	                        <p class="text-muted font-weight-bold">Olvide mi constraseña <a href="#" class="text-primary ml-2">Login</a></p>
+	                    </div>
+	
+	                </div>
+	            </form>
+	        </div>
+	     </div>
+	        
+        </div>
 
       </div>
-    </div>
-  </nav>
-</header>
+    </section><!-- End Services Section -->
 
-<main>
+    <!-- ======= Portfolio Section
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
 
-
-<div class="container">
-    <div class="row py-5 mt-4 align-items-center">
-        <!-- For Demo Purpose -->
-        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-            <img style="width:40%!important" src="img/logodedificio.png" alt="" class="img-fluid mb-3 d-none d-md-block">
-            <h1>Administración de Propiedad Horizontal</h1>
-            <p class="font-italic text-muted mb-0">Bienvenido a la app de Sisapcop, inicia sesión para acceder a la plataforma.
-
-</p>
-            <p class="font-italic text-muted">¿Necesita ayuda? Entre a nuestro centro de ayuda
-            </p>
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <!-- Registeration Form -->
-        <div class="col-md-7 col-lg-6 ml-auto">
-            <form th:action="@{/login}" method="post">
-                <div class="row">
-                    <h3>Inicia sesión</h3>
-                    </br>
-                    </br>
-                    </br>
-                <div th:if="${param.error}" class="alert alert-danger" role="alert">
-		            Nombre de usuario o contraseña inválidos.
-		        </div>
-		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
-		            Usted ha sido desconectado.
-		        </div>
+        <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+          <li data-filter="*" class="filter-active">All</li>
+          <li data-filter=".filter-app">App</li>
+          <li data-filter=".filter-card">Card</li>
+          <li data-filter=".filter-web">Web</li>
+        </ul>
 
-                    <!-- usuario -->
-                    <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-envelope text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="username" type="text" name="username" placeholder="Nombre de usuario" class="form-control bg-white border-left-0 border-md">
-                    </div>
-                    
-                    <!-- password -->
-                    <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
-                    </div>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>App 1</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Web 3</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>App 2</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Card 2</h4>
+              <p>Card</p>
+              <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Web 2</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>App 3</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Card 1</h4>
+              <p>Card</p>
+              <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Card 3</h4>
+              <p>Card</p>
+              <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Web 3</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section> End Portfolio Section -->
 
 
+  </main><!-- End #main -->
 
-                    <!-- Submit Button -->
-                    <div class="form-group col-lg-12 mx-auto mb-0">
-                         <button type="submit" class="btn btn-primary btn-block py-2 font-weight-bold"><i class="fas fa-sign-in-alt"></i>Iniciar sesión</button>
-                    </div>
-                    
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
 
-
-                    <!-- Divider Text -->
-                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                        <div class="border-bottom w-100 ml-5"></div>
-                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
-                        <div class="border-bottom w-100 mr-5"></div>
-                    </div>
-
-                    <!-- Social Login -->
-                    <div class="form-group col-lg-12 mx-auto">
-                        <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                            
-                            <span class="font-weight-bold">Solicitar enlace de acceso rápido</span>
-                        </a>
-                    </div>
-
-                    <!-- Already Registered -->
-                    <div class="text-center w-100">
-                        <p class="text-muted font-weight-bold">Olvide mi constraseña <a href="#" class="text-primary ml-2">Login</a></p>
-                    </div>
-
-                </div>
+    <!--<div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
+          </div>
         </div>
+      </div>
+    </div>-->
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Sisapco</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-</div>
 
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-</main>
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Sisapco</span></strong>. All Rights Reserved
+      </div>
 
+    </div>
+  </footer><!-- End Footer -->
 
-    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="plantillaindex/assets/vendor/aos/aos.js"></script>
+  <script src="plantillaindex/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="plantillaindex/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="plantillaindex/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="plantillaindex/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="plantillaindex/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="plantillaindex/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="plantillaindex/assets/js/main.js"></script>
 
 </body>
+
 </html>

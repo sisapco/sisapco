@@ -26,7 +26,9 @@ import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
 import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Cotizaciones;
+import co.com.sisapco.entity.EstadosFinancieros;
 import co.com.sisapco.entity.ManualConvivencia;
+import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
@@ -80,7 +82,7 @@ public class ComunicadosController {
 	    String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 	    Comunicados comunicadosform = new Comunicados();
 		comunicadosform.setComuFecha(timeStamp);
-		
+		model.addAttribute("fechaDeCargaPrecargada", timeStamp);
 		
 		model.addAttribute("comunicadosForm",comunicadosform );
 		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
@@ -102,7 +104,153 @@ public class ComunicadosController {
 		return "administrador/uploadComunicados";
 	}
 	
-	
+	   //Crear Comunicados
+		@PostMapping("/crearcomunicado")
+		public String crearComunicado(@Valid @ModelAttribute("comunicadosForm")Comunicados comunicados,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp, 
+				@RequestParam("comuArchivos") MultipartFile[] filesComunicados) throws Exception {
+			
+			String usuariologin = authenticationnn.getName();
+			Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+			
+			String copNitString = req.getParameter("copNit");
+			int copNit = Integer.parseInt(copNitString);
+			String copNombre = req.getParameter("copNombre");
+			
+			long longusuariId=userPanel.getUsuId();
+			int usuId = (int) longusuariId;
 
+			HttpSession session = request.getSession();
+			CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+			int copId = copropiedadDTO.getCopId();
+			
+			if(result.hasErrors()) {
+				model.addAttribute("comunicadosForm", comunicados);
+				model.addAttribute("errorcampos","active");
+			}else {
+				try {
+					
+					comunicados.setComuLog(String.valueOf(usuId));
+					
+					//Consultamos el ID de Google para guardar el contrato
+					AlmacenamientoGoogle almacenamientoGoogleContrato = userService.getAlmacenamientoGoogleByIdForm(copNit, "comunicados");
+					String codigoGoogleContrato = almacenamientoGoogleContrato.getAlmaIdcarpeta();
+					
+					//Instanciar la clase de google para guardar la imagen
+					CreateGoogleFile createGoogleFile = new CreateGoogleFile();
+					
+					//Guardar Imagenes Antes
+					for (int i = 0; i < filesComunicados.length; i++) {
+					  
+						  MultipartFile file = filesComunicados[i];
+						  String name = filesComunicados[i].getOriginalFilename();					  
+						  String formato = filesComunicados[i].getContentType();					 
+						  byte[] bytes = file.getBytes();
 
+						  
+						    if(!file.isEmpty()) {						         
+							    //Llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
+						        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleContrato, formato, name, bytes);						    
+							    String codigoDescarga = googleFile.getWebContentLink();
+							    String codigoVista = googleFile.getWebViewLink();
+							    
+							    Comunicados guardarComunicados = new Comunicados();							    
+							    guardarComunicados.setCopNit(copNit);
+							    guardarComunicados.setComuNombre(comunicados.getComuNombre());
+							    guardarComunicados.setComuFecha(comunicados.getComuFecha());
+							    guardarComunicados.setComuEstado(comunicados.getComuEstado());
+							    guardarComunicados.setComuDescripcion(comunicados.getComuDescripcion());
+							    guardarComunicados.setComuArchivo(codigoDescarga);
+							    guardarComunicados.setComuLog(comunicados.getComuLog());
+							    guardarComunicados.setComuVisualizacion(codigoVista);
+							    							   
+							    userService.createComunicados(guardarComunicados);
+						    }			   
+					  }
+					
+					
+					model.addAttribute("comunicadosForm", comunicados);
+					model.addAttribute("bien","active");
+					model.addAttribute("activarmodalactualizar", "A");
+					
+				} catch (Exception e) {
+					model.addAttribute("error","active");
+					model.addAttribute("formErrorMessage",e.getMessage());
+					model.addAttribute("comunicadosForm", comunicados);
+			        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+					model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+					model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+					model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
+					model.addAttribute("copNombre", copNombre);
+					model.addAttribute("copNit", copNit);
+					model.addAttribute("activarmodalactualizar", "E");
+				}
+			}
+			
+	        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+			model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+			model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+			model.addAttribute("actividadeslist", userService.getActividadesByNit(copNit));
+			model.addAttribute("copNombre", copNombre);
+			model.addAttribute("copNit", copNit);
+			model.addAttribute("rutaroot", "");
+			model.addAttribute("seguimiento", "");
+			model.addAttribute("copId", copId);
+			
+			//Instanciamos la clase para cifrar el codigo
+			MD5DatosGet encrypted = new MD5DatosGet();
+			String copIdEcr = String.valueOf(copId);
+		    String copIdEncryted ="";
+			copIdEncryted = encrypted.encrypted(copIdEcr);
+			copIdEncryted = copIdEncryted.replace("=", "co");
+			model.addAttribute("copIdEncryted", copIdEncryted);
+			
+			//menu atras
+			String menuAdmin = rutamenu+"admin";
+			model.addAttribute("rutamenu", menuAdmin);
+			
+			return "administrador/uploadComunicados";
+		}
+		
+		//Consulta Comunicados
+		@RequestMapping("/consultacomunicados")
+		public String consultaComunicados(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			          
+			String usuariologin = authenticationnn.getName();
+			Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+			
+			HttpSession session = request.getSession();
+			CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+			
+			int copNit = copropiedadDTO.getCopNit();
+			String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+			int copId = copropiedadDTO.getCopId();
+			
+			model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+			model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+			model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+			
+			model.addAttribute("comunicadoslist", userService.getComunicadosByNit(copNit));
+			model.addAttribute("copNombre", copNombre);
+			model.addAttribute("copNit", copNit);
+			model.addAttribute("copId", copId);
+			
+			model.addAttribute("admin","active");
+			model.addAttribute("consejo","active");
+			
+			//Instanciamos la clase para cifrar el codigo
+			MD5DatosGet encrypted = new MD5DatosGet();
+			String copIdEcr = String.valueOf(copId);
+		    String copIdEncryted ="";
+			copIdEncryted = encrypted.encrypted(copIdEcr);
+			copIdEncryted = copIdEncryted.replace("=", "co");
+			model.addAttribute("copIdEncryted", copIdEncryted);
+			
+			//menu atras
+			String menuAdmin = rutamenu+"admin";
+			model.addAttribute("rutamenu", menuAdmin);
+			
+			model.addAttribute("activarComunicado","active");
+			
+			return "administrador/documentacion";
+		}
 }

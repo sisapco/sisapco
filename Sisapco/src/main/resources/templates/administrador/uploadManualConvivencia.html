@@ -33,6 +33,23 @@
 	
 	 <link href="css/menusisapco.css" rel="stylesheet">
 
+
+  <style>
+  		#header {
+		  background: rgba(40, 58, 90, 0.9)!important;
+		}
+  </style>	 
+  <!-- Vendor CSS Files -->
+  <link href="plantillaindex/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">  
+    
+  <!-- Template Main CSS File -->
+  <link href="plantillaindex/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -40,23 +57,46 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<!--  <ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
-			<div th:include="administrador/menu.html" th:remove="tag"></div>
-		</ul>-->
-		<!-- End of Sidebar -->
-
-
-
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 
 			<!-- Main Content -->
 			<div id="content">
+			
+			  <!-- ======= Header ======= -->
+				  <header id="header" class="fixed-top ">
+				    <div class="container d-flex align-items-center">
+				
+				      <h1 class="logo me-auto">			      
+				        
+				         <form action="/admin" method="get" id="home34343" Style="float:left">   
+			                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />            
+			                <button id="54545" class="btn btn-link rounded-circle mr-3" >
+			                        <i class="fa fa-bars"></i>
+			                        <img class="imagenLogo" style="width: 100%!important" src="img/sisapco.png">
+			                </button>
+			             </form>
+			             
+				        <form action="/documentacion" method="get" id="home34343" Style="float:left">
+	                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
+	                            <i class="fa fa-bars"></i>
+	                            <img style="width:100%!important" src="img/imagenatras.png">
+	                        </button>
+	                    </form>   
+				      
+				      </h1>				
+				      <nav id="navbar" class="navbar">
+				        <ul>
+				          <li><a class="getstarted scrollto" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}" ></span><span> - </span><span> Salir  </span><span class="float-right"></span></a></li>
+				        </ul>
+				        <i class="bi bi-list mobile-nav-toggle"></i>
+				      </nav><!-- .navbar -->
+				
+				    </div>
+				  </header><!-- End Header -->
 
-				<!-- Topbar -->
+				<!-- Topbar
 				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 	               <form action="/admin" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
@@ -73,18 +113,13 @@
                             <i class="fa fa-bars"></i>
                             <img style="width:250%!important" src="img/imagenatras.png">
                         </button>
-                    </form>    
-	           
-
-					<!-- Topbar Navbar -->
+                    </form>    	           
 					<ul class="navbar-nav ml-auto">
-
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
 						<li class="nav-item dropdown no-arrow d-sm-none"><a
 							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
+						</a>
 							<div
 								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
 								aria-labelledby="searchDropdown">
@@ -104,16 +139,9 @@
 							</div></li>
 						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow">
-						
-						<!--  <a class="nav-link dropdown-toggle" href="#"><span></span> - <span>Salir
-							
-							</span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a> -->
-                                    
+						<li class="nav-item dropdown no-arrow">					      
                             <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}"></span> - <span>Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>  
                                     
-                                    <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
@@ -137,11 +165,11 @@
 					</ul>
 
 				</nav>
-				<!-- End of Topbar -->
+			    End of Topbar -->
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<!--  -->
+				<br><br><br><br><br><br>
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">
@@ -154,7 +182,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">Cargar manual de convivencia:</h6>
 						</div>
 						<div class="card-body">
-							<form class="user needs-validation" novalidate role="form" th:object="${manualConvivenciaForm}" action="cargarManual" method="post" enctype="multipart/form-data">
+							<form class="user needs-validation" novalidate role="form" th:object="${manualConvivenciaForm}" action="crearmanualconviviencia" method="post" enctype="multipart/form-data">
 						
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -189,9 +217,13 @@
 									</div>
 
 									<div class="col-sm-6 ">
-										<span>Estado:</span> <input type="number"
-											class="form-control form-control-user" id="conviEstado"
-											placeholder="" th:field="${manualConvivenciaForm.conviEstado}">
+										<span>Estado:</span>
+											
+										    <select class="form-control" id="conviEstado" th:field="${manualConvivenciaForm.conviEstado}" placeholder="Seleccione el estado" required>
+	                                              <option value="" selected>Seleccione</option>
+	                                              <option value="1">Activo</option>
+											      <option value="0">Inactivo</option>
+                                            </select> 
 									</div>
 								</div>
 
@@ -258,15 +290,69 @@
 			</div>
 			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2023</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
+<!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Sisapco</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Sisapco</span></strong>. All Rights Reserved
+      </div>
+
+    </div>
+  </footer>
+  <!-- End Footer -->
 
 		</div>
 		<!-- End of Content Wrapper -->
@@ -441,6 +527,8 @@
 				})
 			})()
 	</script>
+	   <!-- Template Main JS File -->
+  <script src="plantillaindex/assets/js/main.js"></script>
 </body>
 
 </html>

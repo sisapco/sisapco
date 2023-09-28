@@ -4,11 +4,15 @@ import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
+import co.com.sisapco.entity.Dane;
+import co.com.sisapco.entity.EstadosFinancieros;
 import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.ManualConvivencia;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
@@ -94,4 +98,22 @@ public interface UserService {
 	public SancionesMulta createSancionesMulta(SancionesMulta sancionesMulta) throws Exception;
 	
 	public Iterable<SancionesMulta> getSancionesMultaByNit(int copNit) throws Exception;
+	
+	public Iterable<Dane> getDaneDepartamentos() throws Exception;
+	
+	public Iterable<Dane> getMunicipioCodigoDepartamento(String codigoDepartamento) throws Exception;
+	
+	public EstadosFinancieros createEstadosFinancieros(EstadosFinancieros estadosFinancieros) throws Exception;
+	
+	public ManualConvivencia createManualConvivencia(ManualConvivencia manualConvivencia) throws Exception;
+	
+	public Comunicados createComunicados(Comunicados comunicados) throws Exception;
+	
+	public Iterable<Comunicados> getComunicadosByNit(int codNit) throws Exception;
+	
+	public Iterable<ManualConvivencia> getManualConvivenciaByNit(int codNit) throws Exception;
+	
+	public Iterable<EstadosFinancieros> getEstadosFinancierosByNit(int codNit) throws Exception;
+	
+	
 }

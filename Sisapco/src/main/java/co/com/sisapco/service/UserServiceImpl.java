@@ -9,11 +9,15 @@ import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
+import co.com.sisapco.entity.Dane;
+import co.com.sisapco.entity.EstadosFinancieros;
 import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.ManualConvivencia;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
@@ -24,11 +28,15 @@ import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.ActasRepository;
 import co.com.sisapco.repository.ActividadesRepository;
 import co.com.sisapco.repository.AlmacenamientoGoogleRepository;
+import co.com.sisapco.repository.ComunicadosRepository;
 import co.com.sisapco.repository.ContratoRepository;
 import co.com.sisapco.repository.ControlPagosRepository;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.CotizacionesRepository;
+import co.com.sisapco.repository.DaneRepository;
+import co.com.sisapco.repository.EstadosFinancierosRepository;
 import co.com.sisapco.repository.EvidenciaActividadesRepository;
+import co.com.sisapco.repository.ManualConvivenciaRepository;
 import co.com.sisapco.repository.ModuloRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.repository.PqrsRepository;
@@ -85,6 +93,17 @@ public class UserServiceImpl implements UserService{
 	@Autowired
     SancionesMultaRepository repositorySancionesMulta;
 	
+	@Autowired
+    DaneRepository repositoryDane;
+	
+	@Autowired
+	EstadosFinancierosRepository repositoryEstadosFinancieros;
+	
+	@Autowired
+	ManualConvivenciaRepository repositoryManualConvivencia;
+	
+	@Autowired
+	ComunicadosRepository repositoryComunicados;
 	
 	@Override
 	public Iterable<Usuarios> getAllUsers(){
@@ -375,5 +394,48 @@ public class UserServiceImpl implements UserService{
 	public Iterable<SancionesMulta> getSancionesMultaByNit(int copNit) throws Exception {		
 		return repositorySancionesMulta.findBySancionesMultaNit(copNit);		
 	}
-	
+
+	@Override
+	public Iterable<Dane> getDaneDepartamentos() throws Exception {
+		return repositoryDane.findByDaneDepartamentos();
+	}
+
+	@Override
+	public Iterable<Dane> getMunicipioCodigoDepartamento(String codigoDepartamento) throws Exception {
+		return repositoryDane.findByMunicipioCodigoDepartamento(codigoDepartamento);
+	}
+
+	@Override
+	public EstadosFinancieros createEstadosFinancieros(EstadosFinancieros estadosFinancieros) throws Exception {
+		estadosFinancieros = repositoryEstadosFinancieros.save(estadosFinancieros);
+		return estadosFinancieros;
+	}
+
+	@Override
+	public ManualConvivencia createManualConvivencia(ManualConvivencia manualConvivencia) throws Exception {		
+		manualConvivencia = repositoryManualConvivencia.save(manualConvivencia);		
+		return manualConvivencia;
+	}
+
+	@Override
+	public Comunicados createComunicados(Comunicados comunicados) throws Exception {
+		comunicados = repositoryComunicados.save(comunicados);		
+		return comunicados;
+	}
+
+	@Override
+	public Iterable<Comunicados> getComunicadosByNit(int codNit) throws Exception {
+		return repositoryComunicados.findByComunicadosNit(codNit);
+	}
+
+	@Override
+	public Iterable<ManualConvivencia> getManualConvivenciaByNit(int codNit) throws Exception {
+		return repositoryManualConvivencia.findByManualConvivenciaNit(codNit);
+	}
+
+	@Override
+	public Iterable<EstadosFinancieros> getEstadosFinancierosByNit(int codNit) throws Exception {
+		return repositoryEstadosFinancieros.findByEstadosFinancierosNit(codNit);
+	}
+
 }
