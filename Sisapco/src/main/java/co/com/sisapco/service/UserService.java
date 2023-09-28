@@ -8,6 +8,7 @@ import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
+import co.com.sisapco.entity.DatosGenerales;
 import co.com.sisapco.entity.EvidenciaActividades;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
@@ -94,4 +95,6 @@ public interface UserService {
 	public SancionesMulta createSancionesMulta(SancionesMulta sancionesMulta) throws Exception;
 	
 	public Iterable<SancionesMulta> getSancionesMultaByNit(int copNit) throws Exception;
+	
+	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception;
 }

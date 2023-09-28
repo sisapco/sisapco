@@ -37,7 +37,26 @@
 </head>
 
 <body id="page-top">
-
+<!-- se utiliza para la clonacion de campos -->
+ 	<style>
+        .puntero{
+            cursor: pointer;
+        }
+        .ocultar{
+            display: none;
+        }
+    </style>
+    
+    <style>
+        .puntero1{
+            cursor: pointer;
+        }
+        .ocultar1{
+            display: none;
+        }
+    </style>
+    
+    
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -323,7 +342,100 @@
 								<input type="submit" class="btn btn-primary"
 									value="Grabar Propietario">
 								<hr>
+    
+ <!-- ********************************************************************************************************** -->  
+    <div class="container pt-5">
+    
+  
+ <h5 class="card-title">Composición residentes</h5>
+<form class="row gy-2 gx-3 align-items-center">
+        <div class="col-auto">               
+                        <div class="form-row clonar">
+                            <div class="col-auto">
+                                <label for="">Nombres</label>
+                                <input type="text" class="form-control" name="nombres[]" maxlength=45>
+                                <span class="badge badge-pill badge-danger puntero ocultar">Eliminar</span>
+                            </div>
+                             <div class="col-auto">
+                                <label for="">Apellidos</label>
+                                <input type="text" class="form-control" name="apellidos"maxlength=45>
+                               
+                            </div>
+                      
+                            <div class="col-auto">
+                                <label for="">Número Documento</label>
+                                <input type="number" class="form-control" name="nombre_contacto"  id="numero">
+                            </div>
+                             <div class="col-auto">
+                                <label for="">Número telefonico</label>
+                                <input type="number" class="form-control" name="numero_contacto" id="numero">
+                            </div>
+                              <div class="col-auto">
+                                <label for="">Parentesco</label>
+                                <input type="text" class="form-control" name="apellidos" maxlength=45>
+                                
+                            </div>
+                      
+                        </div>
+                         <div class="form-row">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-success" id="agregar" onclick="adicionarCampos('agregar','contenedor','clonar','ocultar')">Agregar más datos</button>
+                            </div>
+                        </div>
+                        <div id="contenedor"></div>
 
+                        
+           
+        </div>
+        </form>
+    </div>
+    <!-- ********************************************************************************************************** -->
+ <!-- ********************************************************************************************************** -->  
+    <div class="container pt-5">
+    
+  
+ <h5 class="card-title">Composición Mascotas</h5>
+<form class="row gy-2 gx-3 align-items-center">
+        <div class="col-auto">               
+                        <div class="form-row clonar1">
+                            <div class="col-auto">
+                                <label for="">Nombres</label>
+                                <input type="text" class="form-control" name="nombres[]" maxlength=45>
+                                <span class="badge badge-pill badge-danger puntero ocultar1">Eliminar</span>
+                            </div>
+                             <div class="col-auto">
+                                <label for="">Apellidos</label>
+                                <input type="text" class="form-control" name="apellidos"maxlength=45>                               
+                            </div>
+                      
+                            <div class="col-auto">
+                                <label for="">Número Documento</label>
+                                <input type="number" class="form-control" name="nombre_contacto"  id="numero">
+                            </div>
+                             <div class="col-auto">
+                                <label for="">Número telefonico</label>
+                                <input type="number" class="form-control" name="numero_contacto" id="numero">
+                            </div>
+                              <div class="col-auto">
+                                <label for="">Parentesco</label>
+                                <input type="text" class="form-control" name="apellidos" maxlength=45>
+                                
+                            </div>                     
+                        </div>
+                         <div class="form-row">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-success" id="agregar1" onclick="adicionarCampos('agregar1','contenedor1','clonar1','ocultar1')">Agregar más datos</button>
+                            </div>
+                        </div>
+                        <div id="contenedor1"></div>
+
+                        
+           
+        </div>
+        </form>
+    </div>
+    <!-- ********************************************************************************************************** -->							
+							
 							</form>
 
 						</div>
@@ -416,6 +528,101 @@
 			})
 		})()
 	</script>
+	
+	<script type="text/javascript">
+	//validacion de tamaño cantidad de numeros en campos numeros
+	var input=  document.getElementById('numero');
+	input.addEventListener('input',function(){
+	  if (this.value.length > 15) 
+	     this.value = this.value.slice(0,15); 
+	})
+	</script>
+	
+	  <script>
+	  
+	  function adicionarCampos(idagregar,idcontenedor,idclonar,idocultar){
+		    
+		    //duplicar campos
+	        let agregar = document.getElementById(idagregar);
+	        let contenido = document.getElementById(idcontenedor);	    
+	      
+			let clonado = document.querySelector('.'+idclonar);
+			let clon = clonado.cloneNode(true);
+		
+			contenido.appendChild(clon).classList.remove(idclonar);
+		
+			let remover_ocutar = contenido.lastChild.childNodes[1].querySelectorAll('span');
+		    remover_ocutar[0].classList.remove(idocultar);
+			      
+
+	        contenido.addEventListener('click', e =>{
+	            e.preventDefault();
+	            if(e.target.classList.contains('puntero')){
+	                let contenedor  = e.target.parentNode.parentNode;
+	            
+	                contenedor.parentNode.removeChild(contenedor);
+	            }
+	        });
+	  }
+	  
+	  
+    //duplicar campos
+       /* let agregar = document.getElementById('agregar');
+        let contenido = document.getElementById('contenedor');
+
+        let boton_enviar = document.querySelector('#enviar_contacto')
+
+        agregar.addEventListener('click', e =>{
+            e.preventDefault();
+            let clonado = document.querySelector('.clonar');
+            let clon = clonado.cloneNode(true);
+
+            contenido.appendChild(clon).classList.remove('clonar');
+
+            let remover_ocutar = contenido.lastChild.childNodes[1].querySelectorAll('span');
+            remover_ocutar[0].classList.remove('ocultar');
+        });
+
+        contenido.addEventListener('click', e =>{
+            e.preventDefault();
+            if(e.target.classList.contains('puntero')){
+                let contenedor  = e.target.parentNode.parentNode;
+            
+                contenedor.parentNode.removeChild(contenedor);
+            }
+        }); */
+    </script>
+    
+    <script>
+    //duplicar campos
+        /* let agregar1 = document.getElementById('agregar1');
+        let contenido1 = document.getElementById('contenedor1');
+       
+
+        agregar1.addEventListener('click', e =>{
+            e.preventDefault();
+            let clonado = document.querySelector('.clonar1');
+            let clon = clonado.cloneNode(true);
+
+            contenido1.appendChild(clon).classList.remove('clonar1');
+            
+           let remover_ocutar1 = contenido1.lastChild.childNodes[1].querySelectorAll('span');
+           remover_ocutar1[0].classList.remove('ocultar1');
+        });
+
+        contenido1.addEventListener('click', e =>{
+            e.preventDefault();
+            if(e.target.classList.contains('puntero')){
+                let contenedor1  = e.target.parentNode.parentNode;
+            
+                contenedor1.parentNode.removeChild(contenedor1);
+            }
+        });
+
+      */
+
+    </script>
+    
 </body>
 
 </html>

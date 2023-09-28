@@ -13,6 +13,7 @@ import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
+import co.com.sisapco.entity.DatosGenerales;
 import co.com.sisapco.entity.EvidenciaActividades;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
@@ -28,6 +29,7 @@ import co.com.sisapco.repository.ContratoRepository;
 import co.com.sisapco.repository.ControlPagosRepository;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.CotizacionesRepository;
+import co.com.sisapco.repository.DatosGeneralesRepository;
 import co.com.sisapco.repository.EvidenciaActividadesRepository;
 import co.com.sisapco.repository.ModuloRepository;
 import co.com.sisapco.repository.PerfilRepository;
@@ -85,6 +87,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
     SancionesMultaRepository repositorySancionesMulta;
 	
+	@Autowired
+    DatosGeneralesRepository repositoryDatosGenerales;
 	
 	@Override
 	public Iterable<Usuarios> getAllUsers(){
@@ -375,5 +379,13 @@ public class UserServiceImpl implements UserService{
 	public Iterable<SancionesMulta> getSancionesMultaByNit(int copNit) throws Exception {		
 		return repositorySancionesMulta.findBySancionesMultaNit(copNit);		
 	}
+
+	@Override
+	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception {
+	    datosGenerales = repositoryDatosGenerales.save(datosGenerales);
+		return null;
+	}
+	
+	
 	
 }
