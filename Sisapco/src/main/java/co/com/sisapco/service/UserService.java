@@ -11,6 +11,7 @@ import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
 import co.com.sisapco.entity.Dane;
 import co.com.sisapco.entity.EstadosFinancieros;
+import co.com.sisapco.entity.DatosGenerales;
 import co.com.sisapco.entity.EvidenciaActividades;
 import co.com.sisapco.entity.ManualConvivencia;
 import co.com.sisapco.entity.Modulo;
@@ -115,5 +116,6 @@ public interface UserService {
 	
 	public Iterable<EstadosFinancieros> getEstadosFinancierosByNit(int codNit) throws Exception;
 	
-	
+	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception;
+
 }

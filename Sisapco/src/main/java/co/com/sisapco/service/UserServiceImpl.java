@@ -14,8 +14,11 @@ import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.Cotizaciones;
+
 import co.com.sisapco.entity.Dane;
 import co.com.sisapco.entity.EstadosFinancieros;
+
+import co.com.sisapco.entity.DatosGenerales;
 import co.com.sisapco.entity.EvidenciaActividades;
 import co.com.sisapco.entity.ManualConvivencia;
 import co.com.sisapco.entity.Modulo;
@@ -35,6 +38,7 @@ import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.CotizacionesRepository;
 import co.com.sisapco.repository.DaneRepository;
 import co.com.sisapco.repository.EstadosFinancierosRepository;
+import co.com.sisapco.repository.DatosGeneralesRepository;
 import co.com.sisapco.repository.EvidenciaActividadesRepository;
 import co.com.sisapco.repository.ManualConvivenciaRepository;
 import co.com.sisapco.repository.ModuloRepository;
@@ -104,6 +108,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	ComunicadosRepository repositoryComunicados;
+
+    DatosGeneralesRepository repositoryDatosGenerales;
 	
 	@Override
 	public Iterable<Usuarios> getAllUsers(){
@@ -438,4 +444,10 @@ public class UserServiceImpl implements UserService{
 		return repositoryEstadosFinancieros.findByEstadosFinancierosNit(codNit);
 	}
 
+
+	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception {
+	    datosGenerales = repositoryDatosGenerales.save(datosGenerales);
+		return null;
+	}
+	
 }
