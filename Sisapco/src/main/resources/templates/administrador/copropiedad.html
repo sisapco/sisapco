@@ -43,13 +43,6 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
-			<div th:include="administrador/menu.html" th:remove="tag"></div>
-		</ul>
-		<!-- End of Sidebar -->
 
 
 
@@ -258,7 +251,7 @@
 						</div>
 						<div class="card-body">
 							<form class="user needs-validation" novalidate role="form"
-								action="crearCopropiedad" method="post"
+								action="crearcopropiedad" method="post"
 								enctype="multipart/form-data">
 								<div class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -268,7 +261,7 @@
 
 								<div class="alert alert-success" role="alert">La acta fue
 									creada de forma exitosa.</div>
-								<input class="form-control" type=hidden id="copNit"
+								<input class="form-control" type=hidden id="copNit" th:value="${copNit}"
 									name="copNit"> <input class="form-control" type=hidden
 									id="copNombre" name="copNombre">
 
@@ -359,7 +352,7 @@
 												name="pqrsAdjunto">
 											<div class=" form-group row">
 												<input id="coplogo" class="form-control form-control-user"
-													placeholder="" th:field="${copropiedadForm.copFechaFin}"
+													placeholder="" th:field="${copropiedadForm.copLogo}"
 													type="text"> <a
 													class="btn btn-file  btn btn-secondary "><i
 													class="fa fa-folder-open-o "></i> Seleccionar</a>
