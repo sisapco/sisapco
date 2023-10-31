@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.dto.CopropiedadDTO;
 import co.com.sisapco.entity.Copropiedad;
+import co.com.sisapco.entity.ManualConvivencia;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
@@ -372,8 +373,51 @@ public class UserController {
 	}
 	
 	@GetMapping("/documentacion")
-	public String documentacion() {
+	public String documentacion(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit =copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		
+		int copId =  copropiedadDTO.getCopId();
+		 
+		//Instanciamos la clase para cifrar el codigo
+		MD5DatosGet encrypted = new MD5DatosGet();
+		String copIdEcr = String.valueOf(copId);
+	    String copIdEncryted ="";
+		copIdEncryted = encrypted.encrypted(copIdEcr);
+		copIdEncryted = copIdEncryted.replace("=", "co");
+		
+		//model.addAttribute("manualConvivenciaForm", new ManualConvivencia());
+		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("copId", copId);
+		model.addAttribute("copIdEncryted", copIdEncryted);
+		
+		model.addAttribute("admin","active");
+		model.addAttribute("consejo","active");
+		
+		//menu atras
+		String menuAdmin = rutamenu+"admin";
+		model.addAttribute("rutamenu", menuAdmin);
+		
+		
+		if(userPanel.getPerId() == 1 || userPanel.getPerId()==6 || userPanel.getPerId()==7) {
+			model.addAttribute("mostrarcargadocuemtos","active");
+		}else {
+			model.addAttribute("mostrarcargadocuemtos","false");
+		}
+				
 		return "administrador/documentacion";
 	}
 	

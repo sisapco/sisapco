@@ -449,5 +449,21 @@ public class UserServiceImpl implements UserService{
 	    datosGenerales = repositoryDatosGenerales.save(datosGenerales);
 		return null;
 	}
+
+	@Override
+	public EstadosFinancieros getEstadosFinancierosByIdForm(int estId) throws Exception {
+		return repositoryEstadosFinancieros.findByEstIdForm(estId);
+	}
+
+	@Override
+	public ManualConvivencia getManualConvivenciaByIdForm(int conviId) throws Exception {
+		return repositoryManualConvivencia.findByConviIdForm(conviId);
+	}
+
+	@Override
+	public Comunicados getComunicadosByIdForm(int comuId) throws Exception {
+		return repositoryComunicados.findByComunicadosIdForm(comuId);
+	}
+	
 	
 }

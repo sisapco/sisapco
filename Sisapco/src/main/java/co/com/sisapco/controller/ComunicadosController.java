@@ -97,6 +97,12 @@ public class ComunicadosController {
 		model.addAttribute("admin","active");
 		model.addAttribute("consejo","active");
 		
+		//Activamos el adjunto
+		model.addAttribute("modificar","active");
+		
+		//Ruta Formulario
+		model.addAttribute("rutaFormulario", "crearcomunicado");
+		
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
@@ -205,7 +211,7 @@ public class ComunicadosController {
 			model.addAttribute("copIdEncryted", copIdEncryted);
 			
 			//menu atras
-			String menuAdmin = rutamenu+"admin";
+			String menuAdmin = rutamenu+"consultacomunicados";
 			model.addAttribute("rutamenu", menuAdmin);
 			
 			return "administrador/uploadComunicados";
@@ -214,7 +220,10 @@ public class ComunicadosController {
 		//Consulta Comunicados
 		@RequestMapping("/consultacomunicados")
 		public String consultaComunicados(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-			          
+			
+			//Instanciamos la clase MD5DatosGet para cifrar
+		    MD5DatosGet encrypted = new MD5DatosGet();
+		    
 			String usuariologin = authenticationnn.getName();
 			Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
 			
@@ -237,6 +246,164 @@ public class ComunicadosController {
 			model.addAttribute("admin","active");
 			model.addAttribute("consejo","active");
 			
+			//Activamos el boton modificar solo para el administrador
+			if(userPanel.getPerId() == 1) {
+				model.addAttribute("activarRespuesta","active");
+			}else {
+				model.addAttribute("activarRespuesta","false");
+			}
+			
+	        ///////////Ciframos el id del comunicado
+	        Iterable<Comunicados> comunicados = userService.getComunicadosByNit(copNit);
+	        	      
+		    String comunicadosIdEncryted ="";
+		    int comuId=0;		
+		    for (Comunicados x: comunicados) {
+		    	comuId = x.getComuId();
+				String comunicadosIdEcr = String.valueOf(comuId);
+				comunicadosIdEncryted = encrypted.encrypted(comunicadosIdEcr);
+				comunicadosIdEncryted = comunicadosIdEncryted.replace("=", "co");   
+				x.setComuLog(comunicadosIdEncryted);
+		    }
+			
+			//Instanciamos la clase para cifrar el codigo
+			String copIdEcr = String.valueOf(copId);
+		    String copIdEncryted ="";
+			copIdEncryted = encrypted.encrypted(copIdEcr);
+			copIdEncryted = copIdEncryted.replace("=", "co");
+			model.addAttribute("copIdEncryted", copIdEncryted);
+			
+			//Menu Atras
+			String menuAdmin = rutamenu+"admin";
+			model.addAttribute("rutamenu", menuAdmin);
+			
+			model.addAttribute("activarComunicado","active");
+			
+			return "administrador/documentacion";
+		}
+		
+		
+		//Formulario para modificar el estado
+		@RequestMapping("/modComunicados")
+		public String modificarManuelConvivencia(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+			String usuariologin = authenticationnn.getName();
+			Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+			
+			HttpSession session = request.getSession();
+			CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+			
+			int copNit =copropiedadDTO.getCopNit();
+			String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+			
+			int copId =  copropiedadDTO.getCopId();
+			
+			//Instanciamos la clase para cifrar el codigo
+			MD5DatosGet encrypted = new MD5DatosGet();
+			String copIdEcr = String.valueOf(copId);
+		    String copIdEncryted ="";
+			copIdEncryted = encrypted.encrypted(copIdEcr);
+			copIdEncryted = copIdEncryted.replace("=", "co");
+			
+			/////Capturamos el codigo del comunicados y lo desencrytamos
+			String idComunicadoString = req.getParameter("comunic");
+			MD5DatosGet decrypted = new MD5DatosGet();
+			idComunicadoString = idComunicadoString.replace("co", "");
+		    String idComunicadoDecrypted = decrypted.decrypted(idComunicadoString);
+		    int idComunicados = Integer.parseInt(idComunicadoDecrypted);
+		    
+		    Comunicados comunicadosForm = new Comunicados();
+		    comunicadosForm = userService.getComunicadosByIdForm(idComunicados);
+		   		    
+		    model.addAttribute("comunicadosForm", comunicadosForm);		
+			model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));		
+			model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));		
+			model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+			
+			model.addAttribute("copNombre", copNombre);
+			model.addAttribute("copNit", copNit);
+			model.addAttribute("copId", copId);
+			model.addAttribute("copIdEncryted", copIdEncryted);
+			
+			model.addAttribute("admin","active");
+			model.addAttribute("consejo","active");
+			
+			//Inactivamos los campos
+			model.addAttribute("inactivarcampos","true");
+					
+			//Menu atras
+			String menuAdmin = rutamenu+"consultacomunicados";
+			model.addAttribute("rutamenu", menuAdmin);
+			
+			//Ruta Formulario
+			model.addAttribute("rutaFormulario", "actualizarEstadoComunicado");
+			
+			return "administrador/uploadComunicados";
+		}
+		
+	    //Actualizar estado comunicado
+		@PostMapping("/actualizarEstadoComunicado")
+		public String actualizarEstadoComunicado(@Valid @ModelAttribute("comunicadosForm")Comunicados comunicados,BindingResult result, Authentication authenticationnn,  ModelMap model, HttpServletRequest req, 
+				HttpServletResponse resp) throws Exception {
+			
+			String usuariologin = authenticationnn.getName();
+			Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+			
+			String copNitString = req.getParameter("copNit");
+			int copNit = Integer.parseInt(copNitString);
+			String copNombre = req.getParameter("copNombre");
+			
+			long longusuariId=userPanel.getUsuId();
+			int usuId = (int) longusuariId;
+
+			HttpSession session = request.getSession();
+			CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+			int copId = copropiedadDTO.getCopId();
+			
+			if(result.hasErrors()) {
+				model.addAttribute("manualConvivenciaForm", comunicados);
+				model.addAttribute("errorcampos","active");
+			}else {
+				try {
+					//Asignamos el ID del usuario que esta modificar en el log								
+					comunicados.setComuLog(String.valueOf(usuId));
+
+					Comunicados guardarComunicados = new Comunicados();
+					guardarComunicados.setComuId(comunicados.getComuId());
+					guardarComunicados.setCopNit(comunicados.getCopNit());
+					guardarComunicados.setComuNombre(comunicados.getComuNombre());
+					guardarComunicados.setComuDescripcion(comunicados.getComuEstado());
+					guardarComunicados.setComuFecha(comunicados.getComuFecha());
+					guardarComunicados.setComuEstado(comunicados.getComuEstado());
+					guardarComunicados.setComuLog(comunicados.getComuLog());					
+					userService.createComunicados(guardarComunicados);
+									
+					model.addAttribute("manualConvivenciaForm", comunicados);
+					model.addAttribute("bien","active");
+					model.addAttribute("activarmodalactualizar", "A");
+					
+				} catch (Exception e) {
+					model.addAttribute("error","active");
+					model.addAttribute("formErrorMessage",e.getMessage());
+					model.addAttribute("manualConvivenciaForm", comunicados);
+			        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+					model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+					model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+					model.addAttribute("copNombre", copNombre);
+					model.addAttribute("copNit", copNit);
+					model.addAttribute("activarmodalactualizar", "E");
+				}
+			}
+			//model.addAttribute("manualConvivenciaForm", userService.getEstadosFinancierosByIdForm(estadosFinancieros.getEstId()));	
+	        model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+			model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+			model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+			model.addAttribute("copNombre", copNombre);
+			model.addAttribute("copNit", copNit);
+			model.addAttribute("rutaroot", "");
+			model.addAttribute("seguimiento", "");
+			model.addAttribute("copId", copId);
+				
 			//Instanciamos la clase para cifrar el codigo
 			MD5DatosGet encrypted = new MD5DatosGet();
 			String copIdEcr = String.valueOf(copId);
@@ -245,12 +412,15 @@ public class ComunicadosController {
 			copIdEncryted = copIdEncryted.replace("=", "co");
 			model.addAttribute("copIdEncryted", copIdEncryted);
 			
-			//menu atras
-			String menuAdmin = rutamenu+"admin";
+			//Ruta Formulario
+			model.addAttribute("rutaFormulario", "actualizarEstadoComunicado");
+			//Inactivamos los campos
+			model.addAttribute("inactivarcampos","true");
+			
+			//Menu atras
+			String menuAdmin = rutamenu+"consultacomunicados";
 			model.addAttribute("rutamenu", menuAdmin);
-			
-			model.addAttribute("activarComunicado","active");
-			
-			return "administrador/documentacion";
+					
+			return "administrador/uploadComunicados";
 		}
 }

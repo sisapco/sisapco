@@ -118,4 +118,9 @@ public interface UserService {
 	
 	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception;
 
+	public EstadosFinancieros getEstadosFinancierosByIdForm(int estId) throws Exception;
+	
+	public ManualConvivencia getManualConvivenciaByIdForm(int conviId) throws Exception;
+	
+	public Comunicados getComunicadosByIdForm(int comuId) throws Exception;
 }

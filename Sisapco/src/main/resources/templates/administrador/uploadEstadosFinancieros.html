@@ -201,7 +201,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">Cargar estados financieros:</h6>
 						</div>
 						<div class="card-body">
-							<form class="user needs-validation" novalidate role="form" th:object="${estadosFinancierosForm}" action="crearestadofinanciero" method="post" enctype="multipart/form-data">
+							<form class="user needs-validation" novalidate role="form" th:object="${estadosFinancierosForm}" th:action="@{${rutaFormulario}}" method="post" enctype="multipart/form-data">
 							
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -214,13 +214,14 @@
 								<input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
-
+                                <input class="form-control" type=hidden id="estId" th:field="${estadosFinancierosForm.estId}">
+                                
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" >
 											<span>Nombre<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											 class="form-control form-control-user"
-											id="estNombreEstado" placeholder="" th:field="${estadosFinancierosForm.estNombreEstado}" required>
+											id="estNombreEstado" placeholder="" th:field="${estadosFinancierosForm.estNombreEstado}" th:readonly="${inactivarcampos}" required>
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									
 									</div>
@@ -231,7 +232,7 @@
 											 class="form-control "
 											id="estDescripcion" 
 											placeholder="" 
-											th:field="${estadosFinancierosForm.estDescripcion}"
+											th:field="${estadosFinancierosForm.estDescripcion}" th:readonly="${inactivarcampos}"
 											 required/>
 										<div class="invalid-feedback">Ingresa una descripción valido.</div>
 									</div>
@@ -240,13 +241,14 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Mes:</span> <input type="number"
 											class="form-control form-control-user" id="estMes"
-											placeholder="" th:field="${estadosFinancierosForm.estMes}">
+											placeholder="" th:field="${estadosFinancierosForm.estMes}" th:readonly="${inactivarcampos}">
 										<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
+									
 									<div class="col-sm-6">
 										<span>Año:</span> <input type="number"
 											class="form-control form-control-user" id="estAno"
-											placeholder="" th:field="${estadosFinancierosForm.estAno}">
+											placeholder="" th:field="${estadosFinancierosForm.estAno}" th:readonly="${inactivarcampos}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -268,7 +270,7 @@
 
 								<!-- seccion para boton de cargar archivo contrato -->
 								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="col-sm-6 mb-3 mb-sm-0" th:if="${modificar}">
 										<span>Adjuntar archivo<span style="color: #ff0000">*</span>
 										</span>
 										<div class=" form-group  " aria-label="Default select example">

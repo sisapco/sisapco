@@ -48,6 +48,7 @@
                                             <th>Estado</th>
                                             <th>Descargar Archivo</th>
                                             <th>Visualizar Archivos</th>
+                                            <th>Modificar Estado</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -57,6 +58,7 @@
                                             <th>Estado</th>
                                             <th>Descargar Archivo</th>
                                             <th>Visualizar Archivos</th>
+                                            <th>Modificar Estado</th>
                                         </tr>
                                     </tfoot>
                                     <tbody >
@@ -69,6 +71,14 @@
                                             </td>
                                             <td>
                                             <a class="btn btn-primary" th:href="${manu.conviVisualizacion}" target="_blank">Visualizar</a>
+                                            </td>
+                                             <td>
+	                                             <div th:if="${activarRespuesta}">
+		                                            <form class="user" role="form" action="modManuelConvivencia" method="get">
+		                                                <input id="manualc" type="hidden" name="manualc" th:value="${manu.conviLog}" />   
+		                                                <input type="submit" class="btn btn-primary" value="Modificar">
+		                                            </form>
+		                                         </div>
                                             </td>
                                         </tr>
                                     </tbody>

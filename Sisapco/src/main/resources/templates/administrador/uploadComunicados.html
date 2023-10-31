@@ -121,7 +121,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">Cargar comunicados:</h6>
 						</div>
 						<div class="card-body">
-							<form class="user needs-validation" novalidate role="form" th:object="${comunicadosForm}" action="crearcomunicado" method="post" enctype="multipart/form-data">
+							<form class="user needs-validation" novalidate role="form" th:object="${comunicadosForm}" th:action="@{${rutaFormulario}}" method="post" enctype="multipart/form-data">
 							
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -134,13 +134,14 @@
 								<input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
+                                <input class="form-control" type=hidden id="comuId" th:field="${comunicadosForm.comuId}">
 
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" >
 											<span>Nombre del comunicado<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											 class="form-control form-control-user"
-											id="comuNombre" placeholder="" th:field="${comunicadosForm.comuNombre}" required>
+											id="comuNombre" placeholder="" th:field="${comunicadosForm.comuNombre}" th:readonly="${inactivarcampos}" required >
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									
 									</div>
@@ -152,7 +153,7 @@
 											id="comuDescripcion" 
 											placeholder="" 
 											th:field="${comunicadosForm.comuDescripcion}"
-											 required/>
+											 th:readonly="${inactivarcampos}" required/>
 										<div class="invalid-feedback">Ingresa una descripción valido.</div>
 									</div>
 								</div>
@@ -176,7 +177,7 @@
 								
 								<!-- seccion para boton de cargar archivo contrato -->
 								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="col-sm-6 mb-3 mb-sm-0" th:if="${modificar}">
 										<span>Adjuntar archivo<span style="color: #ff0000">*</span>
 										</span>
 										<div class=" form-group  " aria-label="Default select example">
@@ -223,7 +224,7 @@
 
 								<hr>
 								<input type="submit" class="btn btn-primary"
-									value="Guardar Cotización">
+									value="Guardar Comunicado">
 								<hr>
 							</form>
 

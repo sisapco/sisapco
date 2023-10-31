@@ -95,78 +95,6 @@
 				
 				    </div>
 				  </header><!-- End Header -->
-
-				<!-- Topbar
-				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-	               <form action="/admin" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
-	                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />            
-	                <button id="54545" class="btn btn-link rounded-circle mr-3" >
-	                        <i class="fa fa-bars"></i>
-	                        <img class="imagenLogoAdmin" style="width:100%!important" src="img/sisapco.png">
-	                </button>
-	              </form>
-	                                          
-                    <form action="/documentacion" method="get" id="home34343" Style="float:left">
-                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
-                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                            <img style="width:250%!important" src="img/imagenatras.png">
-                        </button>
-                    </form>    	           
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a>
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<li class="nav-item dropdown no-arrow">					      
-                            <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}"></span> - <span>Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>  
-                                    
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
-			    End of Topbar -->
-
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 				<br><br><br><br><br><br>
@@ -182,7 +110,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">Cargar manual de convivencia:</h6>
 						</div>
 						<div class="card-body">
-							<form class="user needs-validation" novalidate role="form" th:object="${manualConvivenciaForm}" action="crearmanualconviviencia" method="post" enctype="multipart/form-data">
+							<form class="user needs-validation" novalidate role="form" th:object="${manualConvivenciaForm}" th:action="@{${rutaFormulario}}" method="post" enctype="multipart/form-data">
 						
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -195,13 +123,14 @@
 								<input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
-
+                                <input class="form-control" type=hidden id="conviId" th:field="${manualConvivenciaForm.conviId}">
+                                
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" >
 											<span>Nombre<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											 class="form-control form-control-user"
-											id="conviNombre" placeholder="" th:field="${manualConvivenciaForm.conviNombre}" required>
+											id="conviNombre" placeholder="" th:field="${manualConvivenciaForm.conviNombre}" required th:readonly="${inactivarcampos}">
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									
 									</div>
@@ -212,7 +141,7 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Año de publicación:</span> <input type="date"
 											class="form-control form-control-user" id="conviAnoPublicacion"
-											placeholder="" th:field="${manualConvivenciaForm.conviAnoPublicacion}">
+											placeholder="" th:field="${manualConvivenciaForm.conviAnoPublicacion}" th:readonly="${inactivarcampos}">
 											<div class="invalid-feedback">Ingresa un valor valido.</div>
 									</div>
 
@@ -230,7 +159,7 @@
 
 								<!-- seccion para boton de cargar archivo contrato -->
 								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="col-sm-6 mb-3 mb-sm-0" th:if="${modificar}">
 										<span>Adjuntar manual<span style="color: #ff0000">*</span>
 										</span>
 										<div class=" form-group  " aria-label="Default select example">
