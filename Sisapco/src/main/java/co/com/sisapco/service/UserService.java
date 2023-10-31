@@ -4,6 +4,7 @@ import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.Cartelera;
 import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
@@ -117,5 +118,8 @@ public interface UserService {
 	public Iterable<EstadosFinancieros> getEstadosFinancierosByNit(int codNit) throws Exception;
 	
 	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception;
+	
+	public Cartelera createCartelera(Cartelera cartelera) throws Exception;
 
+	public Copropiedad createCopropiedad(Copropiedad copropiedad) throws Exception;
 }
