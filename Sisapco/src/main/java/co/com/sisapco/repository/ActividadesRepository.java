@@ -18,7 +18,7 @@ public interface ActividadesRepository extends CrudRepository<Actividades, Long>
 	@Query(value ="SELECT u.act_id, u.cop_nit,u.act_fecha_inicio,u.act_fecha_final,u.act_nombre_actividad,"
 			+ "(SELECT e.est_valor_estado FROM estados e WHERE u.act_estado=e.est_id_codigo) as act_estado,"
 			+ "u.act_descripcion,u.act_costo,u.act_responsable,u.act_desviacion,u.act_fecha_entrega_real,u.act_actividades,"
-			+ "u.act_numero_actividades,u.act_porcentaje_ejecucion,u.act_observaciones,u.act_log FROM actividades u WHERE u.cop_nit = ?1 ORDER BY u.act_id DESC", nativeQuery = true)
+			+ "u.act_numero_actividades,u.act_porcentaje_ejecucion,u.act_observaciones,u.act_observaciones_administrador,u.act_log FROM actividades u WHERE u.cop_nit = ?1 ORDER BY u.act_id DESC", nativeQuery = true)
 	public Iterable<Actividades> findByActividadesNit(int codNit);
 	
 	@Query("SELECT u FROM Actividades u WHERE u.actId = ?1 AND u.actEstado = 1")

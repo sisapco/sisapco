@@ -165,30 +165,33 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                        <span>Fecha de inicio:</span>
                                         <input type="text" class="form-control form-control-user" id="actFechaInicio"
-                                            placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaInicio}" required>
-                                                <script>
-											        $('#actFechaInicio').datepicker({
-											            uiLibrary: 'bootstrap4',
-											            dateFormat: "dd/mm/yy"
-											        });
-											    </script>											    
-								    
+                                            placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaInicio}" required th:readonly="${inactivarConsejo}">
+                                               <div th:if="${activarCalendario}">
+	                                                <script>
+												        $('#actFechaInicio').datepicker({
+												            uiLibrary: 'bootstrap4',
+												            dateFormat: "dd/mm/yy"
+												        });
+												    </script>											    
+								               </div>
                                     </div>
                                     <div class="col-sm-6">
                                     <span>Fecha final:</span>
                                         <input type="text" class="form-control form-control-user" id="actFechaFinal"
-                                            placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaFinal}" required>
-                                                <script>
-											        $('#actFechaFinal').datepicker({
-											            uiLibrary: 'bootstrap4'
-											        });
-											    </script>
+                                            placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaFinal}" required th:readonly="${inactivarConsejo}">
+                                               <div th:if="${activarCalendario}">
+	                                                <script>
+												        $('#actFechaFinal').datepicker({
+												            uiLibrary: 'bootstrap4'
+												        });
+												    </script>
+											    </div>
                                     </div>
                                 </div>
                                  <div class="form-group">
                                  <span>Nombre de la actividad:</span>
                                     <input type="text" class="form-control form-control-user" id="actNombreActividad"
-                                        placeholder="" th:field="${actividadesForm.actNombreActividad}" required>
+                                        placeholder="" th:field="${actividadesForm.actNombreActividad}" required th:readonly="${inactivarConsejo}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -204,62 +207,76 @@
                                     <div class="col-sm-6">
                                      <span>Descripción:</span>                                           
                                             <textarea class="form-control" id="actDescripcion"
-											rows="3" th:field="${actividadesForm.actDescripcion}" required></textarea>
+											rows="3" th:field="${actividadesForm.actDescripcion}" required th:readonly="${inactivarConsejo}"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     <span>Costo:</span>
                                         <input type="text" class="form-control form-control-user" id="actCosto"
-                                            placeholder="Costo" th:field="${actividadesForm.actCosto}" required>
+                                            placeholder="Costo" th:field="${actividadesForm.actCosto}" required th:readonly="${activarConsejo}">
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Responsable:</span>
                                         <input type="text" class="form-control form-control-user" id="actResponsable"
-                                            placeholder="Responsable" th:field="${actividadesForm.actResponsable}" required>
+                                            placeholder="Responsable" th:field="${actividadesForm.actResponsable}" required th:readonly="${inactivarConsejo}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Desviacion:</span>
                                         <input type="text" class="form-control form-control-user" id="actDesviacion"
-                                            placeholder="Desviacion" th:field="${actividadesForm.actDesviacion}" required>
+                                            placeholder="Desviacion" th:field="${actividadesForm.actDesviacion}" required disabled>
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Fecha entrega real:</span>
                                         <input type="text" class="form-control form-control-user" id="actFechaEntregaReal"
-                                            placeholder="Fecha entrega real" th:field="${actividadesForm.actFechaEntregaReal}" required>
-                                                <script>
-											        $('#actFechaEntregaReal').datepicker({
-											            uiLibrary: 'bootstrap4'
-											        });
-											    </script>
-											    	   
+                                            placeholder="Fecha entrega real" th:field="${actividadesForm.actFechaEntregaReal}" required th:readonly="${activarConsejo}">
+                                                <div th:if="${inactivarConsejoHtml}">
+	                                                <script>
+												        $('#actFechaEntregaReal').datepicker({
+												            uiLibrary: 'bootstrap4'
+												        });
+												    </script>
+											    </div>	   
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Actividades:</span>
-                                        <input type="text" class="form-control form-control-user" id="actActividades"
-                                            placeholder="Actividades" th:field="${actividadesForm.actActividades}" required>
+                                        
+                                        <!--  <input type="text" class="form-control form-control-user" id="actActividades"
+                                            placeholder="Actividades" th:field="${actividadesForm.actActividades}" required>-->
+                                            
+                                        <textarea class="form-control" id="actActividades"
+											rows="3" th:field="${actividadesForm.actActividades}" required th:readonly="${activarConsejo}"></textarea>
+                                            
+                                            
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Numero actividades:</span>
                                         <input type="text" class="form-control form-control-user" id="actNumeroActividades"
-                                            placeholder="Numero actividades" th:field="${actividadesForm.actNumeroActividades}" required>
+                                            placeholder="Numero actividades" th:field="${actividadesForm.actNumeroActividades}" required th:readonly="${activarConsejo}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Porcentaje ejecución:</span>
                                         <input type="text" class="form-control form-control-user" id="actPorcentajeEjecucion"
-                                            placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" required>
+                                            placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" required th:readonly="${activarConsejo}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <span>Observaciones:</span>
+                                        <span>Observaciones del Consejo:</span>
                                               <textarea class="form-control" id="actObservaciones"
-											  rows="3" th:field="${actividadesForm.actObservaciones}" required></textarea>
+											  rows="3" th:field="${actividadesForm.actObservaciones}" required th:readonly="${inactivarConsejo}"></textarea>
                                             
+                                    </div>
+                                </div>
+                                 <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <span>Observaciones del Administrador:</span>
+                                              <textarea class="form-control" id="actObservacionesAdministrador"
+											  rows="3" th:field="${actividadesForm.actObservacionesAdministrador}" th:readonly="${inactivarConsejoObservicacion}"></textarea>    
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -281,7 +298,7 @@
                                       <tr th:each="act: ${evidenciaactividadeslist}" th:if="${act.eviAntesDespues == 'A'}">
                                                                         
                                            <td height="200px" th:text="${act.eviNombreImagen}"></td>
-                                           <td height="200px"><img th:src="${act.eviRutaImagen}" width="70%" height="70%"> </td>
+                                           <td height="200px"><img th:src="${act.eviVisualizacion}" width="70%" height="70%"> </td>
                                        </tr>
                                    </tbody>
                                </table>
@@ -323,7 +340,7 @@
                                    <tbody >
                                       <tr th:each="act: ${evidenciaactividadeslist}" th:if="${act.eviAntesDespues == 'D'}">
                                            <td height="200px" th:text="${act.eviNombreImagen}"></td>
-                                           <td height="200px"><img th:src="${act.eviRutaImagen}" width="70%" height="70%"> </td> 
+                                           <td height="200px"><img th:src="${act.eviVisualizacion}" width="70%" height="70%"> </td> 
                                        </tr>
                                    </tbody>
                                </table>
@@ -346,9 +363,11 @@
                                    
                                     </div>
                                 </div>
-                                <hr>
-                                <input type="submit" class="btn btn-primary" value="Actualizar">
-                                <hr>                           
+                                <div th:if="${actividadesForm.actEstado != '4'}">
+                                    <div th:if="${perId != 2 }">
+                                        <input type="submit" class="btn btn-primary" value="Actualizar">
+                                    </div>
+                                </div>                         
 						        <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
                             </form>                            
                             
@@ -365,7 +384,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2023</span>
+                        <span>Copyright &copy; Your Website 2024</span>
                     </div>
                 </div>
             </footer>
@@ -431,9 +450,9 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Actualizado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button>-->
 	      </div>
 	      <div class="modal-body">
 	        Se actualizo el seguimiento de forma exitosa.
@@ -517,11 +536,11 @@
 			   //Activamos el modal de actualizar
 	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
-	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   $('#confirmarGuardarErrorModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 				
@@ -534,9 +553,9 @@
 					if (!form.checkValidity()) {
 						event.preventDefault()
 						event.stopPropagation()
-						$('#camposObligaroriosModal').modal('show');
+						$('#camposObligaroriosModal').modal({backdrop: 'static', keyboard: false}, 'show');
 					}else{
-						$('#guardarModal').modal('show');
+						$('#guardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 					}
 
 					form.classList.add('was-validated')

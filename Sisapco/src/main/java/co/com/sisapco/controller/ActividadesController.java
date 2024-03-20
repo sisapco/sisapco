@@ -34,6 +34,7 @@ import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
@@ -65,6 +66,8 @@ public class ActividadesController {
 	@Value("${rutamenu}")
 	private String rutamenu;
 	
+	@Value("${rutaimagengoogle}")
+	private String rutaImagenGoogleDrive;
 	
 	@RequestMapping("/seguimientotareasadmin")
 	public String seguimientoTareasAdmin(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -165,6 +168,14 @@ public class ActividadesController {
 		model.addAttribute("copId", copId);
 		model.addAttribute("copIdEncryted", copIdEncryted);
 		
+		//Validamos el perfil del usuario para desabilitar campos para el consejo
+		if(userPanel.getPerId() == 2) {
+		     model.addAttribute("inactivarConsejo","true");
+		}else {
+			 model.addAttribute("inactivarConsejo","false");
+			 model.addAttribute("inactivarConsejoHtml","active");
+		}
+		
 		//menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
@@ -195,7 +206,7 @@ public class ActividadesController {
 		int copId = copropiedadDTO.getCopId();
 		
 		String directoryNameHome = System.getProperty("user.home");
-
+		
 		if(result.hasErrors()) {
 			model.addAttribute("actividadesForm", actividades);
 			model.addAttribute("errorcampos","active");
@@ -221,13 +232,15 @@ public class ActividadesController {
 					  String name = filesAntes[i].getOriginalFilename();					  
 					  String formato = filesAntes[i].getContentType();					 
 					  byte[] bytes = file.getBytes();
-
 					  
 					    if(!file.isEmpty()) {						         
 						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleAntes, formato, name, bytes);						    
-						    String codigoDescarga = googleFile.getWebContentLink();
-						    String codigoVista = googleFile.getWebViewLink();
+						    String codigoDescarga = googleFile.getId();
+						    String codigoVista = googleFile.getId();
+						    
+						    //codigoVista =rutaImagenGoogleDrive+""+googleFile.getId(); 
+						    //String rutaImagenVizualizar="https://drive.google.com/thumbnail?id="+
 						    
 						    EvidenciaActividades evidenciaActividades = new EvidenciaActividades();
 						    
@@ -255,8 +268,10 @@ public class ActividadesController {
 					    if(!file.isEmpty()) {					    	 						    
 						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleDespues, formato, name, bytes);						    
-						    String codigoDescarga = googleFile.getWebContentLink();
-						    String codigoVista = googleFile.getWebViewLink();
+						    String codigoDescarga = googleFile.getId();
+						    String codigoVista = googleFile.getId();
+						    
+						    //codigoVista =rutaImagenGoogleDrive+""+googleFile.getId();
 						    
 						    EvidenciaActividades evidenciaActividades = new EvidenciaActividades();
 						    
@@ -271,8 +286,7 @@ public class ActividadesController {
 						    userService.createEvidenciaActividad(evidenciaActividades);
 					    }			   
 				  }
-				
-				
+								
 				model.addAttribute("actividadesForm", actividades);
 				model.addAttribute("bien","active");
 				//Activiamos el modal de guardar
@@ -343,19 +357,45 @@ public class ActividadesController {
 		int copNit =copropiedadDTO.getCopNit();
 		String copNombre = copropiedadDTO.getCopNombreCopropiedad();		
 		int copId = copropiedadDTO.getCopId();
+		
+		//Le ponemos la ruta de google drive a las imagenes
+		Iterable<EvidenciaActividades> evidenciaActividades = userService.getEvidenciaActividadesByActId(actId);
+        String urlimagengoogle ="";	
+		for (EvidenciaActividades x: evidenciaActividades) {
+			urlimagengoogle =  rutaImagenGoogleDrive+""+x.getEviVisualizacion();
+			x.setEviVisualizacion(urlimagengoogle);
+		}
+		
+		//Validamos el perfil del usuario para desabilitar campos para el consejo
+		if(userPanel.getPerId() == 2) {
+		     model.addAttribute("inactivarConsejo","false");
+		     model.addAttribute("inactivarConsejoObservicacion","true");
+		     model.addAttribute("activarConsejo","false");
+		     model.addAttribute("activarCalendario","active");
+		}
+		else if(userPanel.getPerId() == 1) {
+			 model.addAttribute("inactivarConsejo","true");
+			 model.addAttribute("activarConsejo","false");
+			 model.addAttribute("inactivarConsejoObservicacion","false");
+			 model.addAttribute("inactivarConsejoHtml","active");
+		}
+		else {
+			 model.addAttribute("inactivarConsejo","false");
+			 model.addAttribute("inactivarConsejoHtml","active");
+		}
 				
 		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
 		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
 		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
 		model.addAttribute("actividadesForm", userService.getActividadesByIdForm(actId));
 		//model.addAttribute("actividadeslist", userService.getActividadesByIdForm(actId));
-		model.addAttribute("evidenciaactividadeslist", userService.getEvidenciaActividadesByActId(actId));
+		model.addAttribute("evidenciaactividadeslist", evidenciaActividades);
 		
 		model.addAttribute("copNombre", copNombre);
 		model.addAttribute("copNit", copNit);
 		model.addAttribute("rutaroot", directoryName);
 		model.addAttribute("copId", copId);
-		
+		model.addAttribute("perId", userPanel.getPerId());
 		model.addAttribute("codAntes", 'A');
 		model.addAttribute("codDespues", 'D');
 		
@@ -431,8 +471,8 @@ public class ActividadesController {
 					    if(!file.isEmpty()) {
 						    //llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleAntes, formato, name, bytes);						    
-						    String codigoDescarga = googleFile.getWebContentLink();
-						    String codigoVista = googleFile.getWebViewLink();
+						    String codigoDescarga = googleFile.getId();
+						    String codigoVista = googleFile.getId();
 						    
 						    EvidenciaActividades evidenciaActividades = new EvidenciaActividades();
 						    
@@ -460,8 +500,9 @@ public class ActividadesController {
 					    if(!file.isEmpty()) {					    	
 							//llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
 					        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleDespues, formato, name, bytes);						    
-						    String codigoDescarga = googleFile.getWebContentLink();
-						    String codigoVista = googleFile.getWebViewLink();
+						    //String codigoDescarga = googleFile.getWebContentLink();
+					        String codigoDescarga = googleFile.getId();
+						    String codigoVista = googleFile.getId();
 						    
 						    EvidenciaActividades evidenciaActividades = new EvidenciaActividades();
 						    

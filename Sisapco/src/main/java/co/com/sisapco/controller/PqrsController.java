@@ -481,7 +481,14 @@ public class PqrsController {
 			    guardarPqrs.setPqrsFechaRespuesta(pqrs.getPqrsFechaRespuesta());
 			    guardarPqrs.setPqrsVisualizacion(pqrs.getPqrsVisualizacion());
 			    guardarPqrs.setPqrsRespuestaPqrs(pqrs.getPqrsRespuestaPqrs());
-			    guardarPqrs.setPqrsAdjuntoRespuesta(codigoDescargaRespuesta);
+			    
+			    //Validamos que el codigo de descarga de la respuesta este lleno
+			    if(codigoDescargaRespuesta!=""){
+			    	  guardarPqrs.setPqrsAdjuntoRespuesta(codigoDescargaRespuesta);
+			    }else{
+			    	 guardarPqrs.setPqrsAdjuntoRespuesta(pqrs.getPqrsAdjuntoRespuesta());
+			    }
+			  
 			    guardarPqrs.setPqrsLogs(pqrs.getPqrsLogs());						  						 
 			    userService.createPqrs(guardarPqrs);
 			    			   

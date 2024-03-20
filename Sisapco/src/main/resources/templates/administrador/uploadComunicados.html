@@ -87,7 +87,7 @@
 			                </button>
 			             </form>
 			             
-				        <form action="/documentacion" method="get" id="home34343" Style="float:left">
+				        <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left">
 	                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
 	                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
 	                            <i class="fa fa-bars"></i>
@@ -362,9 +362,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Guardado..</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button>-->
       </div>
       <div class="modal-body">
         <img class="imagenLogoAdmin" style="width:50%!important" src="img/cargando2.gif">
@@ -384,13 +384,17 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button>-->
 	      </div>
 	      <div class="modal-body">
 	        Se cargo el comunicado de forma exitosa.
 	      </div>
+	      <div th:if="${errorEmail}" class="alert alert-danger" role="alert">Se presento un error al enviar el E-mail.
+	      <span th:text="${#errorEmailMensaje}" ></span>
+	      </div>
+	      
 	      <div class="modal-footer">
 	      <form th:action="@{${rutamenu}}" method="get">
 	         <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
@@ -451,11 +455,11 @@
 			//Activamos el modal de confirmacion guardar
 	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
-	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   $('#confirmarGuardarErrorModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 
@@ -465,9 +469,9 @@
 						if (!form.checkValidity()) {
 							event.preventDefault()
 							event.stopPropagation()
-							$('#camposObligaroriosModal').modal('show');
+							$('#camposObligaroriosModal').modal({backdrop: 'static', keyboard: false}, 'show');
 						}else{
-							$('#guardarModal').modal('show');
+							$('#guardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 						}
 						form.classList.add('was-validated')
 					}, false)

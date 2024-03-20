@@ -481,5 +481,10 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return repositoryCopropiedad.save(copropiedad);
 	}
+
+	@Override
+	public Iterable<Cartelera> getCarteleraByNit(int copNit) throws Exception {
+		return repositoryCargaInfoCartelera.findByCarteleraNit(copNit);
+	}
 	
 }

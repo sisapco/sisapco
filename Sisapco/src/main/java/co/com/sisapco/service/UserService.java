@@ -120,6 +120,8 @@ public interface UserService {
 	public DatosGenerales createDatosGenerales(DatosGenerales datosGenerales) throws Exception;
 	
 	public Cartelera createCartelera(Cartelera cartelera) throws Exception;
+	
+	public Iterable<Cartelera> getCarteleraByNit(int codNit) throws Exception;
 
 	public EstadosFinancieros getEstadosFinancierosByIdForm(int estId) throws Exception;
 	

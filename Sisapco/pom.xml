@@ -101,15 +101,8 @@
 		    <artifactId>javax.mail</artifactId>
 		    <version>1.5.1</version>
 		</dependency>
-
-  <!--          <dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
-                <version>1.6.2</version>
-            </dependency> --> 
             
-            
-            
+                       
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -142,10 +135,6 @@
 		</dependency>
 		
 		
-  	
-  	
-
-
 <!-- Google Drive -->
 	<dependency>
 	    <groupId>com.google.apis</groupId>
@@ -257,14 +246,15 @@
       <artifactId>poi-ooxml</artifactId>
       <version>4.1.2</version>
     </dependency>
+    <!--  -->
     
+	<!-- Enviar E-mail -->
+	<dependency>
+       <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+	<!--  -->
 
-	
-
-
-      
-
-		
 	</dependencies>
 
 	<build>

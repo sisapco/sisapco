@@ -164,7 +164,7 @@ public class ContratoController {
 						    guardarContrato.setContraInterventor(contrato.getContraInterventor());
 						    guardarContrato.setContraDocumentoAdjunto(codigoDescarga);
 						    guardarContrato.setContraEstado(contrato.getContraEstado());
-						    guardarContrato.setContraObservaciones(contrato.getContraEstado());
+						    guardarContrato.setContraObservaciones(contrato.getContraObservaciones());
 						    guardarContrato.setContraLog("");
 						    guardarContrato.setContraVisualizacion(codigoVista);
 						    

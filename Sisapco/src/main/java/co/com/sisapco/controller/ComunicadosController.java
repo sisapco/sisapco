@@ -34,6 +34,7 @@ import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.service.UserService;
 import co.com.sisapco.util.CreateGoogleFile;
+import co.com.sisapco.util.EnvioEmail;
 import co.com.sisapco.util.MD5DatosGet;
 
 @Controller
@@ -56,6 +57,9 @@ public class ComunicadosController {
 	
 	@Value("${rutamenu}")
 	private String rutamenu;
+	
+    @Autowired
+    private EnvioEmail envioEmail;
 	
 	@RequestMapping("/uploadComunicados")
 	public String uploadComunicados(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -143,6 +147,8 @@ public class ComunicadosController {
 					
 					//Instanciar la clase de google para guardar la imagen
 					CreateGoogleFile createGoogleFile = new CreateGoogleFile();
+				    String codigoDescarga = "";
+				    String codigoVista = "";
 					
 					//Guardar Imagenes Antes
 					for (int i = 0; i < filesComunicados.length; i++) {
@@ -156,8 +162,8 @@ public class ComunicadosController {
 						    if(!file.isEmpty()) {						         
 							    //Llamamos la funcion cargarArchivoGoogle para guardar el archivo en google drive 
 						        com.google.api.services.drive.model.File googleFile = createGoogleFile.cargarArchivoGoogle(codigoGoogleContrato, formato, name, bytes);						    
-							    String codigoDescarga = googleFile.getWebContentLink();
-							    String codigoVista = googleFile.getWebViewLink();
+							    codigoDescarga = googleFile.getWebContentLink();
+							    codigoVista = googleFile.getWebViewLink();
 							    
 							    Comunicados guardarComunicados = new Comunicados();							    
 							    guardarComunicados.setCopNit(copNit);
@@ -173,6 +179,15 @@ public class ComunicadosController {
 						    }			   
 					  }
 					
+					//Madamos el email
+					String contenidoEmail=comunicados.getComuDescripcion()+"\\n Para visualizar el comunicado de click en el siguiente enlace: "+codigoVista;
+					try {
+					     envioEmail.send("sisapcoweb@gmail.com", "sisapcoweb@gmail.com", comunicados.getComuNombre(), contenidoEmail);
+					}
+					catch (Exception e) {
+						model.addAttribute("errorEmail","active");
+						model.addAttribute("errorEmailMensaje",e.getMessage()+" - "+e.getCause());
+					}
 					
 					model.addAttribute("comunicadosForm", comunicados);
 					model.addAttribute("bien","active");

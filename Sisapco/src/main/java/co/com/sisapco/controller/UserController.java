@@ -407,7 +407,7 @@ public class UserController {
 		model.addAttribute("admin","active");
 		model.addAttribute("consejo","active");
 		
-		//menu atras
+		//Menu atras
 		String menuAdmin = rutamenu+"admin";
 		model.addAttribute("rutamenu", menuAdmin);
 		

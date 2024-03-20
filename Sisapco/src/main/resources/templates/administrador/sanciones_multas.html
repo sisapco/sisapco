@@ -347,7 +347,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2023</span>
+						<span>Copyright &copy; Your Website 2024</span>
 					</div>
 				</div>
 			</footer>
@@ -391,9 +391,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Guardado..</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button>-->
       </div>
       <div class="modal-body">
         <img class="imagenLogoAdmin" style="width:50%!important" src="img/cargando2.gif">
@@ -413,9 +413,9 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button>-->
 	      </div>
 	      <div class="modal-body">
 	        Se guardo la sanción de forma exitosa.
@@ -506,11 +506,11 @@
 			//Activamos el modal de confirmacion guardar
 	        var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
-	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   $('#confirmarGuardarErrorModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 
@@ -521,9 +521,9 @@
 					if (!form.checkValidity()) {
 						event.preventDefault()
 						event.stopPropagation()
-						$('#camposObligaroriosModal').modal('show');
+						$('#camposObligaroriosModal').modal({backdrop: 'static', keyboard: false}, 'show');
 					}else{
-						$('#guardarModal').modal('show');
+						$('#guardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 					}
 					form.classList.add('was-validated')
 				}, false)

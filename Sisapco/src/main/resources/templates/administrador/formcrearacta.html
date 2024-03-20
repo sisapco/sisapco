@@ -168,13 +168,21 @@
 			                </button>
 			             </form>
 			             
-				        <form action="/documentacion" method="get" id="home34343" Style="float:left">
+				        <!--<form action="/documentacion" method="get" id="home34343" Style="float:left">
 	                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
 	                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
 	                            <i class="fa fa-bars"></i>
 	                            <img style="width:100%!important" src="img/imagenatras.png">
 	                        </button>
-	                    </form>   
+	                    </form>-->
+	                    
+	                    <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left">
+	                        <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
+	                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
+	                            <i class="fa fa-bars"></i>
+	                            <img style="width:100%!important" src="img/imagenatras.png">
+	                        </button>
+                       </form>   
 				      
 				      </h1>				
 				      <nav id="navbar" class="navbar">
@@ -317,9 +325,10 @@
                                     </div>
                                     <div class="right">
 									    <button id="start_button_3" class="start_button" onclick="startActAsistentes(event,'actAsistentes')">
-									    <img id="start_img_3" src="img/microfono/mic.gif" alt="Start"></button>
-									    <input class="form-control" type="hidden" value="N" id="mocrofonoactivo" name="mocrofonoactivo">
+									    <!--  <img id="start_img_3" src="img/microfono/mic.gif" alt="Start"></button>-->
+									    
 									</div>
+									<input class="form-control" type="hidden" value="N" id="mocrofonoactivo" name="mocrofonoactivo">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -329,7 +338,7 @@
                                     
                                     <div class="right">
 									    <button id="start_button_2" class="start_button" onclick="startActOrdenDia(event,'actOrdenDia')">
-									    <img id="start_img_2" src="img/microfono/mic.gif" alt="Start"></button>
+									    <!--  <img id="start_img_2" src="img/microfono/mic.gif" alt="Start"></button>-->
 									</div>
                                 </div>
                                 
@@ -565,9 +574,9 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button>-->
 	      </div>
 	      <div class="modal-body">
 	        Se guardo el acta <span class="negritaTexto" th:text="${consecutivoactaguardado}"></span> de forma exitosa.
@@ -653,7 +662,7 @@
 			//Activamos el modal de confirmacion guardar
 	        var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
