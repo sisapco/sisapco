@@ -54,7 +54,7 @@ public class DatosGeneralesController {
 	@Value("${rutamenu}")
 	private String rutamenu;
 	
-	@RequestMapping("/datosGenerales")
+	@RequestMapping("/datosgenerales")
 	public String datosGenerales(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		String usuariologin = authenticationnn.getName();

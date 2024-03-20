@@ -38,7 +38,7 @@ public class CreateGoogleFile {
         Drive driveService = GoogleDriveUtils.getDriveService();
 
         File file = driveService.files().create(fileMetadata, uploadStreamContent)
-                .setFields("id, webContentLink, webViewLink, parents").execute();
+                .setFields("id, webContentLink, webViewLink, thumbnailLink, parents").execute();
 
         return file;
     }

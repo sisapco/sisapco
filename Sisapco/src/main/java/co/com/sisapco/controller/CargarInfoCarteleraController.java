@@ -1,5 +1,8 @@
 package co.com.sisapco.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +24,8 @@ import co.com.sisapco.entity.AlmacenamientoGoogle;
 
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.entity.Cartelera;
+import co.com.sisapco.entity.EstadosFinancieros;
+import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.service.UserService;
@@ -159,9 +164,8 @@ public class CargarInfoCarteleraController {
 				
 				Cartelera guardarCartelera = new Cartelera();
 			    guardarCartelera.setCopNit(copNit);
-		//	    guardarCartelera.setCarteleraId(carteleraId);
 			    guardarCartelera.setCarteleraDescripcion(cartelera.getCarteleraDescripcion());
-			    guardarCartelera.setCarteleraDocumentoAdjunto(codigoDescarga);
+			    guardarCartelera.setCarteleraDocumentoAdjunto(codigoVista);
 			    guardarCartelera.setCarteleraEstado(cartelera.getCarteleraEstado());
 			    guardarCartelera.setCarteleraFechaFin(cartelera.getCarteleraFechaFin());
 			    guardarCartelera.setCarteleraFechaInicio(cartelera.getCarteleraFechaInicio());
@@ -215,6 +219,71 @@ public class CargarInfoCarteleraController {
 		return "administrador/cargarinfocartelera";
 	}
 	
+	
+    //Consultar Cartelera
+	@RequestMapping("/consultarcartelera")
+	public String consultarCartelera(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		//Instanciamos la clase MD5DatosGet para cifrar
+	    MD5DatosGet encrypted = new MD5DatosGet();
+	    
+		String usuariologin = authenticationnn.getName();
+		Usuarios userPanel = userService.geUsuariosByUsername(usuariologin);
+		
+		HttpSession session = request.getSession();
+		CopropiedadDTO copropiedadDTO = (CopropiedadDTO) session.getAttribute("copropiedadDTO");
+		
+		int copNit =copropiedadDTO.getCopNit();
+		String copNombre = copropiedadDTO.getCopNombreCopropiedad();
+		int copId =  copropiedadDTO.getCopId();
+		
+		model.addAttribute("userList", userService.geUsuariosByUsername(usuariologin));
+		model.addAttribute("moduloslist", userService.getModulosById(userPanel.getPerId()));
+		model.addAttribute("perfillist", userService.getPefilById(userPanel.getPerId()));
+		
+		model.addAttribute("cateleralist", userService.getCarteleraByNit(copNit));
+		model.addAttribute("copNombre", copNombre);
+		model.addAttribute("copNit", copNit);
+		model.addAttribute("copId", copId);
+		
+		model.addAttribute("admin","active");
+		model.addAttribute("consejo","active");
+		
+		//Activamos el boton modificar solo para el administrador
+		if(userPanel.getPerId() == 1) {
+			model.addAttribute("activarRespuesta","active");
+		}else {
+			model.addAttribute("activarRespuesta","false");
+		}
+		
+        ///////////Ciframos el ID de la cartelera
+        Iterable<Cartelera> carlera = userService.getCarteleraByNit(copNit);
+      
+	    String carteleraIdEncryted ="";
+	    int carteleraId=0;		
+	    for (Cartelera x: carlera) {
+	    	carteleraId = x.getCarteleraId();
+			String carteleraIdEcr = String.valueOf(carteleraId);
+			carteleraIdEncryted = encrypted.encrypted(carteleraIdEcr);
+			carteleraIdEncryted = carteleraIdEncryted.replace("=", "co");
+			x.setCarteleraLog(carteleraIdEncryted);    
+	    }
+
+		String copIdEcr = String.valueOf(copId);
+	    String copIdEncryted ="";
+		copIdEncryted = encrypted.encrypted(copIdEcr);
+		copIdEncryted = copIdEncryted.replace("=", "co");
+		model.addAttribute("copIdEncryted", copIdEncryted);
+		
+		//menu atras
+		String menuAdmin = rutamenu+"admin";
+		model.addAttribute("rutamenu", menuAdmin);
+		
+		return "administrador/cartelera";
+	}
+	
+	
+	
 	/*
 	@RequestMapping("/consultacartelera")
 	public String consultaContrato(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -257,4 +326,6 @@ public class CargarInfoCarteleraController {
 		return "administrador/consultacartelera";
 	}
 */
+	
+
 }

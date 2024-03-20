@@ -135,14 +135,13 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">
-						PQRS<span></span>
+						Peticiones, Quejas, Reclamos y sugerencias<span></span>
 					</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Registrar una nueva
-								pqrs:</h6>
+							<h6 class="m-0 font-weight-bold text-primary">PQRS:</h6>
 						</div>
 						<div class="card-body">
 						
@@ -264,9 +263,9 @@
 									<div class="col-sm-6 " th:if="${pqrsForm.pqrsEstado == null}">
 										<span>Estado:</span> <select class="form-select form-control"
 											aria-label="Default select example" id="pqrsEstado" th:field="${pqrsForm.pqrsEstado}" th:readonly="${respuestainactivarcampos}">
-											<option value="1">Nueva</option>
-											<option selected value="2">Entratamiento</option>
-											<option value="3">Terminado</option>
+											<option value="21">Nueva</option>
+											<option selected value="3">En proceso</option>
+											<option value="20">Terminado</option>
 
 										</select>
 
@@ -274,8 +273,8 @@
 									<div class="col-sm-6 " th:if="${respuesta}">
 										<span>Estado:</span> <select class="form-select form-control"
 											aria-label="Default select example" id="pqrsEstado" th:field="${pqrsForm.pqrsEstado}">
-											<option selected value="2">Entratamiento</option>
-											<option value="3">Terminado</option>
+											<option selected value="3">En proceso</option>
+											<option value="20">Terminado</option>
 
 										</select>
 
@@ -323,13 +322,7 @@
 									</script>
 									</div>
 									
-									<div class="col-sm-6 " th:if="${respuesta}">
-		                                <span>Respuesta de la PQRS<span  style="color: #ff0000">*</span></span>
-										<textarea class="form-control" id="pqrsRespuestaPqrs"
-											rows="3" th:field="${pqrsForm.pqrsRespuestaPqrs}" required></textarea>
-										<div class="invalid-feedback">Debe de ingresar una
-											Respuesta.</div>
-									</div>
+
 									
 									<div class="col-sm-6 " th:if="${respuesta}">
 										  <div th:if="${pqrsForm.pqrsAdjunto != null}">
@@ -342,13 +335,20 @@
 				                                   <tbody >
 				                                      <tr>
 									                      <td>
-										                          <a th:href="@{${pqrsForm.pqrsAdjunto}}" class="btn btn-primary">Descargar archivo</a>
+										                          <a th:href="@{${pqrsForm.pqrsAdjunto}}" class="btn btn-primary">Descargar archivo adjunto de solicitud</a>
 									                      </td> 
 				                                      </tr>
 				                                   </tbody>
 				                               </table>
 											</div>
-										</div>
+								    </div>
+									<div class="col-sm-6 " th:if="${respuesta}">
+		                                <span>Respuesta de la PQRS<span  style="color: #ff0000">*</span></span>
+										<textarea class="form-control" id="pqrsRespuestaPqrs"
+											rows="3" th:field="${pqrsForm.pqrsRespuestaPqrs}" required></textarea>
+										<div class="invalid-feedback">Debe de ingresar una
+											Respuesta.</div>
+									</div>
 								</div>
 								
 								
@@ -420,11 +420,8 @@
 							
 								<!-- ********************************** -->
 
-
-
-
 								<hr>
-								<div th:if="${pqrsForm.pqrsEstado != '3'}">
+								<div th:if="${pqrsForm.pqrsEstado != '20'}">
 							    	<input type="submit" class="btn btn-primary "
 									 value="Grabar PQRS">
 							    </div>
@@ -445,7 +442,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2023</span>
+						<span>Copyright &copy; Your Website 2024</span>
 					</div>
 				</div>
 			</footer>
@@ -511,9 +508,9 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button>-->
 	      </div>
 	      <div class="modal-body">
 	        Se guardo la PQRS <span class="negritaTexto" th:text="${consecutivopqrsguardado}"></span> de forma exitosa.
@@ -609,11 +606,11 @@
 			  //Activamos el modal de confirmacion guardar
 	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
-	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   $('#confirmarGuardarErrorModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 
@@ -623,9 +620,9 @@
 					if (!form.checkValidity()) {
 						event.preventDefault()
 						event.stopPropagation()
-						$('#camposObligaroriosModal').modal('show');
+						$('#camposObligaroriosModal').modal({backdrop: 'static', keyboard: false}, 'show');
 					}else{
-						$('#guardarModal').modal('show');
+						$('#guardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 					}
 
 					form.classList.add('was-validated')

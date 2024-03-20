@@ -87,7 +87,7 @@
 			                </button>
 			             </form>
 			             
-				        <form action="/documentacion" method="get" id="home34343" Style="float:left">
+				        <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left">
 	                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
 	                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
 	                            <i class="fa fa-bars"></i>
@@ -121,7 +121,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">Cargar comunicados:</h6>
 						</div>
 						<div class="card-body">
-							<form class="user needs-validation" novalidate role="form" th:object="${comunicadosForm}" action="crearcomunicado" method="post" enctype="multipart/form-data">
+							<form class="user needs-validation" novalidate role="form" th:object="${comunicadosForm}" th:action="@{${rutaFormulario}}" method="post" enctype="multipart/form-data">
 							
 								<div th:if="${error}" class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -134,13 +134,14 @@
 								<input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
                                 <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
                                 <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
+                                <input class="form-control" type=hidden id="comuId" th:field="${comunicadosForm.comuId}">
 
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" >
 											<span>Nombre del comunicado<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											 class="form-control form-control-user"
-											id="comuNombre" placeholder="" th:field="${comunicadosForm.comuNombre}" required>
+											id="comuNombre" placeholder="" th:field="${comunicadosForm.comuNombre}" th:readonly="${inactivarcampos}" required >
 										<div class="invalid-feedback">Ingresa un nombre valido.</div>
 									
 									</div>
@@ -152,7 +153,7 @@
 											id="comuDescripcion" 
 											placeholder="" 
 											th:field="${comunicadosForm.comuDescripcion}"
-											 required/>
+											 th:readonly="${inactivarcampos}" required/>
 										<div class="invalid-feedback">Ingresa una descripción valido.</div>
 									</div>
 								</div>
@@ -176,7 +177,7 @@
 								
 								<!-- seccion para boton de cargar archivo contrato -->
 								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="col-sm-6 mb-3 mb-sm-0" th:if="${modificar}">
 										<span>Adjuntar archivo<span style="color: #ff0000">*</span>
 										</span>
 										<div class=" form-group  " aria-label="Default select example">
@@ -223,7 +224,7 @@
 
 								<hr>
 								<input type="submit" class="btn btn-primary"
-									value="Guardar comunicado">
+									value="Guardar Comunicado">
 								<hr>
 							</form>
 
@@ -361,9 +362,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Guardado..</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button>-->
       </div>
       <div class="modal-body">
         <img class="imagenLogoAdmin" style="width:50%!important" src="img/cargando2.gif">
@@ -383,13 +384,17 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Registro Guardado</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        </button>-->
 	      </div>
 	      <div class="modal-body">
 	        Se cargo el comunicado de forma exitosa.
 	      </div>
+	      <div th:if="${errorEmail}" class="alert alert-danger" role="alert">Se presento un error al enviar el E-mail.
+	      <span th:text="${#errorEmailMensaje}" ></span>
+	      </div>
+	      
 	      <div class="modal-footer">
 	      <form th:action="@{${rutamenu}}" method="get">
 	         <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
@@ -450,11 +455,11 @@
 			//Activamos el modal de confirmacion guardar
 	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
-	        	   $('#confirmarGuardarErrorModal').modal('show');
+	        	   $('#confirmarGuardarErrorModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 
@@ -464,9 +469,9 @@
 						if (!form.checkValidity()) {
 							event.preventDefault()
 							event.stopPropagation()
-							$('#camposObligaroriosModal').modal('show');
+							$('#camposObligaroriosModal').modal({backdrop: 'static', keyboard: false}, 'show');
 						}else{
-							$('#guardarModal').modal('show');
+							$('#guardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 						}
 						form.classList.add('was-validated')
 					}, false)

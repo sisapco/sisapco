@@ -90,14 +90,14 @@
 			                </button>
 			             </form>
 			             
-				        <form action="/documentacion" method="get" id="home34343" Style="float:left">
+				        <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left">
 	                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />
 	                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
 	                            <i class="fa fa-bars"></i>
 	                            <img style="width:100%!important" src="img/imagenatras.png">
 	                        </button>
-	                    </form>   
-				      
+	                    </form> 
+	                    				      
 				      </h1>				
 				      <nav id="navbar" class="navbar">
 				        <ul>
@@ -121,7 +121,7 @@
 					</h1>
 
 					<!-- 	<!-- OTra opción de menu de botones para consulta --> 
-					<div class="card shadow mb-4">
+					<div class="card shadow mb-4" th:if="${mostrarcargadocuemtos}">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">Menú de
 								carga documentación de la copropiedad :</h6>
@@ -133,13 +133,13 @@
 
 
 								<div>
-									<a href="http://localhost:8080/uploadComunicados">
+									<a href="/uploadComunicados">
 										<button type="button" class="btn btn-success">Cargar
 											Comunicados Administrativos</button>
-									</a> <a href="http://localhost:8080/uploadEstadosFinancieros"><button
+									</a> <a href="/uploadEstadosFinancieros"><button
 											type="button" class="btn btn-success">Cargar
 											Estados Financieros</button> </a> <a
-										href="http://localhost:8080/uploadManualConvivencia">
+										href="/uploadManualConvivencia">
 										<button type="button" class="btn btn-success">Cargar
 											Manual de Conviviencia</button>
 									</a>
@@ -196,6 +196,7 @@
 
 			</div>
 			<!-- End of Main Content -->
+			<div><br><br><br><br><br></div>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

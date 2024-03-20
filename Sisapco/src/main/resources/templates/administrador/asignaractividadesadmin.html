@@ -215,10 +215,10 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <span>Costo $:<span style="color: #ff0000">*</span></span>
+                                    <span>Costo $:</span>
                                         <input onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control form-control-user" id="actCosto2"
-                                            placeholder="Ingresar el valor de la actividad" required>
-                                             <input  class="form-control" type=hidden th:field="${actividadesForm.actCosto}" id="actCosto" name="actCosto">
+                                            placeholder="Ingresar el valor de la actividad">
+                                             <input class="form-control" type="hidden" th:field="${actividadesForm.actCosto}" id="actCosto" name="actCosto">
                                     </div>
                                     <div class="col-sm-6">
                                         <span>Responsable:<span style="color: #ff0000">*</span></span>
@@ -233,14 +233,17 @@
                                             placeholder="La desviación se calcula automatica" th:field="${actividadesForm.actDesviacion}" disabled>
                                     </div>
                                     <div class="col-sm-6">
-                                        <span>Fecha entrega real:<span style="color: #ff0000">*</span></span>
+                                        <span>Fecha entrega real:</span>
                                         <input type="text" class="form-control form-control-user" id="actFechaEntregaReal"
-                                            placeholder="Fecha entrega real" th:field="${actividadesForm.actFechaEntregaReal}" required>
-                                                <script>
+                                            placeholder="Fecha entrega real" th:field="${actividadesForm.actFechaEntregaReal}" required th:readonly="${inactivarConsejo}">
+                                              <div th:if="${inactivarConsejoHtml}">
+                                                <script >
 											        $('#actFechaEntregaReal').datepicker({
 											            uiLibrary: 'bootstrap4'
 											        });
 											    </script>
+											  </div>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -256,16 +259,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <!--  <div class="col-sm-6 mb-3 mb-sm-0">
                                         <span>Porcentaje ejecución:</span>
                                         <input type="text" class="form-control form-control-user" id="actPorcentajeEjecucion"
                                             placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" >
-                                    </div>
+                                    </div>-->
+                                    <input type="hidden" class="form-control form-control-user" id="actPorcentajeEjecucion"
+                                            placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" >
+                                    
                                     <div class="col-sm-6">
-                                        <span>Observaciones:<span style="color: #ff0000">*</span></span>
+                                        <span>Observaciones del Consejo:<span style="color: #ff0000">*</span></span>
                                              <textarea class="form-control" id="actObservaciones"
 											  rows="3" th:field="${actividadesForm.actObservaciones}" required></textarea>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <span>Observaciones del Administrador:</span>
+											  <textarea class="form-control" id="actObservacionesAdministrador"
+											  rows="3" th:field="${actividadesForm.actObservacionesAdministrador}" th:readonly="${inactivarConsejo}"></textarea> 
+                                    </div>
+                                    
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -445,7 +457,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <input type="submit" class="btn btn-primary" onclick="quitarpesos()" value="Guardar actividad">
+                                <input type="submit" class="btn btn-primary" value="Guardar actividad">
                                 <hr>                         						        
                             </form>                            
                             
@@ -454,7 +466,7 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
+                
             </div>
             <!-- End of Main Content -->
 
@@ -462,7 +474,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; 2023</span>
+                        <span>Copyright &copy; 2023</span>                     
                     </div>
                 </div>
             </footer>
@@ -522,7 +534,8 @@
 
 
 <!-- Modal Guardar confirmar -->
-	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmarGuardarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<!--<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">-->
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -588,6 +601,8 @@
             </div>
         </div>
     </div>
+    
+
     <!-- Bootstrap core JavaScript-->
     <script src="plantilla/vendor/jquery/jquery.min.js"></script>
     <script src="plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -617,7 +632,8 @@
 			//Activamos el modal de confirmacion guardar
 	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
 	           if(activarmodalactualizar=="A"){
-	        	   $('#confirmarGuardarModal').modal('show');
+	        	   //$('#confirmarGuardarModal').modal('show');
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
 	        	   document.getElementById("activarmodalactualizar").value="N";
 	           }
 	           if(activarmodalactualizar=="E"){
@@ -643,6 +659,7 @@
 		
 		//campo $ pesos
 		function MASK(form, n, mask, format) {
+					
   if (format == "undefined") format = false;
   if (format || NUM(n)) {
     dec = 0, point = 0;
@@ -684,6 +701,7 @@
       form.style.color="#000000";
     }
   }
+  quitarpesos();
   return XMASK;
 }
 
@@ -710,18 +728,14 @@
 	  }
 	}
 
-
+    //Quitar los persos 
 	function quitarpesos(){
-	     alert("quitar pesos");
 		valor = document.getElementById("actCosto2").value;
 		valor=valor.replace("$","");
 		valor=valor.replace(".00","");
 		valor=valor.replace(",",".");
 		valor=valor.replace(".","");
-		
-		alert("valor="+valor);
-		document.getElmentById("actCosto").value=valor;
-		alert("valor="+actCosto);
+		document.getElementById("actCosto").value = valor;
 	}
 	
 	//funcion limpiar campos de las imagenes
@@ -729,7 +743,7 @@
 		document.getElementById(idcampo).value="";	
 	}
 		
-	</script>
+	</script>	                                
 </body>
 
 </html>

@@ -106,6 +106,7 @@ if (!('webkitSpeechRecognition' in window)) {
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = true;
+  
 
   recognition.onstart = function() {
 	  
@@ -143,9 +144,9 @@ if (!('webkitSpeechRecognition' in window)) {
     }
     if (event.error == 'not-allowed') {
       if (event.timeStamp - start_timestamp < 100) {
-        showInfo('info_blocked');
+         showInfo('info_blocked');
       } else {
-        showInfo('info_denied');
+         showInfo('info_denied');
       }
       ignore_onend = true;
     }

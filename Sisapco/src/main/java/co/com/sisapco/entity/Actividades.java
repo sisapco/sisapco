@@ -71,6 +71,9 @@ public class Actividades implements Serializable{
 	private String actObservaciones;
 	
 	@Column
+	private String actObservacionesAdministrador;
+	
+	@Column
 	private String actLog;
 
 	public int getActId() {
@@ -193,6 +196,14 @@ public class Actividades implements Serializable{
 		this.actObservaciones = actObservaciones;
 	}
 
+	public String getActObservacionesAdministrador() {
+		return actObservacionesAdministrador;
+	}
+
+	public void setActObservacionesAdministrador(String actObservacionesAdministrador) {
+		this.actObservacionesAdministrador = actObservacionesAdministrador;
+	}
+
 	public String getActLog() {
 		return actLog;
 	}
@@ -201,7 +212,6 @@ public class Actividades implements Serializable{
 		this.actLog = actLog;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -221,6 +231,8 @@ public class Actividades implements Serializable{
 		result = prime * result + ((actNombreActividad == null) ? 0 : actNombreActividad.hashCode());
 		result = prime * result + actNumeroActividades;
 		result = prime * result + ((actObservaciones == null) ? 0 : actObservaciones.hashCode());
+		result = prime * result
+				+ ((actObservacionesAdministrador == null) ? 0 : actObservacionesAdministrador.hashCode());
 		result = prime * result + ((actPorcentajeEjecucion == null) ? 0 : actPorcentajeEjecucion.hashCode());
 		result = prime * result + ((actResponsable == null) ? 0 : actResponsable.hashCode());
 		result = prime * result + copNit;
@@ -289,6 +301,11 @@ public class Actividades implements Serializable{
 				return false;
 		} else if (!actObservaciones.equals(other.actObservaciones))
 			return false;
+		if (actObservacionesAdministrador == null) {
+			if (other.actObservacionesAdministrador != null)
+				return false;
+		} else if (!actObservacionesAdministrador.equals(other.actObservacionesAdministrador))
+			return false;
 		if (actPorcentajeEjecucion == null) {
 			if (other.actPorcentajeEjecucion != null)
 				return false;
@@ -312,8 +329,6 @@ public class Actividades implements Serializable{
 				+ actResponsable + ", actDesviacion=" + actDesviacion + ", actFechaEntregaReal=" + actFechaEntregaReal
 				+ ", actActividades=" + actActividades + ", actNumeroActividades=" + actNumeroActividades
 				+ ", actPorcentajeEjecucion=" + actPorcentajeEjecucion + ", actObservaciones=" + actObservaciones
-				+ ", actLog=" + actLog + "]";
+				+ ", actObservacionesAdministrador=" + actObservacionesAdministrador + ", actLog=" + actLog + "]";
 	}
-
-	
 }

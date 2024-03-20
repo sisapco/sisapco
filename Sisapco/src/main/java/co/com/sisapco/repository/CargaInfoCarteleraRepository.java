@@ -3,20 +3,18 @@ package co.com.sisapco.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.Cartelera;
-import co.com.sisapco.entity.Contrato;
 
 @Repository
-public interface CargaInfoCarteleraRepository extends CrudRepository<Cartelera, Long>{
+public interface CargaInfoCarteleraRepository extends CrudRepository<Cartelera, Long>{	
 	
-	@Query(value ="SELECT u.contra_id,u.cop_nit,u.contra_descripcion,u.contra_documento_adjunto,"
-			+"(SELECT e.est_valor_estado FROM estados e WHERE u.contra_estado=e.est_id_codigo) as contra_estado,"
-			+ "u.contra_fecha_fin,u.contra_fecha_inicio,u.contra_interventor,"
-			+ "u.contra_log,u.contra_nombre_contratista,u.contra_num_contrato,u.contra_observaciones,"
-			+ "u.contra_plazo,u.contra_tiempo,u.contra_valor,u.contra_visualizacion,u.contra_fecha_registro"
-			+ " FROM contrato u WHERE u.cop_nit = ?1 ORDER BY u.contra_id DESC", nativeQuery = true)
-	public Iterable<Cartelera> findByContratoNit(int copNit);	
+	@Query(value ="SELECT u.cartelera_id,u.cop_nit,u.pro_numero_residencia,u.cartelera_nombre_publicacion,"
+			
+			+ "u.cartelera_descripcion,u.cartelera_fecha_inicio,u.cartelera_fecha_fin,"
+			+ "u.cartelera_documento_adjunto,"
+			+"(SELECT e.est_valor_estado FROM estados e WHERE u.cartelera_estado=e.est_id_codigo) as cartelera_estado,"
+			+"u.cartelera_log"
+			+ " FROM cartelera u WHERE u.cop_nit = ?1 ORDER BY u.cartelera_id DESC", nativeQuery = true)
+	public Iterable<Cartelera> findByCarteleraNit(int copNit);
 	
 }

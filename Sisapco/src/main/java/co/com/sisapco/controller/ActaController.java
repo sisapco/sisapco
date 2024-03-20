@@ -1,7 +1,5 @@
 package co.com.sisapco.controller;
 
-
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.poi.hssf.record.formula.functions.Replace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -34,10 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.com.sisapco.dto.CopropiedadDTO;
 import co.com.sisapco.entity.Actas;
-import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
-import co.com.sisapco.entity.EvidenciaActividades;
-import co.com.sisapco.entity.Pqrs;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
@@ -45,13 +39,6 @@ import co.com.sisapco.service.UserService;
 import co.com.sisapco.util.CreateGoogleFile;
 import co.com.sisapco.util.CreateGoogleFileDoc;
 import co.com.sisapco.util.MD5DatosGet;
-
-import java.io.FileOutputStream; 
-import java.io.StringReader; 
-import com.lowagie.text.Document; 
-import com.lowagie.text.PageSize; 
-import com.lowagie.text.html.simpleparser.HTMLWorker; 
-import com.lowagie.text.pdf.PdfWriter;
 
 @Controller
 public class ActaController {

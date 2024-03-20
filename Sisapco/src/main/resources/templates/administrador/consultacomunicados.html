@@ -49,6 +49,7 @@
                                             <th>Descripcion</th>
                                             <th>Descargar Archivo</th>
                                             <th>Visualizar Archivos</th>
+                                            <th>Modificar Estado</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -59,6 +60,7 @@
                                             <th>Descripcion</th>
                                             <th>Descargar Archivo</th>
                                             <th>Visualizar Archivos</th>
+                                            <th>Modificar Estado</th>
                                         </tr>
                                     </tfoot>
                                     <tbody >
@@ -72,6 +74,14 @@
                                             </td>
                                             <td>
                                             <a class="btn btn-primary" th:href="${comu.comuVisualizacion}" target="_blank">Visualizar Comunicado</a>
+                                            </td>
+                                            <td>
+	                                             <div th:if="${activarRespuesta}">
+		                                            <form class="user" role="form" action="modComunicados" method="get">
+		                                                <input id="comunic" type="hidden" name="comunic" th:value="${comu.comuLog}" />   
+		                                                <input type="submit" class="btn btn-primary" value="Modificar">
+		                                            </form>
+		                                         </div>
                                             </td>
                                         </tr>
                                     </tbody>
