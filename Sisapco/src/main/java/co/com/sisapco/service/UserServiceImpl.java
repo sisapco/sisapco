@@ -462,6 +462,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public EstadosFinancieros getEstadosFinancierosByIdForm(int estId) throws Exception {
+		return repositoryEstadosFinancieros.findByEstIdForm(estId);
+	}
+
+	@Override
+	public ManualConvivencia getManualConvivenciaByIdForm(int conviId) throws Exception {
+		return repositoryManualConvivencia.findByConviIdForm(conviId);
+	}
+
+	@Override
+	public Comunicados getComunicadosByIdForm(int comuId) throws Exception {
+		return repositoryComunicados.findByComunicadosIdForm(comuId);
+	}
+	
 	public Cartelera createCartelera(Cartelera cartelera) throws Exception {
 		// TODO Auto-generated method stub
 		return repositoryCargaInfoCartelera.save(cartelera);
@@ -480,5 +494,10 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	
+	@Override
+	public Iterable<Cartelera> getCarteleraByNit(int copNit) throws Exception {
+		return repositoryCargaInfoCartelera.findByCarteleraNit(copNit);
+	}
+
 	
 }
