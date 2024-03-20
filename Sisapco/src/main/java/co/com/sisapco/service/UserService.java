@@ -4,6 +4,7 @@ import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.AutorizacionIngreso;
 import co.com.sisapco.entity.Cartelera;
 import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Contrato;
@@ -122,4 +123,7 @@ public interface UserService {
 	public Cartelera createCartelera(Cartelera cartelera) throws Exception;
 
 	public Copropiedad createCopropiedad(Copropiedad copropiedad) throws Exception;
+	
+	public AutorizacionIngreso createAutorizacion(AutorizacionIngreso autorizacionIngreso) throws Exception;
+	
 }

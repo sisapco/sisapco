@@ -9,6 +9,7 @@ import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.AlmacenamientoGoogle;
+import co.com.sisapco.entity.AutorizacionIngreso;
 import co.com.sisapco.entity.Cartelera;
 import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Contrato;
@@ -32,6 +33,7 @@ import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.ActasRepository;
 import co.com.sisapco.repository.ActividadesRepository;
 import co.com.sisapco.repository.AlmacenamientoGoogleRepository;
+import co.com.sisapco.repository.AutorizacionIngresoRepository;
 import co.com.sisapco.repository.CargaInfoCarteleraRepository;
 import co.com.sisapco.repository.ComunicadosRepository;
 import co.com.sisapco.repository.ContratoRepository;
@@ -116,6 +118,9 @@ public class UserServiceImpl implements UserService{
     
 	@Autowired
     CargaInfoCarteleraRepository repositoryCargaInfoCartelera;
+	
+	@Autowired
+	AutorizacionIngresoRepository repositoryAutorizacionIngreso;
 	
 	@Override
 	public Iterable<Usuarios> getAllUsers(){
@@ -467,6 +472,13 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return repositoryCopropiedad.save(copropiedad);
 	}
+
+	@Override
+	public AutorizacionIngreso createAutorizacion(AutorizacionIngreso autorizacionIngreso) throws Exception {
+		// TODO Auto-generated method stub
+		return repositoryAutorizacionIngreso.save(autorizacionIngreso);
+	}
+	
 	
 	
 }

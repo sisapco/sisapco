@@ -156,7 +156,7 @@
 						</div>
 						<div class="card-body">
 							<form class="user needs-validation" novalidate role="form"
-								action="crearCopropiedad" method="post"
+								action="crearautorizacion" method="post"
 								enctype="multipart/form-data">
 								<div class="alert alert-danger" role="alert">Se presento
 									un error, inténtelo nuevamente.</div>
@@ -176,14 +176,18 @@
 										<span>Cedula del propietario</span> <input type="number"
 											minlength="5" maxlength="25"
 											class="form-control form-control-user" id="proCc"
-											placeholder="" required>
+											placeholder="" 
+											th:field="${autorizaForm.proCc}"
+											required>
 									</div>
 
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<span>Numero de la Residencia<span
 											style="color: #ff0000">*</span></span> <input type="text"
 											class="form-control form-control-user"
-											id="proNumeroResidencia" placeholder="" required>
+											id="proNumeroResidencia" placeholder=""
+											th:field="${autorizaForm.proNumeroResidencia}"
+											required>
 
 									</div>
 
@@ -194,13 +198,13 @@
 										<span>Nombres visitante:</span> <input type="text"
 											class="form-control form-control-user" id="autoriNombres"
 											placeholder=""
-											th:field="${autorizacioningresoForm.autoriNombres}">
+											th:field="${autorizaForm.autoriNombres}">
 									</div>
 									<div class="col-sm-6">
 										<span>Apellidos visitante:</span> <input type="text"
 											class="form-control form-control-user" id="autoriApellidos"
 											placeholder=""
-											th:field="${autorizacioningresoForm.autoriApellidos}">
+											th:field="${autorizaForm.autoriApellidos}">
 									</div>
 								</div>
 
@@ -209,18 +213,18 @@
 									<div class="col-sm-6">
 										<span>Cedula del visitante<span style="color: #ff0000">*</span></span>
 										<input type="number" minlength="5" maxlength="25"
-											class="form-control form-control-user" id="autoriCcVisitante"
-											placeholder=""
-											th:field="${autorizacioningresoForm.autoriCcVisitante}"
-											required>
+											class="form-control form-control-user" 
+											id="autoriCcVisitante" placeholder="" required											
+											th:field="${autorizaForm.autoriCcVisitante}"
+											>
 										<div class="invalid-feedback">Ingresa una cedula valida</div>
 									</div>
 									<div class="col-sm-6">
 										<span>Numero Placa Vehiculo</span> <input type="text"
 											class="form-control form-control-user"
-											id="autoriPlacaVehiculo" placeholder=""
-											th:field="${autorizacioningresoForm.autoriPlacaVehiculo}"
-											required>
+											id="autoriPlacaVehiculo"
+											th:field="${autorizaForm.autoriPlacaVehiculo}"
+											>
 
 									</div>
 								</div>
@@ -231,14 +235,14 @@
 										<span>Numero de visitantes:</span> <input type="number"
 											class="form-control form-control-user"
 											id="autoriCantidadPersonas" placeholder=""
-											th:field="${autorizacioningresoForm.autoriCantidadPersonas}">
+											th:field="${autorizaForm.autoriCantidadPersonas}">
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 									<div class="col-sm-6">
 										<span>Numero de vehiculos:</span> <input type="number"
 											class="form-control form-control-user"
 											id="autoriCantidadVehiculos" placeholder=""
-											th:field="${autorizacioningresoForm.autoriCantidadVehiculos}">
+											th:field="${autorizaForm.autoriCantidadVehiculos}">
 										<div class="invalid-feedback">Ingresa un dato valido.</div>
 									</div>
 
@@ -249,12 +253,12 @@
 										<span>Fecha ingreso:<span style="color: #ff0000">*</span></span>
 										<input type="text" class="form-control form-control-user"
 											id="autoriFechaIngreso" placeholder="dd-mm-yy"
-											th:field="${autorizacioningresoForm.autoriFechaIngreso}"
+											th:field="${autorizaForm.autoriFechaIngreso}"
 											required>
 										<div class="invalid-feedback">Debe de ingresar una
 											fecha.</div>
 										<script>
-											$('#contraFechaFin').datepicker({
+											$('#autoriFechaIngreso').datepicker({
 												uiLibrary : 'bootstrap4',
 												dateFormat : "dd-mm-yy"
 											});
@@ -264,12 +268,12 @@
 										<span>Fecha Salida:<span style="color: #ff0000">*</span></span>
 										<input type="text" class="form-control form-control-user"
 											id="autoriFechaSalida" placeholder="dd-mm-yy"
-											th:field="${autorizacioningresoForm.autoriFechaSalida}"
+											th:field="${autorizaForm.autoriFechaSalida}"
 											required>
 										<div class="invalid-feedback">Debe de ingresar una
 											fecha.</div>
 										<script>
-											$('#contraFechaFin').datepicker({
+											$('#autoriFechaSalida').datepicker({
 												uiLibrary : 'bootstrap4',
 												dateFormat : "dd-mm-yy"
 											});
@@ -282,7 +286,7 @@
 									<div class="col-sm-6 ">
 										<span>Estado:</span> <select class="form-control"
 											id="autoriEstado"
-											th:field="${autorizacioningresoForm.autoriEstado}">
+											th:field="${autorizaForm.autoriEstado}">
 											<option value="1" selected>Activa</option>
 											<option value="0">Inactiva</option>
 											<option value="3">En proceso</option>
@@ -293,7 +297,7 @@
 										<span>Observaciones:</span>
 										<textarea class="form-control" id="autoriObservaciones"
 											rows="3"
-											th:field="${autorizacioningresoForm.autoriObservaciones}"></textarea>
+											th:field="${autorizaForm.autoriObservaciones}"></textarea>
 									</div>
 
 
