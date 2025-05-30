@@ -17,4 +17,5 @@ public interface ActasRepository extends CrudRepository<Actas, Long>{
 	
 	@Query(value = "SELECT * FROM actas u WHERE u.cop_nit = ?1 ORDER BY u.act_id DESC LIMIT 1", nativeQuery = true)
 	public Actas findByActasNitConsecutivo(int copNit);
+	
 }
