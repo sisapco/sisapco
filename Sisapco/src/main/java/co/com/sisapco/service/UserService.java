@@ -7,6 +7,7 @@ import co.com.sisapco.entity.AlmacenamientoGoogle;
 import co.com.sisapco.entity.AutorizacionIngreso;
 import co.com.sisapco.entity.Cartelera;
 import co.com.sisapco.entity.Comunicados;
+import co.com.sisapco.entity.ContactoEmergencia;
 import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
@@ -15,14 +16,20 @@ import co.com.sisapco.entity.Dane;
 import co.com.sisapco.entity.EstadosFinancieros;
 import co.com.sisapco.entity.DatosGenerales;
 import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.Inquilino;
 import co.com.sisapco.entity.ManualConvivencia;
+import co.com.sisapco.entity.Mascota;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
+import co.com.sisapco.entity.Propiedad;
 import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Proyectos;
+import co.com.sisapco.entity.Residentes;
 import co.com.sisapco.entity.SancionesMulta;
+import co.com.sisapco.entity.Terceros;
 import co.com.sisapco.entity.Usuarios;
+import co.com.sisapco.entity.Vehiculo;
 
 public interface UserService {
 	
@@ -134,4 +141,23 @@ public interface UserService {
 	
 	public AutorizacionIngreso createAutorizacion(AutorizacionIngreso autorizacionIngreso) throws Exception;
 	
+	public Propiedad createPropiedad(Propiedad propiedad) throws Exception;
+	
+	public Inquilino createInquilino(Inquilino inquilino) throws Exception;
+	
+	public Vehiculo createVehiculo(Vehiculo vehiculo) throws Exception;
+	
+	public Mascota createMascota(Mascota mascota) throws Exception;
+	
+	public Usuarios createUsuario(Usuarios user) throws Exception;
+	
+	public ContactoEmergencia createContactoEmergencia(ContactoEmergencia contactoEmergencia) throws Exception;
+	
+	public Usuarios validarUsuarioDatosGenerales(String user) throws Exception;
+	
+	public Residentes createResidentes(Residentes residentes) throws Exception;
+	
+	public Propietarios createPropietario(Propietarios propietarios) throws Exception;
+	
+	public Terceros createTerceros(Terceros terceros) throws Exception;
 }

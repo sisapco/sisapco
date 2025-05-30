@@ -12,6 +12,7 @@ import co.com.sisapco.entity.AlmacenamientoGoogle;
 import co.com.sisapco.entity.AutorizacionIngreso;
 import co.com.sisapco.entity.Cartelera;
 import co.com.sisapco.entity.Comunicados;
+import co.com.sisapco.entity.ContactoEmergencia;
 import co.com.sisapco.entity.Contrato;
 import co.com.sisapco.entity.ControlPagos;
 import co.com.sisapco.entity.Copropiedad;
@@ -22,20 +23,27 @@ import co.com.sisapco.entity.EstadosFinancieros;
 
 import co.com.sisapco.entity.DatosGenerales;
 import co.com.sisapco.entity.EvidenciaActividades;
+import co.com.sisapco.entity.Inquilino;
 import co.com.sisapco.entity.ManualConvivencia;
+import co.com.sisapco.entity.Mascota;
 import co.com.sisapco.entity.Modulo;
 import co.com.sisapco.entity.Perfil;
 import co.com.sisapco.entity.Pqrs;
+import co.com.sisapco.entity.Propiedad;
 import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Proyectos;
+import co.com.sisapco.entity.Residentes;
 import co.com.sisapco.entity.SancionesMulta;
+import co.com.sisapco.entity.Terceros;
 import co.com.sisapco.entity.Usuarios;
+import co.com.sisapco.entity.Vehiculo;
 import co.com.sisapco.repository.ActasRepository;
 import co.com.sisapco.repository.ActividadesRepository;
 import co.com.sisapco.repository.AlmacenamientoGoogleRepository;
 import co.com.sisapco.repository.AutorizacionIngresoRepository;
 import co.com.sisapco.repository.CargaInfoCarteleraRepository;
 import co.com.sisapco.repository.ComunicadosRepository;
+import co.com.sisapco.repository.ContactoEmergenciaRepository;
 import co.com.sisapco.repository.ContratoRepository;
 import co.com.sisapco.repository.ControlPagosRepository;
 import co.com.sisapco.repository.CopropiedadRepository;
@@ -44,14 +52,20 @@ import co.com.sisapco.repository.DaneRepository;
 import co.com.sisapco.repository.EstadosFinancierosRepository;
 import co.com.sisapco.repository.DatosGeneralesRepository;
 import co.com.sisapco.repository.EvidenciaActividadesRepository;
+import co.com.sisapco.repository.InquilinoRepository;
 import co.com.sisapco.repository.ManualConvivenciaRepository;
+import co.com.sisapco.repository.MascotaRepository;
 import co.com.sisapco.repository.ModuloRepository;
 import co.com.sisapco.repository.PerfilRepository;
 import co.com.sisapco.repository.PqrsRepository;
+import co.com.sisapco.repository.PropiedadRepository;
 import co.com.sisapco.repository.PropietariosRepository;
 import co.com.sisapco.repository.ProyectosRepository;
+import co.com.sisapco.repository.ResidentesRepository;
 import co.com.sisapco.repository.SancionesMultaRepository;
+import co.com.sisapco.repository.TercerosRepository;
 import co.com.sisapco.repository.UserRepository;
+import co.com.sisapco.repository.VehiculoRepository;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -121,6 +135,28 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	AutorizacionIngresoRepository repositoryAutorizacionIngreso;
+	
+	@Autowired
+	PropiedadRepository repositoryPropiedad;
+	
+	@Autowired
+	InquilinoRepository repositoryInquilino;
+	
+	@Autowired
+	VehiculoRepository repositoryVehiculo;
+	
+	@Autowired
+	MascotaRepository repositoryMascota;
+	
+	@Autowired
+	ContactoEmergenciaRepository repositoryContactoEmergencia;
+	
+	@Autowired
+	ResidentesRepository repositoryResidentes;
+	
+	@Autowired
+	TercerosRepository repositoryTerceros;
+	
 	
 	@Override
 	public Iterable<Usuarios> getAllUsers(){
@@ -493,11 +529,60 @@ public class UserServiceImpl implements UserService{
 		return repositoryAutorizacionIngreso.save(autorizacionIngreso);
 	}
 	
-	
 	@Override
 	public Iterable<Cartelera> getCarteleraByNit(int copNit) throws Exception {
 		return repositoryCargaInfoCartelera.findByCarteleraNit(copNit);
 	}
 
+	@Override
+	public Propiedad createPropiedad(Propiedad propiedad) throws Exception {
+		return repositoryPropiedad.save(propiedad);
+	}
+	
+	@Override
+	public Inquilino createInquilino(Inquilino inquilino) throws Exception {
+		return repositoryInquilino.save(inquilino);
+	}
+	
+	@Override
+	public Vehiculo createVehiculo(Vehiculo vehiculo) throws Exception {
+		return repositoryVehiculo.save(vehiculo);
+	}
+	
+	@Override
+	public Mascota createMascota(Mascota mascota) throws Exception {
+		return repositoryMascota.save(mascota);
+	}
+	
+	@Override
+	public Usuarios createUsuario(Usuarios usuario) throws Exception {
+		return repository.save(usuario);
+	}
+
+	@Override
+	public ContactoEmergencia createContactoEmergencia(ContactoEmergencia contactoEmergencia) throws Exception {
+		return repositoryContactoEmergencia.save(contactoEmergencia);
+	}
+	
+	@Override
+	public Usuarios validarUsuarioDatosGenerales(String user) throws Exception {
+
+	    return repository.findByValidarUsername(user);
+	}
+
+	@Override
+	public Residentes createResidentes(Residentes residentes) throws Exception {
+		return repositoryResidentes.save(residentes);
+	}
+
+	@Override
+	public Propietarios createPropietario(Propietarios propietarios) throws Exception {
+		return repositoryPropietarios.save(propietarios);
+	}
+
+	@Override
+	public Terceros createTerceros(Terceros terceros) throws Exception {
+		return repositoryTerceros.save(terceros);
+	}
 	
 }

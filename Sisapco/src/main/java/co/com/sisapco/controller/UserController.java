@@ -27,11 +27,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.com.sisapco.dto.ChangePasswordForm;
 import co.com.sisapco.dto.CopropiedadDTO;
 import co.com.sisapco.entity.Copropiedad;
 import co.com.sisapco.entity.ManualConvivencia;
+import co.com.sisapco.entity.Propietarios;
 import co.com.sisapco.entity.Usuarios;
 import co.com.sisapco.repository.CopropiedadRepository;
 import co.com.sisapco.repository.PerfilRepository;
@@ -472,7 +476,20 @@ public class UserController {
 	}
 
 	
-	
+	@RequestMapping("/consultaUsuarioDatosGenerales")
+	public @ResponseBody String consultaUsuarioDatosGenerales(Authentication authenticationnn,  ModelMap model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		//Capturamos el usuario que se ingreso
+		String varprousser= req.getParameter("prousser");
+		Usuarios usuarios = userService.validarUsuarioDatosGenerales(varprousser);
+		
+		List<Usuarios> users = new ArrayList<Usuarios>();
+		users.add(usuarios);
+		ObjectMapper mapper = new ObjectMapper();
+        String data = mapper.writeValueAsString(users);
+        		
+		return data;
+	}
 	
 	
 }

@@ -124,14 +124,14 @@ public class AutorizacionIngresoController {
 						
 					    guardarAutorizacion.setAutoriApellidos(autoriza.getAutoriApellidos());  
 					    guardarAutorizacion.setCopNit(copNit); 
-					    guardarAutorizacion.setAutoriCantidadPersonas(autoriza.getAutoriCantidadPersonas());
-					    guardarAutorizacion.setAutoriCantidadVehiculos(autoriza.getAutoriCantidadVehiculos());
-					    guardarAutorizacion.setAutoriCcVisitante(autoriza.getAutoriCcVisitante());
+					    //guardarAutorizacion.setAutoriCantidadPersonas(autoriza.getAutoriCantidadPersonas());
+					    //guardarAutorizacion.setAutoriCantidadVehiculos(autoriza.getAutoriCantidadVehiculos());
+					    //guardarAutorizacion.setAutoriCcVisitante(autoriza.getAutoriCcVisitante());
 					    guardarAutorizacion.setAutoriEstado(autoriza.getAutoriEstado());
 					    guardarAutorizacion.setAutoriFechaIngreso(autoriza.getAutoriFechaIngreso());
 					    guardarAutorizacion.setAutoriFechaSalida(autoriza.getAutoriFechaSalida());
 					    guardarAutorizacion.setAutoriNombres(autoriza.getAutoriNombres());
-					    guardarAutorizacion.setAutoriObservaciones(autoriza.getAutoriObservaciones());
+					    //guardarAutorizacion.setAutoriObservaciones(autoriza.getAutoriObservaciones());
 					    guardarAutorizacion.setAutoriPlacaVehiculo(autoriza.getAutoriPlacaVehiculo());
 					    guardarAutorizacion.setProCc(autoriza.getProCc());
 					    guardarAutorizacion.setProNumeroResidencia(autoriza.getProNumeroResidencia());
