@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualizar Acta</title>
+<!-- El script de la librería-->
+<script src="pdfjs/html2pdf.bundle.min.js"></script>
+<!--Nuestro script, que se encarga de crear el PDF usando la librería-->
+<script src="pdfjs/script.js"></script>
+
+<!-- Algunos estilos -->
+
+<!-- Custom fonts for this template
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">-->
+	
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="plantilla/css/sb-admin-2.min.css" rel="stylesheet">
+
+<!-- Custom styles for this page -->
+<link href="plantilla/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+
+<!-- plantilla actas -->
+<link href="css/plantillaActas.css" type="text/css" rel="stylesheet">
+
+
+</head>
+
+<body>
+	<!-- contenido para cabecera de titulo y logo -->
+	<div class="container-fluid"  id="element-to-print">
+		<div class="row">
+			<div class="col-sm-4 bg-primary text-white"></div>
+			<div class="col-sm-4 bg-primary text-white">
+				<h2>
+					<spam class="titulo"> ACTA Nº: </spam>
+					<spam th:text="${actaForm.actNumero}" class="titulo"></spam>
+				</h2>
+			</div>
+			<div class="col-sm-4 bg-primary text-white">
+				<img th:src="${logoCopropiedad}"
+					class="img-thumbnail rounded float-end"
+					style="width: 20% !important">
+			</div>
+		</div>
+	</div>
+
+	<!-- contenido para cabecera datos de la reunion -->
+	<div class="container">
+
+		<br>
+		<div class="row align-items-start text-black">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">REUNION:</spam>
+			</div>
+			<div class="col">
+				<p class="h6 estiloLetra">
+					<spam th:text="${actaForm.actReunion}"></spam>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+
+		<div class="row align-items-center">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">FECHA:</spam>
+			</div>
+			<div class="col">
+				<p class="h6 estiloLetra">
+					<spam th:text="${actaForm.actFecha}"></spam>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+
+		<div class="row align-items-end">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">CONVOCA:</spam>
+			</div>
+			<div class="col">
+				<p class="h6 estiloLetra">
+					<spam th:text="${actaForm.actConvoca}"></spam>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+
+		<div class="row align-items-start">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">MUNICIPIO:</spam>
+			</div>
+			<div class="col">
+				<p class="h6 estiloLetra">
+					<spam th:text="${actaForm.actMunicipio}"></spam>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+
+		<div class="row align-items-start">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">LUGAR:</spam>
+			</div>
+			<div class="col">
+				<p class="estiloLetra h6">
+					<spam th:text="${actaForm.actLugar}"></spam>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+
+		<div class="row align-items-center">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">HORA INICIO:</spam>
+			</div>
+			<div class="col">
+				<p class="estiloLetra h6" align="justify">
+					<spam th:text="${actaForm.actHoraInicio}"></spam>
+				</p>
+			</div>
+			<div class="col"></div>
+		</div>
+
+		<div class="row align-items-center">
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">ASISTENTES:</spam>
+			</div>
+			<div class="col">
+
+				<pre class="estiloLetra h6">
+					<spam th:text="${actaForm.actAsistentes}"></spam>
+				</pre>
+			</div>
+			<div class="col"></div>
+		</div>
+
+
+
+	</div>
+	<br>
+	<div class="container">
+		<div class="row align-items-start">
+			<div class="col"></div>
+			<div class="col">
+				<spam class="titulo h5 estiloLetra">ORDEN DEL DÍA:</spam>
+			</div>
+			<div class="col"></div>
+		</div>
+		<div class="row align-items-start">
+			<div class="col">
+				<pre class="estiloLetra h6" align="left">	<spam
+						th:text="${actaForm.actOrdenDia}"> </spam> </pre>
+						<br>
+			</div>
+			<div class="col"></div>
+			<div class="col"></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row align-items-start">
+
+			<br>
+			<spam class="titulo h5 estiloLetra">DESARROLLO ORDEN DEL DÍA:</spam>
+			<pre class="saltoDeLinea estiloLetra" align="justify">
+				<spam th:text="${actaForm.actDesarrolloDia}"> </spam> </pre>
+
+
+		</div>
+
+	</div>
+
+	<br>
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 ">
+				<img th:src="${actaForm.actFirmas}" >
+			</div>	
+			<div class="col-sm-6 ">
+				<img th:src="${actaForm.actFirmas}">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 ">
+				<td>______________________________</td>
+			</div>
+			<div class="col-sm-6 ">
+				<td>______________________________</td>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 ">
+				<spam>Presidente</spam>
+			</div>
+			<div class="col-sm-6 ">
+				<spam>Secretario</spam>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>btnCrearPdfBody()</script>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Seleccione la propiedad</title>
+
+    <!-- Custom fonts for this template-->
+    <!--<link href="plantilla/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">  -->
+    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="plantilla/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <style>
+	    .negritaTexto{
+	       font-weight:bold!important; 
+	       color:#000!important
+	    
+	    }
+		#header {
+		  background: rgba(40, 58, 90, 0.9)!important;
+		}
+    </style>
+    
+    <link href="css/menusisapco.css" rel="stylesheet">
+    
+    
+  <!-- Vendor CSS Files -->
+  <link href="plantillaindex/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="plantillaindex/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">  
+    
+  <!-- Template Main CSS File -->
+  <link href="plantillaindex/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+             
+                <!-- Topbar
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top fixed-top ">
+
+                <div class="sidebar-brand-text mx-3">
+                <img class="imagenLogo" src="img/sisapco.png" />
+                </div>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow">
+                           
+                            <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}" class="negritaTexto"></span><span class="negritaTexto"> - </span><span class="negritaTexto"> Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span>                           
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav> -->
+                
+                  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/"><img class="imagenLogo" style="width: 100%" src="img/sisapco.png"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="getstarted scrollto" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}" ></span><span> - </span><span> Salir  </span><span class="float-right"></span></a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+                
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+
+
+                    <!-- Content Row -->
+                    <br><br><br><br><br>
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Seleccione la copropiedad con la que desea continuar:</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                 <!--<div class="chart-area">-->
+                                    <div>
+                                        <!-- <canvas id="myAreaChart"></canvas> -->
+                                 
+                                 <div class="row" th:each="copro: ${copropiedadDTO}">
+                                
+                                         
+		                               <div class="col-lg-6 mb-4">
+		                                    <div class="card bg-primary text-white shadow">
+		                                        <div class="card-body">
+                                                    <form th:action="@{/admin}" method="get" th:id="${copro.copId}">  
+                                                    <div class="form-group col-lg-12 mx-auto mb-0">
+                                                         <!-- <input id="copId" type="hidden" name="copId" th:value="${copro.codLog}" />   -->    
+                                                          <input id="copId" type="hidden" name="copId" th:value="${copro.copDireccion}" />           
+                                                           
+                                                                                                                
+								                         <button type="submit" class="btn btn-primary btn-block py-2 font-weight-bold"><i class="fas fa-sign-in-alt"></i>
+								                         
+								                         <table>
+								                         <tr>
+								                         <td width="50%"><span th:text="${copro.copNombreCopropiedad}"></span>
+								                         <div class="text-white-50 small"><span th:text="${copro.copUbicacion}"></span></div></td>
+								                          <td width="50%"><img style="width:100%!important" th:src="${copro.copLogo}"></td>
+								                          <!--<td width="50%"><img style="width:100%!important" src="https://feriadelavivienda.co/wp-content/uploads/2021/11/logo-bosques-rionegro-medellin.png"></td>-->
+								                        
+								                         </tr>
+								                         </table>
+								                        
+								                         
+								                         </button>
+								                    </div>
+								                    </form>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                
+		                                
+                                         
+
+                            </div>
+                           
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+    
+                    </div>
+
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Sisapco</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Sisapco</span></strong>. All Rights Reserved
+      </div>
+
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <!--<script src="plantilla/vendor/jquery/jquery.min.js"></script>
+    <script src="plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>  -->
+
+    <!-- Core plugin JavaScript-->
+   <!-- <script src="plantilla/vendor/jquery-easing/jquery.easing.min.js"></script>-->
+
+    <!-- Custom scripts for all pages-->
+    <script src="plantilla/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+   <!--   <script src="plantilla/vendor/chart.js/Chart.min.js"></script>-->
+
+    <!-- Page level custom scripts -->
+    <script src="plantilla/js/demo/chart-area-demo.js"></script>
+    <script src="plantilla/js/demo/chart-pie-demo.js"></script>
+    
+      <!-- Template Main JS File -->
+  <script src="plantillaindex/assets/js/main.js"></script>
+
+</body>
+
+</html>
