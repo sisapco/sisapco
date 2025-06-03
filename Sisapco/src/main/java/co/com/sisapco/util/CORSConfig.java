@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package co.com.sisapco.util;
 
 import org.springframework.context.annotation.Configuration;
@@ -15,4 +16,23 @@ public class CORSConfig implements WebMvcConfigurer{
 	         .allowedHeaders("*");
 	   }
 
+=======
+package co.com.sisapco.util;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class CORSConfig implements WebMvcConfigurer{
+
+	 @Override
+	   public void addCorsMappings(CorsRegistry registry) {
+	      registry.addMapping("/**")
+	         .allowedOrigins("*")
+	         .allowedMethods("GET", "POST", "PUT", "DELETE")
+	         .allowedHeaders("*");
+	   }
+
+>>>>>>> branch 'master' of https://github.com/sisapco/sisapco.git
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "ISO-8859-1";
 
 	  @media (max-width: 767.98px){
@@ -66,4 +67,74 @@
 		      width: 17%;
 		
 		   }
+=======
+@charset "ISO-8859-1";
+
+	  @media (max-width: 767.98px){
+		.imagenLogo {
+		      width: 60%!important;
+		
+		   }
+	  }
+	  
+	  @media (max-width: 753.98px){
+		.imagenLogo {
+		      width: 50%!important;
+		
+		   }
+	  }
+	  
+	  @media (max-width: 600px){
+		.imagenLogo {
+		      width: 100%!important;
+		
+		   }
+	  }
+	  @media (max-width: 1000px){
+		.imagenLogo {
+		      width: 70%;
+		
+		   }
+	  }
+	  
+	  @media (max-width: 1800px){
+		.imagenLogo {
+		      width: 30%;
+		
+		   }
+	  }
+	  
+	  @media (max-width: 1000px){
+		.imagenLogoAdmin {
+		      width: 30%;
+		
+		   }
+	  }
+	  	  @media (max-width: 1200px){
+		.imagenLogoAdmin {
+		      width: 25%;
+		
+		   }
+	  }
+	  
+	  @media (max-width: 1800px){
+		.imagenLogoAdmin {
+		      width: 20%;
+		
+		   }
+	  }
+	  
+	  @media (max-width: 753.98px){
+		.imagenLogoAdmin {
+		      width: 40%!important;
+		
+		   }
+	  }
+	  
+	 @media (max-width: 1700px){
+		.imagenLogoAdmin {
+		      width: 17%;
+		
+		   }
+>>>>>>> branch 'master' of https://github.com/sisapco/sisapco.git
 	  }

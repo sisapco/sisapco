@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/propiedad">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -75,4 +76,83 @@
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+=======
+ <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/propiedad">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <!--<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>  -->
+                <div class="sidebar-brand-text mx-3">
+                <img style="width:100%!important" src="img/sisapco.png" />
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard 
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span th:text="${#authentication.getPrincipal().getUsername()}"></span></a>
+            </li>-->
+            
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+            
+             <li class="nav-item">
+                <form action="/admin" method="post" id="home34343">  
+                <div class="form-group col-lg-12 mx-auto mb-0">
+                      <input id="copId" type="hidden" name="copId" value="0" />                      
+                      <button type="submit" class="btn btn-primary btn-block py-2 nav-link">Home</button>
+               </div>
+               </form>
+              </li>
+              <br>
+                     <!-- Heading -->
+            <div class="sidebar-heading">
+                MENU
+            </div>
+            
+                <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu Consejo-->
+            
+            <div th:each="user: ${moduloslist}" >
+             <li class="nav-item">
+                <form th:action="${user.modRutaPlantilla}" method="post" th:id="${user.modId}">  
+                <div class="form-group col-lg-12 mx-auto mb-0">
+                      <input id="copId" type="hidden" name="copId" th:value="${codidlist}" />
+                      <input id="copNit" type="hidden" name="copNit" th:value="${copNit}" />
+                      <input id="copNombre" type="hidden" name="copNombre" th:value="${copNombre}" />
+                      
+                      <button type="submit" class="btn btn-primary btn-block py-2 nav-link"><span th:text="${user.modNombre}"></span></button>
+               </div>
+               </form>
+            </li>
+            
+            </div>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+>>>>>>> branch 'master' of https://github.com/sisapco/sisapco.git
             </div>

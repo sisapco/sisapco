@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -565,4 +566,573 @@
 	</script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Visualizar Actividad</title>
+    
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="plantilla/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="plantilla/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    
+    <link href="css/menusisapco.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <!--<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+          <div th:include="administrador/menu.html" th:remove="tag"></div>
+        </ul>  -->
+        <!-- End of Sidebar -->
+        
+        
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <form th:action="@{${rutamenu}}" method="get" id="home34343" Style="float:left" class="imagenLogoAdmin">   
+	                <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />                 
+	                <button id="54545" class="btn btn-link rounded-circle mr-3" >
+	                        <i class="fa fa-bars"></i>
+	                        <img class="imagenLogoAdmin" style="width:100%!important" src="img/sisapco.png">
+	                </button>
+	                 </form>
+               
+                    <!-- Sidebar Toggle (Topbar) -->
+                     <form th:action="@{${rutamenuseguimiento}}" method="get" id="home34343" Style="float:left">
+                       <input id="copId" type="hidden" name="copId" th:value="${copIdEncryted}" />  
+                        <button id="sidebarToggleTop" class="btn btn-link d-md rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                            <img style="width:250%!important" src="img/imagenatras.png">
+                        </button>
+                      </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+
+                            <a class="nav-link dropdown-toggle" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}"></span> - <span>Salir  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span>
+                            <!--  <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">-->
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Copropiedad: <span th:text="${copNombre}"></span></h1>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Visualizar actividad administrador:</h6>
+                        </div>
+                        <div class="card-body">                          
+                             <form class="user needs-validation" novalidate role="form" th:object="${actividadesForm}" action="actualizaractividadesadmin" method="post" enctype="multipart/form-data">
+                                <div th:if="${error}" class="alert alert-danger" role="alert">
+						           Se presento un error, inténtelo nuevamente.
+						        </div>
+						        <div th:if="${errorcampos}" class="alert alert-danger" role="alert">
+						           Se presento un error, por favor ingrese los datos en campos que son obligatorios de forma correcta.
+						        </div>
+						        
+						        <div th:if="${bien}" class="alert alert-success" role="alert">
+						            La actividad fue actualizada de forma exitosa.
+						        </div>
+                                <input class="form-control" type=hidden th:value="${copNit}" id="copNit" name="copNit">
+                                <input class="form-control" type=hidden th:value="${copNombre}" id="copNombre" name="copNombre">
+                                <input class="form-control" type=hidden th:value="${actividadesForm.actId}" id="actId" name="actId">
+                                
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                       <span>Fecha de inicio:</span>
+                                        <input type="text" class="form-control form-control-user" id="actFechaInicio"
+                                            placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaInicio}" required th:readonly="${inactivarConsejo}">
+                                               <div th:if="${activarCalendario}">
+	                                                <script>
+												        $('#actFechaInicio').datepicker({
+												            uiLibrary: 'bootstrap4',
+												            dateFormat: "dd/mm/yy"
+												        });
+												    </script>											    
+								               </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <span>Fecha final:</span>
+                                        <input type="text" class="form-control form-control-user" id="actFechaFinal"
+                                            placeholder="DD/MM/AAAA" th:field="${actividadesForm.actFechaFinal}" required th:readonly="${inactivarConsejo}">
+                                               <div th:if="${activarCalendario}">
+	                                                <script>
+												        $('#actFechaFinal').datepicker({
+												            uiLibrary: 'bootstrap4'
+												        });
+												    </script>
+											    </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                 <span>Nombre de la actividad:</span>
+                                    <input type="text" class="form-control form-control-user" id="actNombreActividad"
+                                        placeholder="" th:field="${actividadesForm.actNombreActividad}" required th:readonly="${inactivarConsejo}">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <!--<input type="text" class="form-control form-control-user" id="actEstado"
+                                            placeholder="Estado" th:field="${actividadesForm.actEstado}">  -->
+                                            <span>Seleccione el estado:</span>
+                                            <select class="form-control" id="actEstado" th:field="${actividadesForm.actEstado}" required>
+	                                              <option value="2" selected>Abierto</option>
+	                                              <option value="3">En proceso</option>
+											      <option value="4">Cerrado</option>
+                                            </select>                                            
+                                    </div>
+                                    <div class="col-sm-6">
+                                     <span>Descripción:</span>                                           
+                                            <textarea class="form-control" id="actDescripcion"
+											rows="3" th:field="${actividadesForm.actDescripcion}" required th:readonly="${inactivarConsejo}"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <span>Costo:</span>
+                                        <input type="text" class="form-control form-control-user" id="actCosto"
+                                            placeholder="Costo" th:field="${actividadesForm.actCosto}" required th:readonly="${activarConsejo}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Responsable:</span>
+                                        <input type="text" class="form-control form-control-user" id="actResponsable"
+                                            placeholder="Responsable" th:field="${actividadesForm.actResponsable}" required th:readonly="${inactivarConsejo}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Desviacion:</span>
+                                        <input type="text" class="form-control form-control-user" id="actDesviacion"
+                                            placeholder="Desviacion" th:field="${actividadesForm.actDesviacion}" required disabled>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Fecha entrega real:</span>
+                                        <input type="text" class="form-control form-control-user" id="actFechaEntregaReal"
+                                            placeholder="Fecha entrega real" th:field="${actividadesForm.actFechaEntregaReal}" required th:readonly="${activarConsejo}">
+                                                <div th:if="${inactivarConsejoHtml}">
+	                                                <script>
+												        $('#actFechaEntregaReal').datepicker({
+												            uiLibrary: 'bootstrap4'
+												        });
+												    </script>
+											    </div>	   
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Actividades:</span>
+                                        
+                                        <!--  <input type="text" class="form-control form-control-user" id="actActividades"
+                                            placeholder="Actividades" th:field="${actividadesForm.actActividades}" required>-->
+                                            
+                                        <textarea class="form-control" id="actActividades"
+											rows="3" th:field="${actividadesForm.actActividades}" required th:readonly="${activarConsejo}"></textarea>
+                                            
+                                            
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Numero actividades:</span>
+                                        <input type="text" class="form-control form-control-user" id="actNumeroActividades"
+                                            placeholder="Numero actividades" th:field="${actividadesForm.actNumeroActividades}" required th:readonly="${activarConsejo}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Porcentaje ejecución:</span>
+                                        <input type="text" class="form-control form-control-user" id="actPorcentajeEjecucion"
+                                            placeholder="Porcentaje ejecucion" th:field="${actividadesForm.actPorcentajeEjecucion}" required th:readonly="${activarConsejo}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Observaciones del Consejo:</span>
+                                              <textarea class="form-control" id="actObservaciones"
+											  rows="3" th:field="${actividadesForm.actObservaciones}" required th:readonly="${inactivarConsejo}"></textarea>
+                                            
+                                    </div>
+                                </div>
+                                 <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <span>Observaciones del Administrador:</span>
+                                              <textarea class="form-control" id="actObservacionesAdministrador"
+											  rows="3" th:field="${actividadesForm.actObservacionesAdministrador}" th:readonly="${inactivarConsejoObservicacion}"></textarea>    
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <span>Evidencia Antes:</span></br></br>
+                                        <!--<input type="text" class="form-control form-control-user" id="actEvidenciaAntes"
+                                            placeholder="Evidencia Antes" th:field="${actividadesForm.actEvidenciaAntes}" required>
+                                              -->
+                                              
+                                              <div class="table-responsive">
+                               <table class="table table-bordered" width="100%" cellspacing="0">
+                                   <thead>
+                                       <tr>
+                                           <th>Nombre imagen</th>
+                                           <th>Imagen</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody >
+                                      <tr th:each="act: ${evidenciaactividadeslist}" th:if="${act.eviAntesDespues == 'A'}">
+                                                                        
+                                           <td height="200px" th:text="${act.eviNombreImagen}"></td>
+                                           <td height="200px"><img th:src="${act.eviVisualizacion}" width="70%" height="70%"> </td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                                </div>
+                                          <span>Imagen 1:</span>
+                                         <input type="file" class="form-control" name="actEvidenciaAntes">
+                                          
+                                         
+                                         <span>Imagen 2:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaAntes">
+                                          
+                                           <span>Imagen 3:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaAntes">
+                                          
+                                          
+                                          <span>Imagen 4:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaAntes">
+                                          
+                                          
+                                          <span>Imagen 5:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaAntes">
+                                          
+                                            
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Evidencia Despues:</span></br></br>
+                                        
+                                        <!--  <input type="text" class="form-control form-control-user" id="actEvidenciaDespues"
+                                            placeholder="Evidencia Despues" th:field="${actividadesForm.actEvidenciaDespues}">-->
+                                   
+                                   <div class="table-responsive">
+                               <table class="table table-bordered" width="100%" cellspacing="0">
+                                   <thead>
+                                       <tr>
+                                           <th>Nombre imagen</th>
+                                           <th>Imagen</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody >
+                                      <tr th:each="act: ${evidenciaactividadeslist}" th:if="${act.eviAntesDespues == 'D'}">
+                                           <td height="200px" th:text="${act.eviNombreImagen}"></td>
+                                           <td height="200px"><img th:src="${act.eviVisualizacion}" width="70%" height="70%"> </td> 
+                                       </tr>
+                                   </tbody>
+                               </table>
+                                </div>
+                                   
+                                          <span>Imagen 1:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaDespues"> 
+
+                                          <span>Imagen 2:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaDespues">                         
+                                          
+                                           <span>Imagen 3:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaDespues">                                
+                                          
+                                          <span>Imagen 4:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaDespues">
+                                                                  
+                                          <span>Imagen 5:</span>
+                                          <input type="file" class="form-control" name="actEvidenciaDespues">                         
+                                   
+                                    </div>
+                                </div>
+                                <div th:if="${actividadesForm.actEstado != '4'}">
+                                    <div th:if="${perId != 2 }">
+                                        <input type="submit" class="btn btn-primary" value="Actualizar">
+                                    </div>
+                                </div>                         
+						        <input id="activarmodalactualizar" type="hidden" name="activarmodalactualizar" th:value="${activarmodalactualizar}" />
+                            </form>                            
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+        <img style="width:100%!important" src="img/to-top.png">
+    </a>
+    
+    <!-- Modal Campos obligatorios-->
+<div class="modal fade" id="camposObligaroriosModal" tabindex="-1" role="dialog" aria-labelledby="camposObligaroriosModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Campos obligatorios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Por favor ingrese todos los campos que son obligatorios.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Guardar-->
+<div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Guardado..</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img class="imagenLogoAdmin" style="width:50%!important" src="img/cargando2.gif">
+      </div>
+      <div class="modal-footer">
+        <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --- -->
+
+<!-- Modal Guardar Confirmar-->
+	<div class="modal fade" id="confirmarGuardarModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro Actualizado</h5>
+	        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>-->
+	      </div>
+	      <div class="modal-body">
+	        Se actualizo el seguimiento de forma exitosa.
+	      </div>
+	      <div class="modal-footer">
+	      <form th:action="@{${rutamenuseguimiento}}" method="get">
+	         <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+	         <input type="submit" class="btn btn-primary" value="Close">
+	      </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Modal Guardar confirmar Error-->
+	<div class="modal fade" id="confirmarGuardarErrorModal" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Registro con error</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	       Se presento un error al intentar actualizar el registro, por favor verifique los datos e intente nuevamente.
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="plantilla/vendor/jquery/jquery.min.js"></script>
+    <script src="plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="plantilla/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="plantilla/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="plantilla/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="plantilla/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="plantilla/js/demo/datatables-demo.js"></script>
+    
+       <script>
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		
+		
+
+		
+		(function() {
+			'use strict'
+
+			   //Activamos el modal de actualizar
+	           var activarmodalactualizar = document.getElementById("activarmodalactualizar").value;
+	           if(activarmodalactualizar=="A"){
+	        	   $('#confirmarGuardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+	           if(activarmodalactualizar=="E"){
+	        	   $('#confirmarGuardarErrorModal').modal({backdrop: 'static', keyboard: false}, 'show');
+	        	   document.getElementById("activarmodalactualizar").value="N";
+	           }
+				
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms).forEach(function(form) {
+				form.addEventListener('submit', function(event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+						$('#camposObligaroriosModal').modal({backdrop: 'static', keyboard: false}, 'show');
+					}else{
+						$('#guardarModal').modal({backdrop: 'static', keyboard: false}, 'show');
+					}
+
+					form.classList.add('was-validated')
+				}, false)
+			})
+		})()
+	</script>
+</body>
+
+>>>>>>> branch 'master' of https://github.com/sisapco/sisapco.git
 </html>
