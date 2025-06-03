@@ -532,7 +532,7 @@ public class DatosGeneralesController {
 							        	userService.createTerceros(guardarTeceros);		
 					           }
 					           
-					           /////Validamos si es un Contador y registramos todos sus datos
+					           //Validamos si es un Contador y registramos todos sus datos
 					           if(datosGenerales.getDatosperTipoResidente().equals("18")) {
 					        	   
 					        	    //Guardamos los datos del usuario
