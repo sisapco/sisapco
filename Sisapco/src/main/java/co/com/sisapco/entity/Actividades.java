@@ -3,6 +3,7 @@ package co.com.sisapco.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -214,29 +215,9 @@ public class Actividades implements Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((actActividades == null) ? 0 : actActividades.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(actCosto);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((actDescripcion == null) ? 0 : actDescripcion.hashCode());
-		result = prime * result + actDesviacion;
-		result = prime * result + ((actEstado == null) ? 0 : actEstado.hashCode());
-		result = prime * result + ((actFechaEntregaReal == null) ? 0 : actFechaEntregaReal.hashCode());
-		result = prime * result + ((actFechaFinal == null) ? 0 : actFechaFinal.hashCode());
-		result = prime * result + ((actFechaInicio == null) ? 0 : actFechaInicio.hashCode());
-		result = prime * result + actId;
-		result = prime * result + ((actLog == null) ? 0 : actLog.hashCode());
-		result = prime * result + ((actNombreActividad == null) ? 0 : actNombreActividad.hashCode());
-		result = prime * result + actNumeroActividades;
-		result = prime * result + ((actObservaciones == null) ? 0 : actObservaciones.hashCode());
-		result = prime * result
-				+ ((actObservacionesAdministrador == null) ? 0 : actObservacionesAdministrador.hashCode());
-		result = prime * result + ((actPorcentajeEjecucion == null) ? 0 : actPorcentajeEjecucion.hashCode());
-		result = prime * result + ((actResponsable == null) ? 0 : actResponsable.hashCode());
-		result = prime * result + copNit;
-		return result;
+		return Objects.hash(actActividades, actCosto, actDescripcion, actDesviacion, actEstado, actFechaEntregaReal,
+				actFechaFinal, actFechaInicio, actId, actLog, actNombreActividad, actNumeroActividades,
+				actObservaciones, actObservacionesAdministrador, actPorcentajeEjecucion, actResponsable, copNit);
 	}
 
 	@Override
@@ -248,77 +229,19 @@ public class Actividades implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Actividades other = (Actividades) obj;
-		if (actActividades == null) {
-			if (other.actActividades != null)
-				return false;
-		} else if (!actActividades.equals(other.actActividades))
-			return false;
-		if (Double.doubleToLongBits(actCosto) != Double.doubleToLongBits(other.actCosto))
-			return false;
-		if (actDescripcion == null) {
-			if (other.actDescripcion != null)
-				return false;
-		} else if (!actDescripcion.equals(other.actDescripcion))
-			return false;
-		if (actDesviacion != other.actDesviacion)
-			return false;
-		if (actEstado == null) {
-			if (other.actEstado != null)
-				return false;
-		} else if (!actEstado.equals(other.actEstado))
-			return false;
-		if (actFechaEntregaReal == null) {
-			if (other.actFechaEntregaReal != null)
-				return false;
-		} else if (!actFechaEntregaReal.equals(other.actFechaEntregaReal))
-			return false;
-		if (actFechaFinal == null) {
-			if (other.actFechaFinal != null)
-				return false;
-		} else if (!actFechaFinal.equals(other.actFechaFinal))
-			return false;
-		if (actFechaInicio == null) {
-			if (other.actFechaInicio != null)
-				return false;
-		} else if (!actFechaInicio.equals(other.actFechaInicio))
-			return false;
-		if (actId != other.actId)
-			return false;
-		if (actLog == null) {
-			if (other.actLog != null)
-				return false;
-		} else if (!actLog.equals(other.actLog))
-			return false;
-		if (actNombreActividad == null) {
-			if (other.actNombreActividad != null)
-				return false;
-		} else if (!actNombreActividad.equals(other.actNombreActividad))
-			return false;
-		if (actNumeroActividades != other.actNumeroActividades)
-			return false;
-		if (actObservaciones == null) {
-			if (other.actObservaciones != null)
-				return false;
-		} else if (!actObservaciones.equals(other.actObservaciones))
-			return false;
-		if (actObservacionesAdministrador == null) {
-			if (other.actObservacionesAdministrador != null)
-				return false;
-		} else if (!actObservacionesAdministrador.equals(other.actObservacionesAdministrador))
-			return false;
-		if (actPorcentajeEjecucion == null) {
-			if (other.actPorcentajeEjecucion != null)
-				return false;
-		} else if (!actPorcentajeEjecucion.equals(other.actPorcentajeEjecucion))
-			return false;
-		if (actResponsable == null) {
-			if (other.actResponsable != null)
-				return false;
-		} else if (!actResponsable.equals(other.actResponsable))
-			return false;
-		if (copNit != other.copNit)
-			return false;
-		return true;
+		return Objects.equals(actActividades, other.actActividades)
+				&& Double.doubleToLongBits(actCosto) == Double.doubleToLongBits(other.actCosto)
+				&& Objects.equals(actDescripcion, other.actDescripcion) && actDesviacion == other.actDesviacion
+				&& Objects.equals(actEstado, other.actEstado)
+				&& Objects.equals(actFechaEntregaReal, other.actFechaEntregaReal)
+				&& Objects.equals(actFechaFinal, other.actFechaFinal)
+				&& Objects.equals(actFechaInicio, other.actFechaInicio) && actId == other.actId
+				&& Objects.equals(actLog, other.actLog) && Objects.equals(actNombreActividad, other.actNombreActividad)
+				&& actNumeroActividades == other.actNumeroActividades
+				&& Objects.equals(actObservaciones, other.actObservaciones)
+				&& Objects.equals(actObservacionesAdministrador, other.actObservacionesAdministrador)
+				&& Objects.equals(actPorcentajeEjecucion, other.actPorcentajeEjecucion)
+				&& Objects.equals(actResponsable, other.actResponsable) && copNit == other.copNit;
 	}
 
 	@Override
@@ -331,4 +254,5 @@ public class Actividades implements Serializable{
 				+ ", actPorcentajeEjecucion=" + actPorcentajeEjecucion + ", actObservaciones=" + actObservaciones
 				+ ", actObservacionesAdministrador=" + actObservacionesAdministrador + ", actLog=" + actLog + "]";
 	}
+
 }

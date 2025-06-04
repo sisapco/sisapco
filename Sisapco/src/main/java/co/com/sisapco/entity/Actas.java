@@ -3,6 +3,7 @@ package co.com.sisapco.entity;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class Actas implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native", strategy = "native")
-	private int actId;
+	private Long actId;
 	
 	@Column
 	private int copNit;
@@ -84,11 +85,11 @@ public class Actas implements Serializable{
 	@Column
 	private String actIdArchivoGoogle;
 
-	public int getActId() {
+	public Long getActId() {
 		return actId;
 	}
 
-	public void setActId(int actId) {
+	public void setActId(Long actId) {
 		this.actId = actId;
 	}
 
@@ -246,30 +247,10 @@ public class Actas implements Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((actAdjuntoRespuestaCompromisos == null) ? 0 : actAdjuntoRespuestaCompromisos.hashCode());
-		result = prime * result + ((actAsistentes == null) ? 0 : actAsistentes.hashCode());
-		result = prime * result + ((actCompromisos == null) ? 0 : actCompromisos.hashCode());
-		result = prime * result + ((actConvoca == null) ? 0 : actConvoca.hashCode());
-		result = prime * result + ((actDesarrolloDia == null) ? 0 : actDesarrolloDia.hashCode());
-		result = prime * result + ((actEstadoAprobacion == null) ? 0 : actEstadoAprobacion.hashCode());
-		result = prime * result + ((actFecha == null) ? 0 : actFecha.hashCode());
-		result = prime * result + ((actFirmaSecretario == null) ? 0 : actFirmaSecretario.hashCode());
-		result = prime * result + ((actFirmas == null) ? 0 : actFirmas.hashCode());
-		result = prime * result + ((actHoraFin == null) ? 0 : actHoraFin.hashCode());
-		result = prime * result + ((actHoraInicio == null) ? 0 : actHoraInicio.hashCode());
-		result = prime * result + actId;
-		result = prime * result + ((actIdArchivoGoogle == null) ? 0 : actIdArchivoGoogle.hashCode());
-		result = prime * result + ((actLugar == null) ? 0 : actLugar.hashCode());
-		result = prime * result + ((actMunicipio == null) ? 0 : actMunicipio.hashCode());
-		result = prime * result + actNumero;
-		result = prime * result + ((actOrdenDia == null) ? 0 : actOrdenDia.hashCode());
-		result = prime * result + ((actRespuestaCompromisos == null) ? 0 : actRespuestaCompromisos.hashCode());
-		result = prime * result + ((actReunion == null) ? 0 : actReunion.hashCode());
-		result = prime * result + copNit;
-		return result;
+		return Objects.hash(actAdjuntoRespuestaCompromisos, actAsistentes, actCompromisos, actConvoca, actDesarrolloDia,
+				actEstadoAprobacion, actFecha, actFirmaSecretario, actFirmas, actHoraFin, actHoraInicio, actId,
+				actIdArchivoGoogle, actLugar, actMunicipio, actNumero, actOrdenDia, actRespuestaCompromisos, actReunion,
+				copNit);
 	}
 
 	@Override
@@ -281,98 +262,20 @@ public class Actas implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Actas other = (Actas) obj;
-		if (actAdjuntoRespuestaCompromisos == null) {
-			if (other.actAdjuntoRespuestaCompromisos != null)
-				return false;
-		} else if (!actAdjuntoRespuestaCompromisos.equals(other.actAdjuntoRespuestaCompromisos))
-			return false;
-		if (actAsistentes == null) {
-			if (other.actAsistentes != null)
-				return false;
-		} else if (!actAsistentes.equals(other.actAsistentes))
-			return false;
-		if (actCompromisos == null) {
-			if (other.actCompromisos != null)
-				return false;
-		} else if (!actCompromisos.equals(other.actCompromisos))
-			return false;
-		if (actConvoca == null) {
-			if (other.actConvoca != null)
-				return false;
-		} else if (!actConvoca.equals(other.actConvoca))
-			return false;
-		if (actDesarrolloDia == null) {
-			if (other.actDesarrolloDia != null)
-				return false;
-		} else if (!actDesarrolloDia.equals(other.actDesarrolloDia))
-			return false;
-		if (actEstadoAprobacion == null) {
-			if (other.actEstadoAprobacion != null)
-				return false;
-		} else if (!actEstadoAprobacion.equals(other.actEstadoAprobacion))
-			return false;
-		if (actFecha == null) {
-			if (other.actFecha != null)
-				return false;
-		} else if (!actFecha.equals(other.actFecha))
-			return false;
-		if (actFirmaSecretario == null) {
-			if (other.actFirmaSecretario != null)
-				return false;
-		} else if (!actFirmaSecretario.equals(other.actFirmaSecretario))
-			return false;
-		if (actFirmas == null) {
-			if (other.actFirmas != null)
-				return false;
-		} else if (!actFirmas.equals(other.actFirmas))
-			return false;
-		if (actHoraFin == null) {
-			if (other.actHoraFin != null)
-				return false;
-		} else if (!actHoraFin.equals(other.actHoraFin))
-			return false;
-		if (actHoraInicio == null) {
-			if (other.actHoraInicio != null)
-				return false;
-		} else if (!actHoraInicio.equals(other.actHoraInicio))
-			return false;
-		if (actId != other.actId)
-			return false;
-		if (actIdArchivoGoogle == null) {
-			if (other.actIdArchivoGoogle != null)
-				return false;
-		} else if (!actIdArchivoGoogle.equals(other.actIdArchivoGoogle))
-			return false;
-		if (actLugar == null) {
-			if (other.actLugar != null)
-				return false;
-		} else if (!actLugar.equals(other.actLugar))
-			return false;
-		if (actMunicipio == null) {
-			if (other.actMunicipio != null)
-				return false;
-		} else if (!actMunicipio.equals(other.actMunicipio))
-			return false;
-		if (actNumero != other.actNumero)
-			return false;
-		if (actOrdenDia == null) {
-			if (other.actOrdenDia != null)
-				return false;
-		} else if (!actOrdenDia.equals(other.actOrdenDia))
-			return false;
-		if (actRespuestaCompromisos == null) {
-			if (other.actRespuestaCompromisos != null)
-				return false;
-		} else if (!actRespuestaCompromisos.equals(other.actRespuestaCompromisos))
-			return false;
-		if (actReunion == null) {
-			if (other.actReunion != null)
-				return false;
-		} else if (!actReunion.equals(other.actReunion))
-			return false;
-		if (copNit != other.copNit)
-			return false;
-		return true;
+		return Objects.equals(actAdjuntoRespuestaCompromisos, other.actAdjuntoRespuestaCompromisos)
+				&& Objects.equals(actAsistentes, other.actAsistentes)
+				&& Objects.equals(actCompromisos, other.actCompromisos) && Objects.equals(actConvoca, other.actConvoca)
+				&& Objects.equals(actDesarrolloDia, other.actDesarrolloDia)
+				&& Objects.equals(actEstadoAprobacion, other.actEstadoAprobacion)
+				&& Objects.equals(actFecha, other.actFecha)
+				&& Objects.equals(actFirmaSecretario, other.actFirmaSecretario)
+				&& Objects.equals(actFirmas, other.actFirmas) && Objects.equals(actHoraFin, other.actHoraFin)
+				&& Objects.equals(actHoraInicio, other.actHoraInicio) && Objects.equals(actId, other.actId)
+				&& Objects.equals(actIdArchivoGoogle, other.actIdArchivoGoogle)
+				&& Objects.equals(actLugar, other.actLugar) && Objects.equals(actMunicipio, other.actMunicipio)
+				&& actNumero == other.actNumero && Objects.equals(actOrdenDia, other.actOrdenDia)
+				&& Objects.equals(actRespuestaCompromisos, other.actRespuestaCompromisos)
+				&& Objects.equals(actReunion, other.actReunion) && copNit == other.copNit;
 	}
 
 	@Override
@@ -386,5 +289,7 @@ public class Actas implements Serializable{
 				+ actRespuestaCompromisos + ", actAdjuntoRespuestaCompromisos=" + actAdjuntoRespuestaCompromisos
 				+ ", actCompromisos=" + actCompromisos + ", actIdArchivoGoogle=" + actIdArchivoGoogle + "]";
 	}
+
+	
 }
 	

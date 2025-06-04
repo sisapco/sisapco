@@ -8,7 +8,7 @@ import co.com.sisapco.entity.ContactoEmergencia;
 import co.com.sisapco.entity.Vehiculo;
 
 @Repository
-public interface ContactoEmergenciaRepository extends CrudRepository<ContactoEmergencia, Long>{
+public interface ContactoEmergenciaRepository extends CrudRepository<ContactoEmergencia, Integer>{
 	
 	@Query("SELECT u FROM ContactoEmergencia u WHERE u.emergenciaId = ?1")
 	public Vehiculo findByContactoEmergenciaId(int vehiculoId);

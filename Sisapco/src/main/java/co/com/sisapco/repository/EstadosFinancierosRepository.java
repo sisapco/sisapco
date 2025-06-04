@@ -9,7 +9,7 @@ import co.com.sisapco.entity.EstadosFinancieros;
 import co.com.sisapco.entity.Pqrs;
 
 @Repository
-public interface EstadosFinancierosRepository extends CrudRepository<EstadosFinancieros, Long>{
+public interface EstadosFinancierosRepository extends CrudRepository<EstadosFinancieros, Integer>{
 
 	/*@Query("SELECT u FROM EstadosFinancieros u WHERE u.copNit = ?1 ORDER BY u.copNit DESC")
 	public Iterable<EstadosFinancieros> findByEstadosFinancierosNit(int copNit);*/

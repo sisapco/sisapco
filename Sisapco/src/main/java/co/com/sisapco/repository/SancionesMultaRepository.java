@@ -8,7 +8,7 @@ import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.SancionesMulta;
 
 @Repository
-public interface SancionesMultaRepository  extends CrudRepository<SancionesMulta, Long>{
+public interface SancionesMultaRepository  extends CrudRepository<SancionesMulta, Integer>{
 	
 
 	@Query("SELECT u FROM SancionesMulta u WHERE u.copNit = ?1 ORDER BY u.mulId DESC")

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.ManualConvivencia;
 
 @Repository
-public interface ManualConvivenciaRepository extends CrudRepository<ManualConvivencia, Long>{
+public interface ManualConvivenciaRepository extends CrudRepository<ManualConvivencia, Integer>{
 
 	/*@Query("SELECT u FROM ManualConvivencia u WHERE u.copNit = ?1 ORDER BY u.conviId DESC")
 	public Iterable<ManualConvivencia> findByManualConvivenciaNit(int copNit); */

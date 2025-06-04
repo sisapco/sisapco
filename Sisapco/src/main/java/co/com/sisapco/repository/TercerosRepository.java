@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Terceros;
 
 @Repository
-public interface TercerosRepository extends CrudRepository<Terceros, Long>{
+public interface TercerosRepository extends CrudRepository<Terceros, Integer>{
 
 	@Query("SELECT u FROM Terceros u WHERE u.terceId = ?1")
 	public Terceros findByInquilinoId(int inquilinoId);

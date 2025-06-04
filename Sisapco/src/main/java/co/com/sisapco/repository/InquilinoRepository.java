@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Inquilino;
 
 @Repository
-public interface InquilinoRepository extends CrudRepository<Inquilino, Long>{
+public interface InquilinoRepository extends CrudRepository<Inquilino, Integer>{
 	
 	@Query("SELECT u FROM Inquilino u WHERE u.inquilinoId = ?1")
 	public Inquilino findByInquilinoId(int inquilinoId);

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.ControlPagos;
 
 @Repository
-public interface ControlPagosRepository extends CrudRepository<ControlPagos, Long>{	
+public interface ControlPagosRepository extends CrudRepository<ControlPagos, Integer>{	
 
 	
 	

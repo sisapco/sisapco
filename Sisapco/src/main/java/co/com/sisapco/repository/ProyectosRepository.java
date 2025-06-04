@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Proyectos;
 
 @Repository
-public interface ProyectosRepository extends CrudRepository<Proyectos, Long>{
+public interface ProyectosRepository extends CrudRepository<Proyectos, Integer>{
 	
 	@Query("SELECT u FROM Proyectos u WHERE u.copNit = ?1")
 	public Iterable<Proyectos> findByProyectosNit(int copNit);

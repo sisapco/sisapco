@@ -11,7 +11,7 @@ import co.com.sisapco.entity.ManualConvivencia;
 import co.com.sisapco.entity.Pqrs;
 
 @Repository
-public interface ComunicadosRepository extends CrudRepository<Comunicados, Long>{
+public interface ComunicadosRepository extends CrudRepository<Comunicados, Integer>{
 	
 	/*@Query("SELECT u FROM Comunicados u WHERE u.copNit = ?1 ORDER BY u.comuId DESC")
 	public Iterable<Comunicados> findByComunicadosNit(int copNit); */

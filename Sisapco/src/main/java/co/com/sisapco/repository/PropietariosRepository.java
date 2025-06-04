@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Propietarios;
 
 @Repository
-public interface PropietariosRepository extends CrudRepository<Propietarios, Long>{
+public interface PropietariosRepository extends CrudRepository<Propietarios, Integer>{
 	
 	@Query("SELECT u FROM Propietarios u WHERE u.proCc = ?1")
 	public Propietarios findByPropietariosCc(int proCc);

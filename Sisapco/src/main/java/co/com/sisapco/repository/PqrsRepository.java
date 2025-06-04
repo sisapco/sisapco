@@ -8,7 +8,7 @@ import co.com.sisapco.entity.Comunicados;
 import co.com.sisapco.entity.Pqrs;
 
 @Repository
-public interface PqrsRepository extends CrudRepository<Pqrs, Long>{
+public interface PqrsRepository extends CrudRepository<Pqrs, Integer>{
 	
 	/*@Query("SELECT u FROM Pqrs u WHERE u.copNit = ?1 ORDER BY u.idPqrs DESC")
 	public Iterable<Pqrs> findByPqrsNit(int copNit); */

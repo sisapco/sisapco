@@ -8,7 +8,7 @@ import co.com.sisapco.entity.Actas;
 import co.com.sisapco.entity.AutorizacionIngreso;
 
 @Repository
-public interface AutorizacionIngresoRepository extends CrudRepository<AutorizacionIngreso, Long>{
+public interface AutorizacionIngresoRepository extends CrudRepository<AutorizacionIngreso, Integer>{
 
 	@Query("SELECT u FROM Actas u WHERE u.copNit = ?1 ORDER BY u.actId DESC")
 	public Iterable<AutorizacionIngreso> findByActasNit(int codNit);

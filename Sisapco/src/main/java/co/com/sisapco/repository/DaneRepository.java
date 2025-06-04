@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Dane;
 
 @Repository
-public interface DaneRepository extends CrudRepository<Dane, Long>{
+public interface DaneRepository extends CrudRepository<Dane, Integer>{
 
 	@Query("SELECT DISTINCT u.nombreDepartamento, u.codigoDepartamento FROM Dane u")
 	public Iterable<Dane> findByDaneDepartamentos();

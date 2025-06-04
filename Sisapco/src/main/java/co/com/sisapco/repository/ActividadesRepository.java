@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Actividades;
 
 @Repository
-public interface ActividadesRepository extends CrudRepository<Actividades, Long>{
+public interface ActividadesRepository extends CrudRepository<Actividades, Integer>{
 
 	/*@Query(value ="SELECT u.actId, u.copNit,u.actFechaInicio,u.actFechaFinal,u.actNombreActividad,"
 			+ "(SELECT e.estValorEstado FROM Estados e WHERE u.actEstado=e.estIdCodigo) as actEstado,u.actDescripcion,u.actCosto,u.actResponsable,u.actDesviacion,u.actFechaEntregaReal,u.actActividades,"

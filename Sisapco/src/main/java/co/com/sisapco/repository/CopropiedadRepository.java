@@ -10,7 +10,7 @@ import co.com.sisapco.entity.Copropiedad;
 
 
 @Repository
-public interface CopropiedadRepository extends CrudRepository<Copropiedad, Long>{
+public interface CopropiedadRepository extends CrudRepository<Copropiedad, Integer>{
 	
 	@Query("SELECT u FROM UsuariosCopropiedad a, Copropiedad u WHERE a.usuId = ?1 AND a.copNit = u.copNit AND u.copEstado = 1")
 	public Iterable<Copropiedad> findByCopropiedadUsuario(int usuId);

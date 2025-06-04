@@ -9,7 +9,7 @@ import co.com.sisapco.entity.EvidenciaActividades;
 
 
 @Repository
-public interface EvidenciaActividadesRepository extends CrudRepository<EvidenciaActividades, Long>{
+public interface EvidenciaActividadesRepository extends CrudRepository<EvidenciaActividades, Integer>{
 	
 	@Query("SELECT u FROM EvidenciaActividades u WHERE u.actId = ?1 AND u.eviEstadoImagen = 1")
 	public Iterable<EvidenciaActividades> findByEvidenciaActividadesActId(int actId);

@@ -8,7 +8,7 @@ import co.com.sisapco.entity.Actividades;
 import co.com.sisapco.entity.Contrato;
 
 @Repository
-public interface ContratoRepository extends CrudRepository<Contrato, Long>{
+public interface ContratoRepository extends CrudRepository<Contrato, Integer>{
 	
 	@Query(value ="SELECT u.contra_id,u.cop_nit,u.contra_descripcion,u.contra_documento_adjunto,"
 			+"(SELECT e.est_valor_estado FROM estados e WHERE u.contra_estado=e.est_id_codigo) as contra_estado,"

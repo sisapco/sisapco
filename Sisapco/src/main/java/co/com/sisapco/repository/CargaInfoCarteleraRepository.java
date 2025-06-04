@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import co.com.sisapco.entity.Cartelera;
 
 @Repository
-public interface CargaInfoCarteleraRepository extends CrudRepository<Cartelera, Long>{	
+public interface CargaInfoCarteleraRepository extends CrudRepository<Cartelera, Integer>{	
 	
 	@Query(value ="SELECT u.cartelera_id,u.cop_nit,u.pro_numero_residencia,u.cartelera_nombre_publicacion,"
 			
