@@ -29,8 +29,7 @@ function validarUsuarioDatosGenerales(){
 				document.getElementById("contadorUsser").value="";
 				document.getElementById("revisorUsser").value="";
 			}
-	        
-			
+	        			
     	    $.ajax({
     	        type:"post",
     	        //contentType: "application/json",
